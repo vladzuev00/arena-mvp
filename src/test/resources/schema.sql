@@ -45,7 +45,7 @@ CREATE TABLE shows(
     description VARCHAR(256) NOT NULL,
     category_id INTEGER NOT NULL,
     venue_id INTEGER NOT NULL,
-    imageUrl VARCHAR(256) NOT NULL
+    image_url VARCHAR(256) NOT NULL
 );
 
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_categories FOREIGN KEY (category_id) REFERENCES categories(id);
