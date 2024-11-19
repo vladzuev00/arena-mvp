@@ -1,3 +1,6 @@
+DROP CONSTRAINT IF EXISTS fk_shows_to_categories;
+DROP CONSTRAINT IF EXISTS fk_shows_to_venues;
+
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS promoters;
@@ -33,3 +36,17 @@ CREATE TABLE venues(
     latitude DECIMAL NOT NULL,
     longitude DECIMAL NOT NULL
 );
+
+CREATE TABLE shows(
+    id SERIAL PRIMARY KEY,
+    external_short_id INTEGER NOT NULL UNIQUE,
+    title VARCHAR(256) NOT NULL,
+    subtitle VARCHAR(256) NOT NULL,
+    description VARCHAR(256) NOT NULL,
+    category_id INTEGER NOT NULL,
+    venue_id INTEGER NOT NULL,
+    imageUrl VARCHAR(256) NOT NULL
+);
+
+ALTER TABLE shows ADD CONSTRAINT fk_shows_to_categories FOREIGN KEY (category_id) REFERENCES categories(id);
+ALTER TABLE shows ADD CONSTRAINT fk_shows_to_venues FOREIGN KEY (venue_id) REFERENCES venues(id);
