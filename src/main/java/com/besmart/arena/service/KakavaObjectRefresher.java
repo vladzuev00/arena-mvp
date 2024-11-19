@@ -103,6 +103,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
     @Override
     protected Venue createVenue(ShowTO source) {
         return Venue.builder()
+                .externalId(source.getLocation().getId())
                 .name(source.getLocation().getName())
                 .address(source.getVenueAddress())
                 .build();
