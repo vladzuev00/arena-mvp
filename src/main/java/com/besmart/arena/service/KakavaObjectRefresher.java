@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+//TODO: refactor
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         KakavaShowsResponseTO,
