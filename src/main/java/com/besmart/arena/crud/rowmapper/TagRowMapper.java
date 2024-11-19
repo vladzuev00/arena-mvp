@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 @Component
 public final class TagRowMapper implements RowMapper<Tag> {
-    private static final String COLUMN_NAME_ID = "id";
-    private static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
-    private static final String COLUMN_NAME_NAME = "name";
+    static final String COLUMN_NAME_ID = "id";
+    static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
+    static final String COLUMN_NAME_NAME = "name";
 
     @Override
     public Tag mapRow(ResultSet resultSet, int rowNumber)
