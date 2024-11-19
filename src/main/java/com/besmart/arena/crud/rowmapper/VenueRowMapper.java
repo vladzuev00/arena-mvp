@@ -12,12 +12,12 @@ import static com.besmart.arena.util.ResultSetUtil.getUUID;
 
 @Component
 public final class VenueRowMapper implements RowMapper<Venue> {
-    private static final String COLUMN_NAME_ID = "id";
-    private static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
-    private static final String COLUMN_NAME_NAME = "name";
-    private static final String COLUMN_NAME_ADDRESS = "address";
-    private static final String COLUMN_NAME_LATITUDE = "latitude";
-    private static final String COLUMN_NAME_LONGITUDE = "longitude";
+    static final String COLUMN_NAME_ID = "id";
+    static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
+    static final String COLUMN_NAME_NAME = "name";
+    static final String COLUMN_NAME_ADDRESS = "address";
+    static final String COLUMN_NAME_LATITUDE = "latitude";
+    static final String COLUMN_NAME_LONGITUDE = "longitude";
 
     @Override
     public Venue mapRow(ResultSet resultSet, int rowNumber)
