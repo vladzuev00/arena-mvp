@@ -29,7 +29,7 @@ public class ShowTO {
                   @JsonProperty("eventTitle") String eventTitle,
                   @JsonProperty("eventDescription") String eventDescriptionHtml,
                   @JsonProperty("eventPicture") EventPictureTO eventPicture,
-                  @JsonProperty("eventCategories") CategoryTO[] eventCategories,
+                  @JsonProperty("eventCategories") List<CategoryTO> eventCategories,
                   @JsonProperty("startDateTime") LocalDateTime startDateTime,
                   @JsonProperty("marks") ShowMark[] marks,
                   @JsonProperty("customMarks") ShowCustomMarkTO[] customMarks,
