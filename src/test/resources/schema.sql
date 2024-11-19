@@ -11,6 +11,6 @@ CREATE TABLE categories(
 
 CREATE TABLE tags(
     id SERIAL PRIMARY KEY,
-    externalId INTEGER NOT NULL UNIQUE,
+    external_id INTEGER NOT NULL UNIQUE,
     name VARCHAR(256) NOT NULL
 );
