@@ -9,11 +9,11 @@ import lombok.Value;
 @AllArgsConstructor
 public class Show {
     Long id;
-    int externalId;
+    int externalShortId;
     String title;
     String subtitle;
     String description;
     Category category;
     Venue venue;
-    String imageId;
+    String imageUrl;
 }

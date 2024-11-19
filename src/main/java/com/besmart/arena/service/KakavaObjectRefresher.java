@@ -76,31 +76,49 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         return response.getShows();
     }
 
+    //TODO: откуда брать name, primaryColor, secondaryColor
     @Override
     protected Category createCategory(CategoryTO source) {
-        //TODO: откуда брать name, primaryColor, secondaryColor
-//        return new Category(source.getId());
+        return Category.builder()
+                .externalId(source.getId())
+                .build();
+    }
+
+    //TODO: у Тихана извлекаются marks и customMarks, так нужно ли делать
+    @Override
+    protected Tag createTag(ShowTO source) {
         throw new UnsupportedOperationException();
     }
 
+    //TODO: что делать с iconUrl и webPageUrl
     @Override
-    protected Tag createTag(ShowTO showTO) {
-        return null;
+    protected Promoter createPromoter(PromoterTO source) {
+        return Promoter.builder()
+                .externalId(source.getId())
+                .name(source.getName())
+                .build();
     }
 
+    //TODO: что делать c latitude и longitude
     @Override
-    protected Promoter createPromoter(PromoterTO promoterTO) {
-        return null;
+    protected Venue createVenue(ShowTO source) {
+        return Venue.builder()
+                .name(source.getLocation().getName())
+                .address(source.getVenueAddress())
+                .build();
     }
 
+    //TODO: что должно быть в subtitle
+    //TODO: что делать с категориями: у Тихана только 1 категория может быть у Show, от provider-а приходит массив
+    //TODO: что делать с Venue - нет externalId
     @Override
-    protected Venue createVenue(ShowTO showTO) {
-        return null;
-    }
-
-    @Override
-    protected Show createShow(ShowTO show) {
-        return null;
+    protected Show createShow(ShowTO source) {
+        return Show.builder()
+                .externalShortId(source.getShortId())
+                .title(source.getEventTitle())
+                .description(htmlRenderer.render(source.getEventDescriptionHtml()))
+                .imageUrl(source.getEventPicture().getDesktopPictureUrl())
+                .build();
     }
 
     //TODO: что должно быть в subtitle
@@ -111,7 +129,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
                 .title(source.getEventTitle())
                 .description(htmlRenderer.render(source.getEventDescriptionHtml()))
                 .dateTime(source.getStartDateTime())
-                .show(Show.builder().externalId(source.getEventShortId()).build())
+                .show(Show.builder().externalShortId(source.getEventShortId()).build())
                 .build();
     }
 }

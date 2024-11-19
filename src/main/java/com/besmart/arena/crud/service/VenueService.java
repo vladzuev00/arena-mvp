@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public final class VenueService  {
 
+    //TODO: нет externalId
     public void refreshByExternalId(List<Venue> venues) {
         throw new UnsupportedOperationException();
     }
