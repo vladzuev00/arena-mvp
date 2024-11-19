@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS promoters;
+DROP TABLE IF EXISTS venues;
 
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
@@ -22,4 +23,13 @@ CREATE TABLE promoters(
     name VARCHAR(256) NOT NULL,
     icon_url VARCHAR(256) NOT NULL,
     web_page_url VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE venues(
+    id SERIAL PRIMARY KEY,
+    external_id UUID NOT NULL UNIQUE,
+    name VARCHAR(256) NOT NULL,
+    address VARCHAR(256) NOT NULL,
+    latitude DECIMAL NOT NULL,
+    longitude DECIMAL NOT NULL
 );
