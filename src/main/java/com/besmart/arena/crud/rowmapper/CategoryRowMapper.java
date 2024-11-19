@@ -1,4 +1,4 @@
-package com.besmart.arena.crud.rawmapper;
+package com.besmart.arena.crud.rowmapper;
 
 import com.besmart.arena.crud.dto.Category;
 import org.springframework.jdbc.core.RowMapper;

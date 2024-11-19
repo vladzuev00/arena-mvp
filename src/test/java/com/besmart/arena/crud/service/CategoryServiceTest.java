@@ -2,7 +2,7 @@ package com.besmart.arena.crud.service;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
 import com.besmart.arena.crud.dto.Category;
-import com.besmart.arena.crud.rawmapper.CategoryRowMapper;
+import com.besmart.arena.crud.rowmapper.CategoryRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
