@@ -12,11 +12,11 @@ import static com.besmart.arena.util.ResultSetUtil.getUUID;
 
 @Component
 public final class PromoterRowMapper implements RowMapper<Promoter> {
-    private static final String COLUMN_NAME_ID = "id";
-    private static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
-    private static final String COLUMN_NAME_NAME = "name";
-    private static final String COLUMN_NAME_ICON_URL = "icon_url";
-    private static final String COLUMN_NAME_WEB_PAGE_URL = "web_page_url";
+    static final String COLUMN_NAME_ID = "id";
+    static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
+    static final String COLUMN_NAME_NAME = "name";
+    static final String COLUMN_NAME_ICON_URL = "icon_url";
+    static final String COLUMN_NAME_WEB_PAGE_URL = "web_page_url";
 
     @Override
     public Promoter mapRow(ResultSet resultSet, int rowNumber)
