@@ -20,3 +20,6 @@ VALUES(1000, '550e8400-e29b-41d4-a716-446655440000', 'first-name', 'first-addres
 INSERT INTO shows(id, external_short_id, title, subtitle, description, category_id, venue_id, image_url)
 VALUES(1000, 2000, 'first-title', 'first-subtitle', 'first-description', 1000, 1000, 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2'),
       (1001, 2001, 'second-title', 'second-subtitle', 'second-description', 1001, 1001, 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3');
+
+INSERT INTO events(id, external_short_id, title, subtitle, description, date_time, show_id)
+VALUES(1000, 2000, 'first-title', 'first-subtitle', 'first-description', '2005-04-02 12:00:00', 1000);
