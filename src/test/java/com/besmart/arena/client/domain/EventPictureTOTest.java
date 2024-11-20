@@ -1,7 +1,6 @@
-package com.besmart.arena.domain;
+package com.besmart.arena.client.domain;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.client.domain.EventPictureTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,9 @@ public final class EventPictureTOTest extends AbstractSpringBootTest {
     @Test
     public void pictureShouldBeSerializedToJson()
             throws Exception {
-        EventPictureTO givenPicture = new EventPictureTO("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2");
+        EventPictureTO givenPicture = new EventPictureTO(
+                "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
+        );
 
         String actual = objectMapper.writeValueAsString(givenPicture);
         String expected = """
@@ -37,7 +38,9 @@ public final class EventPictureTOTest extends AbstractSpringBootTest {
                 }""";
 
         EventPictureTO actual = objectMapper.readValue(givenJson, EventPictureTO.class);
-        EventPictureTO expected = new EventPictureTO("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2");
+        EventPictureTO expected = new EventPictureTO(
+                "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
+        );
         Assertions.assertEquals(expected, actual);
     }
 }
