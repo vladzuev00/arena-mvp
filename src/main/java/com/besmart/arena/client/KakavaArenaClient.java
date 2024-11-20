@@ -16,7 +16,7 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 @RequiredArgsConstructor
 public final class KakavaArenaClient implements ArenaClient {
     private static final String VENUES_PARAM_NAME = "venues";
-    private static final String GETTING_SHOWS_URL = "https://app-kkv-be-test.azurewebsites.net/event/show";
+    private static final String GETTING_SHOWS_URL = "https://app-kkv-be-test.azurewebsites.net/api/v1/event/show";
     private static final String LANGUAGE = "EN";
     private static final UUID VENUE_ID = fromString("a60de864-5c52-11ee-a81c-000d3aa868a2");
 
