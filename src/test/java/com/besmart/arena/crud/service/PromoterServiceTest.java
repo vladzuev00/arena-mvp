@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 import java.util.Set;
 
+import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
-import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class PromoterServiceTest extends AbstractSpringBootTest {
@@ -65,8 +65,6 @@ public final class PromoterServiceTest extends AbstractSpringBootTest {
     }
 
     private Set<Promoter> findAllPromoters() {
-        try (var stream = jdbcTemplate.queryForStream("SELECT id, external_id, name, icon_url, web_page_url FROM promoters", rowMapper)) {
-            return stream.collect(toUnmodifiableSet());
-        }
+        return queryForSet(jdbcTemplate, rowMapper, "SELECT id, external_id, name, icon_url, web_page_url FROM promoters");
     }
 }

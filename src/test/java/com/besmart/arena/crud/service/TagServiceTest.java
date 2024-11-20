@@ -3,15 +3,14 @@ package com.besmart.arena.crud.service;
 import com.besmart.arena.base.AbstractSpringBootTest;
 import com.besmart.arena.crud.dto.Tag;
 import com.besmart.arena.crud.rowmapper.TagRowMapper;
+import com.besmart.arena.testutil.JdbcTemplateUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class TagServiceTest extends AbstractSpringBootTest {
@@ -40,8 +39,6 @@ public final class TagServiceTest extends AbstractSpringBootTest {
     }
 
     private Set<Tag> findAllTags() {
-        try (var stream = jdbcTemplate.queryForStream("SELECT id, external_id, name FROM tags", rowMapper)) {
-            return stream.collect(toUnmodifiableSet());
-        }
+        return JdbcTemplateUtil.queryForSet(jdbcTemplate, rowMapper, "SELECT id, external_id, name FROM tags");
     }
 }

@@ -6,13 +6,12 @@ import com.besmart.arena.crud.rowmapper.VenueRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Set;
 
+import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
-import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class VenueServiceTest extends AbstractSpringBootTest {
@@ -78,8 +77,6 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
     }
 
     private Set<Venue> findAllVenues() {
-        try (var stream = jdbcTemplate.queryForStream("SELECT id, external_id, name, address, latitude, longitude FROM venues", rowMapper)) {
-            return stream.collect(toUnmodifiableSet());
-        }
+        return queryForSet(jdbcTemplate, rowMapper, "SELECT id, external_id, name, address, latitude, longitude FROM venues");
     }
 }

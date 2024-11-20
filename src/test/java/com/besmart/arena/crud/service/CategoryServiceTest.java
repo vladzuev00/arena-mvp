@@ -6,12 +6,11 @@ import com.besmart.arena.crud.rowmapper.CategoryRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toUnmodifiableSet;
+import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class CategoryServiceTest extends AbstractSpringBootTest {
@@ -54,8 +53,10 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
     }
 
     private Set<Category> findAllCategories() {
-        try (var stream = jdbcTemplate.queryForStream("SELECT id, external_id, name, primary_color, secondary_color FROM categories", rowMapper)) {
-            return stream.collect(toUnmodifiableSet());
-        }
+        return queryForSet(
+                jdbcTemplate,
+                rowMapper,
+                "SELECT id, external_id, name, primary_color, secondary_color FROM categories"
+        );
     }
 }

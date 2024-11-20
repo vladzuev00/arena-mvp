@@ -5,6 +5,7 @@ import com.besmart.arena.crud.dto.Category;
 import com.besmart.arena.crud.dto.Show;
 import com.besmart.arena.crud.dto.Venue;
 import com.besmart.arena.crud.rowmapper.ShowRowMapper;
+import com.besmart.arena.testutil.JdbcTemplateUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 import java.util.Set;
 
+import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
 import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -89,8 +91,10 @@ public final class ShowServiceTest extends AbstractSpringBootTest {
     }
 
     private Set<Show> findAllShows() {
-        try (var stream = jdbcTemplate.queryForStream("SELECT id, external_short_id, title, subtitle, description, category_id, venue_id, image_url FROM shows", rowMapper)) {
-            return stream.collect(toUnmodifiableSet());
-        }
+        return queryForSet(
+                jdbcTemplate,
+                rowMapper,
+                "SELECT id, external_short_id, title, subtitle, description, category_id, venue_id, image_url FROM shows"
+        );
     }
 }
