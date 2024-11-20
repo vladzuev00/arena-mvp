@@ -31,32 +31,59 @@ public final class ShowServiceTest extends AbstractSpringBootTest {
     public void showsShouldBeRefreshedByExternalId() {
         List<Show> givenShows = List.of(
                 Show.builder()
-                        .externalShortId(255)
-                        .title("third-title")
-                        .subtitle("third-subtitle")
-                        .description("second-description")
-                        .category(Category.builder().externalId(2555).build())
-                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a717-446655440000")).build())
-                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2")
-                        .build(),
-                Show.builder()
-                        .externalShortId(256)
+                        .externalShortId(2000)
                         .title("third-title")
                         .subtitle("third-subtitle")
                         .description("third-description")
-                        .category(Category.builder().externalId(2555).build())
-                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a717-446655440000")).build())
-                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3")
+                        .category(Category.builder().externalId(2001).build())
+                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a716-446655440001")).build())
+                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4")
+                        .build(),
+                Show.builder()
+                        .externalShortId(2002)
+                        .title("fourth-title")
+                        .subtitle("fourth-subtitle")
+                        .description("fourth-description")
+                        .category(Category.builder().externalId(2001).build())
+                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a716-446655440001")).build())
+                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5")
                         .build()
         );
 
         service.refreshByExternalId(givenShows);
 
         Set<Show> actual = findAllShows();
-        //[Show(id=1, externalShortId=255, title=second-title, subtitle=second-subtitle, description=second-description, category=Category(id=129, externalId=0, name=null, primaryColor=null, secondaryColor=null), venue=Venue(id=132, externalId=null, name=null, address=null, latitude=0.0, longitude=0.0), imageUrl=https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2),
-        // Show(id=2, externalShortId=256, title=third-title, subtitle=third-subtitle, description=third-description, category=Category(id=129, externalId=0, name=null, primaryColor=null, secondaryColor=null), venue=Venue(id=132, externalId=null, name=null, address=null, latitude=0.0, longitude=0.0), imageUrl=https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3)]
         Set<Show> expected = Set.of(
-
+                new Show(
+                        1000L,
+                        2000,
+                        "third-title",
+                        "third-subtitle",
+                        "third-description",
+                        Category.builder().id(1001L).build(),
+                        Venue.builder().id(1001L).build(),
+                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4"
+                ),
+                new Show(
+                        1001L,
+                        2001,
+                        "second-title",
+                        "second-subtitle",
+                        "second-description",
+                        Category.builder().id(1001L).build(),
+                        Venue.builder().id(1001L).build(),
+                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3"
+                ),
+                new Show(
+                        2L,
+                        2002,
+                        "fourth-title",
+                        "fourth-subtitle",
+                        "fourth-description",
+                        Category.builder().id(1001L).build(),
+                        Venue.builder().id(1001L).build(),
+                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5"
+                )
         );
         assertEquals(expected, actual);
     }
