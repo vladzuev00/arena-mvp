@@ -1,6 +1,4 @@
-DROP CONSTRAINT IF EXISTS fk_shows_to_categories;
-DROP CONSTRAINT IF EXISTS fk_shows_to_venues;
-
+DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS promoters;

@@ -26,7 +26,6 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    @Sql(statements = "INSERT INTO categories(external_id, name, primary_color, secondary_color) VALUES(255, 'first-category', '#90caef', '#faa538')")
     public void categoriesShouldBeRefreshedByExternalId() {
         List<Category> givenCategories = List.of(
                 Category.builder()
@@ -47,8 +46,8 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
 
         Set<Category> actual = findAllCategories();
         Set<Category> expected = Set.of(
-                new Category(1L, 255, "second-category", "#b07289", "#e00e79"),
-                new Category(3L, 256, "third-category", "#3d4761", "#1f2431")
+                new Category(128L, 255, "second-category", "#b07289", "#e00e79"),
+                new Category(2L, 256, "third-category", "#3d4761", "#1f2431")
         );
         assertEquals(expected, actual);
     }

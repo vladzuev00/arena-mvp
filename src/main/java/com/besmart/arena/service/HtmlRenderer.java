@@ -5,6 +5,7 @@ import net.htmlparser.jericho.Segment;
 import net.htmlparser.jericho.Source;
 import org.springframework.stereotype.Component;
 
+//TODO: do as util
 @Component
 public final class HtmlRenderer {
 
