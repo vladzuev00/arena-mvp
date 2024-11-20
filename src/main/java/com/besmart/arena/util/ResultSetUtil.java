@@ -1,6 +1,7 @@
 package com.besmart.arena.util;
 
 import com.besmart.arena.crud.dto.Category;
+import com.besmart.arena.crud.dto.Show;
 import com.besmart.arena.crud.dto.Venue;
 import lombok.experimental.UtilityClass;
 
@@ -28,5 +29,11 @@ public final class ResultSetUtil {
             throws SQLException {
         Long id = resultSet.getLong(columnNameId);
         return Venue.builder().id(id).build();
+    }
+
+    public static Show getShowLazily(ResultSet resultSet, String columnNameId)
+            throws SQLException {
+        Long id = resultSet.getLong(columnNameId);
+        return Show.builder().id(id).build();
     }
 }
