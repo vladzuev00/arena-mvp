@@ -48,3 +48,15 @@ CREATE TABLE shows(
 
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_categories FOREIGN KEY (category_id) REFERENCES categories(id);
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_venues FOREIGN KEY (venue_id) REFERENCES venues(id);
+
+CREATE TABLE events(
+    id SERIAL PRIMARY KEY,
+    external_short_id INTEGER NOT NULL UNIQUE,
+    title VARCHAR(256) NOT NULL,
+    subtitle VARCHAR(256) NOT NULL,
+    description VARCHAR(256) NOT NULL,
+    date_time TIMESTAMP(0) NOT NULL,
+    show_id INTEGER NOT NULL
+);
+
+ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
