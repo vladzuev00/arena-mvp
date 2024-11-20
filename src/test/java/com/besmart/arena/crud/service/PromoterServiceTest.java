@@ -6,7 +6,6 @@ import com.besmart.arena.crud.rowmapper.PromoterRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 import java.util.Set;
@@ -27,7 +26,6 @@ public final class PromoterServiceTest extends AbstractSpringBootTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    @Sql(statements = "INSERT INTO promoters(external_id, name, icon_url, web_page_url) VALUES('550e8400-e29b-41d4-a716-446655440000', 'first-promoter', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3')")
     public void promotersShouldBeRefreshedByExternalId() {
         List<Promoter> givenPromoters = List.of(
                 Promoter.builder()
@@ -49,14 +47,14 @@ public final class PromoterServiceTest extends AbstractSpringBootTest {
         Set<Promoter> actual = findAllPromoters();
         Set<Promoter> expected = Set.of(
                 new Promoter(
-                        1L,
+                        129L,
                         fromString("550e8400-e29b-41d4-a716-446655440000"),
                         "second-promoter",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5"
                 ),
                 new Promoter(
-                        3L,
+                        2L,
                         fromString("550e8400-e29b-41d4-a716-446655440001"),
                         "third-promoter",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a6",
