@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Value;
 
+import java.util.List;
+
 @Value
-public class AuthResponseTO {
-    String accessToken;
+public class ShowsResponseTO {
+    List<ShowTO> shows;
 
     @JsonCreator
-    public AuthResponseTO(@JsonProperty("access_token") String accessToken) {
-        this.accessToken = accessToken;
+    public ShowsResponseTO(@JsonProperty("shows") List<ShowTO> shows) {
+        this.shows = shows;
     }
 }

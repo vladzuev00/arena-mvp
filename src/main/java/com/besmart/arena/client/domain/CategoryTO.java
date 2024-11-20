@@ -1,4 +1,4 @@
-package com.besmart.arena.domain;
+package com.besmart.arena.client.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-package com.besmart.arena.domain;
+package com.besmart.arena.client.domain;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
 import com.fasterxml.jackson.databind.ObjectMapper;

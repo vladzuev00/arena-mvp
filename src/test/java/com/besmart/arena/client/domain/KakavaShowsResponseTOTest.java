@@ -10,7 +10,7 @@
 //
 //import java.time.LocalDateTime;
 //
-//import static com.besmart.arena.domain.ShowMark.PROMOTION;
+//import static com.besmart.arena.client.domain.ShowMark.PROMOTION;
 //import static java.util.UUID.fromString;
 //
 //public final class KakavaShowsResponseTOTest extends AbstractSpringBootTest {

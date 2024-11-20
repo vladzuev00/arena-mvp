@@ -29,43 +29,43 @@ public final class KakavaClient {
     private final WebClient webClient;
     private final KakavaClientProperty property;
 
-    public AuthResponseTO auth() {
-        return webClient.post()
-                .uri(buildAuthUri())
-                .header(CONTENT_TYPE, APPLICATION_FORM_URLENCODED_VALUE)
-                .body(getAuthBody())
-                .retrieve()
-                .bodyToMono(AuthResponseTO.class)
-                .block();
-    }
+//    public AuthResponseTO auth() {
+//        return webClient.post()
+//                .uri(buildAuthUri())
+//                .header(CONTENT_TYPE, APPLICATION_FORM_URLENCODED_VALUE)
+//                .body(getAuthBody())
+//                .retrieve()
+//                .bodyToMono(AuthResponseTO.class)
+//                .block();
+//    }
 
-    public KakavaShowsResponseTO getShows(String language, List<UUID> venueIds) {
+    public ShowsResponseTO getShows(String language, List<UUID> venueIds) {
         return webClient.get()
                 .uri(buildGettingShowsUri(venueIds))
                 .header(ACCEPT_LANGUAGE, language)
                 .retrieve()
-                .bodyToMono(KakavaShowsResponseTO.class)
+                .bodyToMono(ShowsResponseTO.class)
                 .block();
     }
 
-    public GettingOrdersResponseTO getOrders(String accessToken, UUID venueId) {
-        return webClient.get()
-                .uri(buildGettingOrdersUri(venueId))
-                .header(AUTHORIZATION, buildAuthHeaderValue(accessToken))
-                .retrieve()
-                .bodyToMono(GettingOrdersResponseTO.class)
-                .block();
-    }
-
-    public UsingTicketResponseTO useTicket(String accessToken, UsingTicketBodyTO body) {
-        return webClient.post()
-                .uri(buildUsingTicketUrl())
-                .header(AUTHORIZATION, buildAuthHeaderValue(accessToken))
-                .bodyValue(body)
-                .retrieve()
-                .bodyToMono(UsingTicketResponseTO.class)
-                .block();
-    }
+//    public GettingOrdersResponseTO getOrders(String accessToken, UUID venueId) {
+//        return webClient.get()
+//                .uri(buildGettingOrdersUri(venueId))
+//                .header(AUTHORIZATION, buildAuthHeaderValue(accessToken))
+//                .retrieve()
+//                .bodyToMono(GettingOrdersResponseTO.class)
+//                .block();
+//    }
+//
+//    public UsingTicketResponseTO useTicket(String accessToken, UsingTicketBodyTO body) {
+//        return webClient.post()
+//                .uri(buildUsingTicketUrl())
+//                .header(AUTHORIZATION, buildAuthHeaderValue(accessToken))
+//                .bodyValue(body)
+//                .retrieve()
+//                .bodyToMono(UsingTicketResponseTO.class)
+//                .block();
+//    }
 
     private String buildAuthUri() {
         return fromHttpUrl(property.getBaseUrl())

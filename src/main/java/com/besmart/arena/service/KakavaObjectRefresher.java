@@ -1,11 +1,11 @@
 package com.besmart.arena.service;
 
-import com.besmart.arena.client.domain.KakavaShowsResponseTO;
+import com.besmart.arena.client.domain.ShowsResponseTO;
 import com.besmart.arena.crud.dto.*;
 import com.besmart.arena.crud.service.*;
-import com.besmart.arena.domain.CategoryTO;
-import com.besmart.arena.domain.PromoterTO;
-import com.besmart.arena.domain.ShowTO;
+import com.besmart.arena.client.domain.CategoryTO;
+import com.besmart.arena.client.domain.PromoterTO;
+import com.besmart.arena.client.domain.ShowTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import static com.besmart.arena.util.HtmlUtil.render;
 //TODO: refactor
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<
-        KakavaShowsResponseTO,
+        ShowsResponseTO,
         CategoryTO,
         ShowTO,
         PromoterTO,
@@ -31,7 +31,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
                                  ShowService showService,
                                  EventService eventService) {
         super(
-                KakavaShowsResponseTO.class,
+                ShowsResponseTO.class,
                 categoryService,
                 tagService,
                 promoterService,
@@ -42,19 +42,19 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
     }
 
     @Override
-    protected List<CategoryTO> getCategorySources(KakavaShowsResponseTO response) {
+    protected List<CategoryTO> getCategorySources(ShowsResponseTO response) {
         return response.getShows().stream()
                 .flatMap(show -> show.getEventCategories().stream())
                 .toList();
     }
 
     @Override
-    protected List<ShowTO> getTagSources(KakavaShowsResponseTO response) {
+    protected List<ShowTO> getTagSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<PromoterTO> getPromoterSources(KakavaShowsResponseTO response) {
+    protected List<PromoterTO> getPromoterSources(ShowsResponseTO response) {
         return response.getShows()
                 .stream()
                 .map(ShowTO::getPromoter)
@@ -62,17 +62,17 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
     }
 
     @Override
-    protected List<ShowTO> getVenueSources(KakavaShowsResponseTO response) {
+    protected List<ShowTO> getVenueSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getShowSources(KakavaShowsResponseTO response) {
+    protected List<ShowTO> getShowSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getEventSources(KakavaShowsResponseTO response) {
+    protected List<ShowTO> getEventSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
