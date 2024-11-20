@@ -20,16 +20,16 @@ public final class ShowService {
                 shows,
                 """
                         INSERT INTO shows(external_short_id, title, subtitle, description, category_id, venue_id, image_url)
-                        VALUES(:externalShortId, :title, :subtitle, :description, :categoryId, :venueId, :imageUrl)
+                        VALUES(:externalShortId, :title, :subtitle, :description, (SELECT id FROM categories WHERE external_id = :category.externalId), (SELECT id FROM venues WHERE external_id = :venue.externalId), :imageUrl)
                         ON CONFLICT (external_short_id) DO
                         UPDATE SET
                             title = :title,
                             subtitle = :subtitle,
                             description = :description,
-                            category_id = (SELECT id FROM categories WHERE external_id = :categoryExternalId),
-                            venue_id = (SELECT id FROM venues WHERE external_id = :venueExternalId),
+                            category_id = (SELECT id FROM categories WHERE external_id = :category.externalId),
+                            venue_id = (SELECT id FROM venues WHERE external_id = :venue.externalId),
                             image_url = :imageUrl
-                        WHERE tags.external_id = :externalId"""
+                        WHERE shows.external_short_id = :externalShortId"""
         );
     }
 }
