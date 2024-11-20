@@ -17,13 +17,11 @@ spring:
   kafka:
     bootstrap-servers: 127.0.0.1:9092
 
-kakava-client:
-  client-id: 123e4567-e89b-42d3-a456-556642440000
-  grant-type: password
-  username: testuser@kakava.lt
-  password: testpassword
-  base-url: https://app-kkv-be-test.azurewebsites.net
-  auth-path: /Token
-  shows-path: /event/show
-  tickets-path: /order
-  using-ticket-path: /arena/admission
+web-client:
+  connect-timeout: 100000
+  read-timeout: 100000
+  write-timeout: 100000
+  max-connections: 5
+  max-acquire-time: 100000
+  max-idle-time: 100000
+  max-life-time: 100000
