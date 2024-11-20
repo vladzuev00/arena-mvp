@@ -28,23 +28,14 @@ public final class TagServiceTest extends AbstractSpringBootTest {
     @Test
     public void tagsShouldBeRefreshedByExternalId() {
         List<Tag> givenTags = List.of(
-                Tag.builder()
-                        .externalId(255)
-                        .name("second-tag")
-                        .build(),
-                Tag.builder()
-                        .externalId(256)
-                        .name("third-tag")
-                        .build()
+                Tag.builder().externalId(255).name("second-tag").build(),
+                Tag.builder().externalId(256).name("third-tag").build()
         );
 
         service.refreshByExternalId(givenTags);
 
         Set<Tag> actual = findAllTags();
-        Set<Tag> expected = Set.of(
-                new Tag(130L, 255, "second-tag"),
-                new Tag(2L, 256, "third-tag")
-        );
+        Set<Tag> expected = Set.of(new Tag(130L, 255, "second-tag"), new Tag(2L, 256, "third-tag"));
         assertEquals(expected, actual);
     }
 
