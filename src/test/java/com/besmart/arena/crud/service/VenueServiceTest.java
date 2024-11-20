@@ -27,7 +27,6 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    @Sql(statements = "INSERT INTO venues(external_id, name, address, latitude, longitude) VALUES('550e8400-e29b-41d4-a716-446655440000', 'first-name', 'first-address', 5.5, 6.6)")
     public void venuesShouldBeRefreshedByExternalId() {
         List<Venue> givenVenues = List.of(
                 Venue.builder()
@@ -51,7 +50,7 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
         Set<Venue> actual = findAllVenues();
         Set<Venue> expected = Set.of(
                 new Venue(
-                        1L,
+                        131L,
                         fromString("550e8400-e29b-41d4-a716-446655440000"),
                         "second-name",
                         "second-address",
@@ -59,7 +58,7 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
                         8.8
                 ),
                 new Venue(
-                        3L,
+                        2L,
                         fromString("550e8400-e29b-41d4-a716-446655440001"),
                         "third-name",
                         "third-address",
