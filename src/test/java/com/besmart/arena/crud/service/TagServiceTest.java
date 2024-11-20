@@ -26,7 +26,6 @@ public final class TagServiceTest extends AbstractSpringBootTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    @Sql(statements = "INSERT INTO tags(external_id, name) VALUES(255, 'first-tag')")
     public void tagsShouldBeRefreshedByExternalId() {
         List<Tag> givenTags = List.of(
                 Tag.builder()
@@ -43,8 +42,8 @@ public final class TagServiceTest extends AbstractSpringBootTest {
 
         Set<Tag> actual = findAllTags();
         Set<Tag> expected = Set.of(
-                new Tag(1L, 255, "second-tag"),
-                new Tag(3L, 256, "third-tag")
+                new Tag(130L, 255, "second-tag"),
+                new Tag(2L, 256, "third-tag")
         );
         assertEquals(expected, actual);
     }
