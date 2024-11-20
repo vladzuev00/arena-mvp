@@ -31,17 +31,17 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
         List<Venue> givenVenues = List.of(
                 Venue.builder()
                         .externalId(fromString("550e8400-e29b-41d4-a716-446655440000"))
-                        .name("second-name")
-                        .address("second-address")
-                        .latitude(7.7)
-                        .longitude(8.8)
-                        .build(),
-                Venue.builder()
-                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440001"))
                         .name("third-name")
                         .address("third-address")
                         .latitude(9.9)
                         .longitude(10.1)
+                        .build(),
+                Venue.builder()
+                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440002"))
+                        .name("fourth-name")
+                        .address("fourth-address")
+                        .latitude(10.2)
+                        .longitude(10.3)
                         .build()
         );
 
@@ -50,8 +50,8 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
         Set<Venue> actual = findAllVenues();
         Set<Venue> expected = Set.of(
                 new Venue(
-                        131L,
-                        fromString("550e8400-e29b-41d4-a716-446655440000"),
+                        1001L,
+                        fromString("550e8400-e29b-41d4-a716-446655440001"),
                         "second-name",
                         "second-address",
                         7.7,
@@ -59,7 +59,15 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
                 ),
                 new Venue(
                         2L,
-                        fromString("550e8400-e29b-41d4-a716-446655440001"),
+                        fromString("550e8400-e29b-41d4-a716-446655440002"),
+                        "fourth-name",
+                        "fourth-address",
+                        10.2,
+                        10.3
+                ),
+                new Venue(
+                        1000L,
+                        fromString("550e8400-e29b-41d4-a716-446655440000"),
                         "third-name",
                         "third-address",
                         9.9,
