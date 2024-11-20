@@ -29,14 +29,14 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
     public void categoriesShouldBeRefreshedByExternalId() {
         List<Category> givenCategories = List.of(
                 Category.builder()
-                        .externalId(255)
-                        .name("second-category")
+                        .externalId(2000)
+                        .name("third-category")
                         .primaryColor("#b07289")
                         .secondaryColor("#e00e79")
                         .build(),
                 Category.builder()
-                        .externalId(256)
-                        .name("third-category")
+                        .externalId(2002)
+                        .name("fourth-category")
                         .primaryColor("#3d4761")
                         .secondaryColor("#1f2431")
                         .build()
@@ -46,8 +46,9 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
 
         Set<Category> actual = findAllCategories();
         Set<Category> expected = Set.of(
-                new Category(128L, 255, "second-category", "#b07289", "#e00e79"),
-                new Category(2L, 256, "third-category", "#3d4761", "#1f2431")
+                new Category(1000L, 2000, "third-category", "#b07289", "#e00e79"),
+                new Category(1001L, 2001, "second-category", "#90caee", "#faa639"),
+                new Category(2L, 2002, "fourth-category", "#3d4761", "#1f2431")
         );
         assertEquals(expected, actual);
     }

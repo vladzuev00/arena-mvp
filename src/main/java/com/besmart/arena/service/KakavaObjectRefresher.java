@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.besmart.arena.util.HtmlUtil.render;
+
 //TODO: refactor
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<
@@ -22,16 +24,12 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         ShowTO
         > {
 
-    //TODO: do util
-    private final HtmlRenderer htmlRenderer;
-
     public KakavaObjectRefresher(CategoryService categoryService,
                                  TagService tagService,
                                  PromoterService promoterService,
                                  VenueService venueService,
                                  ShowService showService,
-                                 EventService eventService,
-                                 HtmlRenderer htmlRenderer) {
+                                 EventService eventService) {
         super(
                 KakavaShowsResponseTO.class,
                 categoryService,
@@ -41,7 +39,6 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
                 showService,
                 eventService
         );
-        this.htmlRenderer = htmlRenderer;
     }
 
     @Override
@@ -120,7 +117,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         return Show.builder()
                 .externalShortId(source.getShortId())
                 .title(source.getEventTitle())
-                .description(htmlRenderer.render(source.getEventDescriptionHtml()))
+                .description(render(source.getEventDescriptionHtml()))
                 .imageUrl(source.getEventPicture().getDesktopPictureUrl())
                 .build();
     }
@@ -131,7 +128,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         return Event.builder()
                 .externalShortId(source.getEventShortId())
                 .title(source.getEventTitle())
-                .description(htmlRenderer.render(source.getEventDescriptionHtml()))
+                .description(render(source.getEventDescriptionHtml()))
                 .dateTime(source.getStartDateTime())
                 .show(Show.builder().externalShortId(source.getEventShortId()).build())
                 .build();
