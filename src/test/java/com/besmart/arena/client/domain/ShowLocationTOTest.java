@@ -1,7 +1,6 @@
-package com.besmart.arena.domain;
+package com.besmart.arena.client.domain;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.client.domain.ShowLocationTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

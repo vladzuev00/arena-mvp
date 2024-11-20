@@ -16,8 +16,8 @@ public class ShowTO {
     EventPictureTO eventPicture;
     List<CategoryTO> eventCategories;
     LocalDateTime startDateTime;
-    ShowMark[] marks;
-    ShowCustomMarkTO[] customMarks;
+//    ShowMark[] marks;
+    ShowMarkTO[] customMarks;
     ShowLocationTO location;
     String venueAddress;
     int priceFrom;
@@ -31,8 +31,8 @@ public class ShowTO {
                   @JsonProperty("eventPicture") EventPictureTO eventPicture,
                   @JsonProperty("eventCategories") List<CategoryTO> eventCategories,
                   @JsonProperty("startDateTime") LocalDateTime startDateTime,
-                  @JsonProperty("marks") ShowMark[] marks,
-                  @JsonProperty("customMarks") ShowCustomMarkTO[] customMarks,
+//                  @JsonProperty("marks") ShowMark[] marks,
+                  @JsonProperty("customMarks") ShowMarkTO[] customMarks,
                   @JsonProperty("location") ShowLocationTO location,
                   @JsonProperty("venueAddress") String venueAddress,
                   @JsonProperty("priceFrom") int priceFrom,
@@ -44,7 +44,7 @@ public class ShowTO {
         this.eventPicture = eventPicture;
         this.eventCategories = eventCategories;
         this.startDateTime = startDateTime;
-        this.marks = marks;
+//        this.marks = marks;
         this.customMarks = customMarks;
         this.location = location;
         this.venueAddress = venueAddress;
