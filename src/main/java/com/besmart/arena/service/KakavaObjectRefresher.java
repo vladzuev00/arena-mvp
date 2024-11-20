@@ -21,6 +21,8 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<
         ShowTO,
         ShowTO
         > {
+
+    //TODO: do util
     private final HtmlRenderer htmlRenderer;
 
     public KakavaObjectRefresher(CategoryService categoryService,

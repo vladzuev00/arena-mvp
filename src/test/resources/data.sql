@@ -1,5 +1,6 @@
 INSERT INTO categories(id, external_id, name, primary_color, secondary_color)
-VALUES(128, 255, 'first-category', '#90caef', '#faa538');
+VALUES(128, 255, 'first-category', '#90caef', '#faa538'),
+      (129, 2555, 'second-category', '#90caee', '#faa639');
 
 INSERT INTO promoters(id, external_id, name, icon_url, web_page_url)
 VALUES(
@@ -13,4 +14,5 @@ VALUES(
 INSERT INTO tags(id, external_id, name) VALUES(130, 255, 'first-tag');
 
 INSERT INTO venues(id, external_id, name, address, latitude, longitude)
-VALUES(131, '550e8400-e29b-41d4-a716-446655440000', 'first-name', 'first-address', 5.5, 6.6)
+VALUES(131, '550e8400-e29b-41d4-a716-446655440000', 'first-name', 'first-address', 5.5, 6.6),
+      (132, '550e8400-e29b-41d4-a717-446655440000', 'second-name', 'second-address', 8.8, 9.9);
