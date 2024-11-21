@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import reactor.netty.Connection;
 import reactor.netty.ConnectionObserver;
 
+//TODO: refactor and tests
 @Slf4j
 @Component
 public final class WebClientConnectionObserver implements ConnectionObserver {

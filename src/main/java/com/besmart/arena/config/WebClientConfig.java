@@ -16,6 +16,7 @@ import static io.netty.channel.ChannelOption.CONNECT_TIMEOUT_MILLIS;
 import static java.time.Duration.ofMillis;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
+//TODO: refactor and tests
 @Configuration
 public class WebClientConfig {
 
