@@ -12,17 +12,8 @@ import java.util.List;
 
 import static com.besmart.arena.util.HtmlUtil.render;
 
-//TODO: refactor
 @Component
-public final class KakavaObjectRefresher extends ArenaObjectRefresher<
-        ShowsResponseTO,
-        CategoryTO,
-        ShowTO,
-        PromoterTO,
-        ShowTO,
-        ShowTO,
-        ShowTO
-        > {
+public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, ShowTO, PromoterTO, ShowTO, ShowTO, ShowTO> {
 
     public KakavaObjectRefresher(CategoryService categoryService,
                                  TagService tagService,

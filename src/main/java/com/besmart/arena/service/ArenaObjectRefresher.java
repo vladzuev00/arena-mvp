@@ -9,15 +9,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 @RequiredArgsConstructor
-public abstract class ArenaObjectRefresher<
-        RESPONSE,
-        CATEGORY_SOURCE,
-        TAG_SOURCE,
-        PROMOTER_SOURCE,
-        VENUE_SOURCE,
-        SHOW_SOURCE,
-        EVENT_SOURCE
-        > {
+public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
     private final Class<RESPONSE> responseType;
     private final CategoryService categoryService;
     private final TagService tagService;

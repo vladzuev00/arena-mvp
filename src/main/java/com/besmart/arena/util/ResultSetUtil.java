@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import static java.util.UUID.fromString;
 
+//TODO: refactor and tests
 @UtilityClass
 public final class ResultSetUtil {
 
