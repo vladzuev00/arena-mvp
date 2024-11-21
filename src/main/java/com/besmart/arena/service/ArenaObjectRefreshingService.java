@@ -21,6 +21,7 @@ public final class ArenaObjectRefreshingService {
     private void refresh(Object response) {
         refreshers.stream()
                 .filter(refresher -> refresher.isSuitableResponse(response))
+                //TODO: findFirst
                 .forEach(refresher -> refresher.refresh(response));
     }
 }

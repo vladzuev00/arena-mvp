@@ -18,10 +18,11 @@ spring:
     bootstrap-servers: 127.0.0.1:9092
 
 web-client:
-  connect-timeout: 100000
-  read-timeout: 100000
-  write-timeout: 100000
+  connection-provider-name: aod-http-client
+  connect-timeout-ms: 100000
+  read-timeout-ms: 100000
+  write-timeout-ms: 100000
   max-connections: 5
-  max-acquire-time: 100000
-  max-idle-time: 100000
-  max-life-time: 100000
+  pending-acquire-timeout-ms: 100000
+  max-idle-timeout-ms: 100000
+  max-life-time-ms: 100000

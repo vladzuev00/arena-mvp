@@ -1,8 +1,6 @@
 package com.besmart.arena.crud.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 import java.util.UUID;
 

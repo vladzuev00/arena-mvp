@@ -12,6 +12,7 @@ import static java.util.UUID.fromString;
 import static org.springframework.http.HttpHeaders.ACCEPT_LANGUAGE;
 import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
+//TODO: refactor and tests
 @Component
 @RequiredArgsConstructor
 public final class KakavaArenaClient implements ArenaClient {
