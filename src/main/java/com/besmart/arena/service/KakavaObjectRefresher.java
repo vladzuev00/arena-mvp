@@ -9,11 +9,14 @@ import com.besmart.arena.client.domain.ShowTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static com.besmart.arena.util.HtmlUtil.render;
 
+//TODO: remove NOT_DEFINED
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, ShowTO, PromoterTO, ShowTO, ShowTO, ShowTO> {
+    private static final String NOT_DEFINED = "NOT DEFINED";
 
     public KakavaObjectRefresher(CategoryService categoryService,
                                  TagService tagService,
@@ -34,7 +37,8 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
 
     @Override
     protected List<CategoryTO> getCategorySources(ShowsResponseTO response) {
-        return response.getShows().stream()
+        return response.getShows()
+                .stream()
                 .flatMap(show -> show.getEventCategories().stream())
                 .toList();
     }
@@ -67,11 +71,13 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
         return response.getShows();
     }
 
-    //TODO: откуда брать name, primaryColor, secondaryColor
     @Override
     protected Category createCategory(CategoryTO source) {
         return Category.builder()
                 .externalId(source.getId())
+                .name(NOT_DEFINED)
+                .primaryColor(NOT_DEFINED)
+                .secondaryColor(NOT_DEFINED)
                 .build();
     }
 
