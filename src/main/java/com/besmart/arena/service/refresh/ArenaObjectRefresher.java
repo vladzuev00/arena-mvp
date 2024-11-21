@@ -1,7 +1,7 @@
 package com.besmart.arena.service.refresh;
 
-import com.besmart.arena.crud.dto.*;
-import com.besmart.arena.crud.service.*;
+import com.besmart.arena.crud.domain.*;
+import com.besmart.arena.crud.repository.*;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
     private final Class<RESPONSE> responseType;
-    private final CategoryService categoryService;
-    private final TagService tagService;
-    private final PromoterService promoterService;
-    private final VenueService venueService;
-    private final ShowService showService;
-    private final EventService eventService;
+    private final CategoryRepository categoryRepository;
+    private final TagRepository tagRepository;
+    private final PromoterRepository promoterRepository;
+    private final VenueRepository venueRepository;
+    private final ShowRepository showRepository;
+    private final EventRepository eventRepository;
 
     public final boolean isSuitableResponse(Object response) {
         return responseType.isInstance(response);
@@ -57,27 +57,27 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     protected abstract Event createEvent(EVENT_SOURCE source);
 
     private void refreshCategories(RESPONSE response) {
-        refreshObjects(response, this::getCategorySources, this::createCategory, categoryService::refreshByExternalId);
+        refreshObjects(response, this::getCategorySources, this::createCategory, categoryRepository::refreshByExternalId);
     }
 
     private void refreshTags(RESPONSE response) {
-        refreshObjects(response, this::getTagSources, this::createTag, tagService::refreshByExternalId);
+        refreshObjects(response, this::getTagSources, this::createTag, tagRepository::refreshByExternalId);
     }
 
     private void refreshPromoters(RESPONSE response) {
-        refreshObjects(response, this::getPromoterSources, this::createPromoter, promoterService::refreshByExternalId);
+        refreshObjects(response, this::getPromoterSources, this::createPromoter, promoterRepository::refreshByExternalId);
     }
 
     private void refreshVenues(RESPONSE response) {
-        refreshObjects(response, this::getVenueSources, this::createVenue, venueService::refreshByExternalId);
+        refreshObjects(response, this::getVenueSources, this::createVenue, venueRepository::refreshByExternalId);
     }
 
     private void refreshShows(RESPONSE response) {
-        refreshObjects(response, this::getShowSources, this::createShow, showService::refreshByExternalId);
+        refreshObjects(response, this::getShowSources, this::createShow, showRepository::refreshByExternalId);
     }
 
     private void refreshEvents(RESPONSE response) {
-        refreshObjects(response, this::getEventSources, this::createEvent, eventService::refreshByExternalId);
+        refreshObjects(response, this::getEventSources, this::createEvent, eventRepository::refreshByExternalId);
     }
 
     private <SOURCE, OBJECT> void refreshObjects(RESPONSE response,

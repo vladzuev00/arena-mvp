@@ -1,4 +1,4 @@
-package com.besmart.arena.crud.dto;
+package com.besmart.arena.crud.domain;
 
 import lombok.*;
 

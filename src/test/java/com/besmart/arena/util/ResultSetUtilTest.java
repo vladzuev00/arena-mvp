@@ -1,8 +1,8 @@
 package com.besmart.arena.util;
 
-import com.besmart.arena.crud.dto.Category;
-import com.besmart.arena.crud.dto.Show;
-import com.besmart.arena.crud.dto.Venue;
+import com.besmart.arena.crud.domain.Category;
+import com.besmart.arena.crud.domain.Show;
+import com.besmart.arena.crud.domain.Venue;
 import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;

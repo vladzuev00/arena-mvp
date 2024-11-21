@@ -1,7 +1,7 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Promoter;
+import com.besmart.arena.crud.domain.Promoter;
 import com.besmart.arena.crud.rowmapper.PromoterRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class PromoterServiceTest extends AbstractSpringBootTest {
+public final class PromoterRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private PromoterService service;
+    private PromoterRepository repository;
 
     @Autowired
     private PromoterRowMapper rowMapper;
@@ -42,7 +42,7 @@ public final class PromoterServiceTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        service.refreshByExternalId(givenPromoters);
+        repository.refreshByExternalId(givenPromoters);
 
         Set<Promoter> actual = findAllPromoters();
         Set<Promoter> expected = Set.of(

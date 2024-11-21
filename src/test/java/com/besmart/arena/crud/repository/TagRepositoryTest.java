@@ -1,7 +1,7 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Tag;
+import com.besmart.arena.crud.domain.Tag;
 import com.besmart.arena.crud.rowmapper.TagRowMapper;
 import com.besmart.arena.testutil.JdbcTemplateUtil;
 import org.junit.jupiter.api.Test;
@@ -13,10 +13,10 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class TagServiceTest extends AbstractSpringBootTest {
+public final class TagRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private TagService service;
+    private TagRepository repository;
 
     @Autowired
     private TagRowMapper rowMapper;
@@ -31,7 +31,7 @@ public final class TagServiceTest extends AbstractSpringBootTest {
                 Tag.builder().externalId(2001).name("third-tag").build()
         );
 
-        service.refreshByExternalId(givenTags);
+        repository.refreshByExternalId(givenTags);
 
         Set<Tag> actual = findAllTags();
         Set<Tag> expected = Set.of(new Tag(1000L, 2000, "second-tag"), new Tag(2L, 2001, "third-tag"));

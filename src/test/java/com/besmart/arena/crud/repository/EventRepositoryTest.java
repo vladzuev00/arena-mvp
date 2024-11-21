@@ -1,8 +1,8 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Event;
-import com.besmart.arena.crud.dto.Show;
+import com.besmart.arena.crud.domain.Event;
+import com.besmart.arena.crud.domain.Show;
 import com.besmart.arena.crud.rowmapper.EventRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,10 @@ import java.util.Set;
 import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class EventServiceTest extends AbstractSpringBootTest {
+public final class EventRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private EventService service;
+    private EventRepository repository;
 
     @Autowired
     private EventRowMapper rowMapper;
@@ -47,7 +47,7 @@ public final class EventServiceTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        service.refreshByExternalId(givenEvents);
+        repository.refreshByExternalId(givenEvents);
 
         Set<Event> actual = findAllEvents();
         Set<Event> expected = Set.of(

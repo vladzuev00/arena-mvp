@@ -1,6 +1,6 @@
 package com.besmart.arena.crud.rowmapper;
 
-import com.besmart.arena.crud.dto.Category;
+import com.besmart.arena.crud.domain.Category;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

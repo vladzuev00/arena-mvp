@@ -1,11 +1,10 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Category;
-import com.besmart.arena.crud.dto.Show;
-import com.besmart.arena.crud.dto.Venue;
+import com.besmart.arena.crud.domain.Category;
+import com.besmart.arena.crud.domain.Show;
+import com.besmart.arena.crud.domain.Venue;
 import com.besmart.arena.crud.rowmapper.ShowRowMapper;
-import com.besmart.arena.testutil.JdbcTemplateUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,13 +14,12 @@ import java.util.Set;
 
 import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
-import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class ShowServiceTest extends AbstractSpringBootTest {
+public final class ShowRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private ShowService service;
+    private ShowRepository repository;
 
     @Autowired
     private ShowRowMapper rowMapper;
@@ -52,7 +50,7 @@ public final class ShowServiceTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        service.refreshByExternalId(givenShows);
+        repository.refreshByExternalId(givenShows);
 
         Set<Show> actual = findAllShows();
         Set<Show> expected = Set.of(

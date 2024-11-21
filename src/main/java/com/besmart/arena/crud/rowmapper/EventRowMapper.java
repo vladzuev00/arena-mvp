@@ -1,7 +1,7 @@
 package com.besmart.arena.crud.rowmapper;
 
-import com.besmart.arena.crud.dto.Event;
-import com.besmart.arena.crud.dto.Show;
+import com.besmart.arena.crud.domain.Event;
+import com.besmart.arena.crud.domain.Show;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

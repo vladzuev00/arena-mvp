@@ -1,6 +1,6 @@
 package com.besmart.arena.crud.rowmapper;
 
-import com.besmart.arena.crud.dto.Promoter;
+import com.besmart.arena.crud.domain.Promoter;
 import com.besmart.arena.util.ResultSetUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;

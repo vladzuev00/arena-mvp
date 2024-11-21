@@ -4,8 +4,8 @@ import com.besmart.arena.client.domain.CategoryTO;
 import com.besmart.arena.client.domain.PromoterTO;
 import com.besmart.arena.client.domain.ShowTO;
 import com.besmart.arena.client.domain.ShowsResponseTO;
-import com.besmart.arena.crud.dto.*;
-import com.besmart.arena.crud.service.*;
+import com.besmart.arena.crud.domain.*;
+import com.besmart.arena.crud.repository.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,20 +19,20 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     private static final String NOT_DEFINED_STRING = "NOT DEFINED";
     private static final double NOT_DEFINED_DOUBLE = NaN;
 
-    public KakavaObjectRefresher(CategoryService categoryService,
-                                 TagService tagService,
-                                 PromoterService promoterService,
-                                 VenueService venueService,
-                                 ShowService showService,
-                                 EventService eventService) {
+    public KakavaObjectRefresher(CategoryRepository categoryRepository,
+                                 TagRepository tagRepository,
+                                 PromoterRepository promoterRepository,
+                                 VenueRepository venueRepository,
+                                 ShowRepository showRepository,
+                                 EventRepository eventRepository) {
         super(
                 ShowsResponseTO.class,
-                categoryService,
-                tagService,
-                promoterService,
-                venueService,
-                showService,
-                eventService
+                categoryRepository,
+                tagRepository,
+                promoterRepository,
+                venueRepository,
+                showRepository,
+                eventRepository
         );
     }
 

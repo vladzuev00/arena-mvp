@@ -1,4 +1,4 @@
-package com.besmart.arena.crud.dto;
+package com.besmart.arena.crud.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,8 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor
-public class Category {
+public class Tag {
     Long id;
     int externalId;
     String name;
-    String primaryColor;
-    String secondaryColor;
 }

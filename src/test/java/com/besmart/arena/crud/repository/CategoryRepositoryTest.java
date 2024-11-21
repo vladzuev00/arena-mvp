@@ -1,7 +1,7 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Category;
+import com.besmart.arena.crud.domain.Category;
 import com.besmart.arena.crud.rowmapper.CategoryRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.Set;
 import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class CategoryServiceTest extends AbstractSpringBootTest {
+public final class CategoryRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private CategoryService service;
+    private CategoryRepository repository;
 
     @Autowired
     private CategoryRowMapper rowMapper;
@@ -41,7 +41,7 @@ public final class CategoryServiceTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        service.refreshByExternalId(givenCategories);
+        repository.refreshByExternalId(givenCategories);
 
         Set<Category> actual = findAllCategories();
         Set<Category> expected = Set.of(

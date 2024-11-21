@@ -1,7 +1,7 @@
-package com.besmart.arena.crud.service;
+package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.dto.Venue;
+import com.besmart.arena.crud.domain.Venue;
 import com.besmart.arena.crud.rowmapper.VenueRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.UUID.fromString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class VenueServiceTest extends AbstractSpringBootTest {
+public final class VenueRepositoryTest extends AbstractSpringBootTest {
 
     @Autowired
-    private VenueService service;
+    private VenueRepository repository;
 
     @Autowired
     private VenueRowMapper rowMapper;
@@ -44,7 +44,7 @@ public final class VenueServiceTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        service.refreshByExternalId(givenVenues);
+        repository.refreshByExternalId(givenVenues);
 
         Set<Venue> actual = findAllVenues();
         Set<Venue> expected = Set.of(
