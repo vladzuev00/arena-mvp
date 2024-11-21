@@ -1,7 +1,7 @@
 package com.besmart.arena.config;
 
 import com.besmart.arena.config.property.WebClientProperty;
-import com.besmart.arena.service.webclient.observer.WebClientConnectionObserver;
+import com.besmart.arena.service.webclient.WebClientConnectionObserver;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.springframework.context.annotation.Bean;

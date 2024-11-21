@@ -1,4 +1,4 @@
-package com.besmart.arena.service;
+package com.besmart.arena.service.refresh;
 
 import com.besmart.arena.client.ArenaClient;
 import lombok.RequiredArgsConstructor;

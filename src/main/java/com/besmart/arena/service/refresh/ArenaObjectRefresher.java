@@ -1,4 +1,4 @@
-package com.besmart.arena.service;
+package com.besmart.arena.service.refresh;
 
 import com.besmart.arena.crud.dto.*;
 import com.besmart.arena.crud.service.*;

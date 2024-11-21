@@ -1,4 +1,4 @@
-package com.besmart.arena.service.webclient.observer;
+package com.besmart.arena.service.webclient;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

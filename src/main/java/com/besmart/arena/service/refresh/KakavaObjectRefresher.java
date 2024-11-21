@@ -1,22 +1,23 @@
-package com.besmart.arena.service;
+package com.besmart.arena.service.refresh;
 
-import com.besmart.arena.client.domain.ShowsResponseTO;
-import com.besmart.arena.crud.dto.*;
-import com.besmart.arena.crud.service.*;
 import com.besmart.arena.client.domain.CategoryTO;
 import com.besmart.arena.client.domain.PromoterTO;
 import com.besmart.arena.client.domain.ShowTO;
+import com.besmart.arena.client.domain.ShowsResponseTO;
+import com.besmart.arena.crud.dto.*;
+import com.besmart.arena.crud.service.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static com.besmart.arena.util.HtmlUtil.render;
+import static java.lang.Double.NaN;
 
 //TODO: remove NOT_DEFINED
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, ShowTO, PromoterTO, ShowTO, ShowTO, ShowTO> {
-    private static final String NOT_DEFINED = "NOT DEFINED";
+    private static final String NOT_DEFINED_STRING = "NOT DEFINED";
+    private static final double NOT_DEFINED_DOUBLE = NaN;
 
     public KakavaObjectRefresher(CategoryService categoryService,
                                  TagService tagService,
@@ -75,9 +76,9 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     protected Category createCategory(CategoryTO source) {
         return Category.builder()
                 .externalId(source.getId())
-                .name(NOT_DEFINED)
-                .primaryColor(NOT_DEFINED)
-                .secondaryColor(NOT_DEFINED)
+                .name(NOT_DEFINED_STRING)
+                .primaryColor(NOT_DEFINED_STRING)
+                .secondaryColor(NOT_DEFINED_STRING)
                 .build();
     }
 
@@ -93,16 +94,19 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
         return Promoter.builder()
                 .externalId(source.getId())
                 .name(source.getName())
+                .iconUrl(NOT_DEFINED_STRING)
+                .webPageUrl(NOT_DEFINED_STRING)
                 .build();
     }
 
-    //TODO: что делать c latitude и longitude
     @Override
     protected Venue createVenue(ShowTO source) {
         return Venue.builder()
                 .externalId(source.getLocation().getId())
                 .name(source.getLocation().getName())
                 .address(source.getVenueAddress())
+                .latitude(NOT_DEFINED_DOUBLE)
+                .longitude(NOT_DEFINED_DOUBLE)
                 .build();
     }
 
