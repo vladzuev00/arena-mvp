@@ -26,7 +26,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     public final void refresh(Object response) {
         RESPONSE castedResponse = responseType.cast(response);
-        refreshWithingNewTransaction(castedResponse);
+        refreshWithinNewTransaction(castedResponse);
     }
 
     protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
@@ -53,7 +53,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     protected abstract Event createEvent(EVENT_SOURCE source);
 
-    private void refreshWithingNewTransaction(RESPONSE response) {
+    private void refreshWithinNewTransaction(RESPONSE response) {
         transactionTemplate.executeWithoutResult(
                 status -> {
                     refreshCategories(response);
