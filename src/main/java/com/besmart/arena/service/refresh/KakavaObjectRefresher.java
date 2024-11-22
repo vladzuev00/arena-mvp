@@ -13,7 +13,7 @@ import java.util.List;
 import static com.besmart.arena.util.HtmlUtil.render;
 import static java.lang.Double.NaN;
 
-//TODO: remove NOT_DEFINED
+//TODO: remove NOT_DEFINED, refactor and test
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, ShowTO, PromoterTO, ShowTO, ShowTO, ShowTO> {
     private static final String NOT_DEFINED_STRING = "NOT DEFINED";
