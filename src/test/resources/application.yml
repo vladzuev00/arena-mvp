@@ -26,3 +26,7 @@ web-client:
   pending-acquire-timeout-ms: 100000
   max-idle-timeout-ms: 100000
   max-life-time-ms: 100000
+
+kakava-client:
+  venue-id: a60de864-5c52-11ee-a81c-000d3aa868a2
+  language: EN
