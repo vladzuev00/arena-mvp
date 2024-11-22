@@ -3,6 +3,7 @@ package com.besmart.arena.service.refresh;
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,6 +12,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
     private final Class<RESPONSE> responseType;
+    private final TransactionTemplate transactionTemplate;
     private final CategoryRepository categoryRepository;
     private final TagRepository tagRepository;
     private final PromoterRepository promoterRepository;
@@ -24,12 +26,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     public final void refresh(Object response) {
         RESPONSE castedResponse = responseType.cast(response);
-        refreshCategories(castedResponse);
-        refreshTags(castedResponse);
-        refreshPromoters(castedResponse);
-        refreshVenues(castedResponse);
-        refreshShows(castedResponse);
-        refreshEvents(castedResponse);
+        refreshWithingNewTransaction(castedResponse);
     }
 
     protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
@@ -55,6 +52,19 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     protected abstract Show createShow(SHOW_SOURCE source);
 
     protected abstract Event createEvent(EVENT_SOURCE source);
+
+    private void refreshWithingNewTransaction(RESPONSE response) {
+        transactionTemplate.executeWithoutResult(
+                status -> {
+                    refreshCategories(response);
+                    refreshTags(response);
+                    refreshPromoters(response);
+                    refreshVenues(response);
+                    refreshShows(response);
+                    refreshEvents(response);
+                }
+        );
+    }
 
     private void refreshCategories(RESPONSE response) {
         refreshObjects(response, this::getCategorySources, this::createCategory, categoryRepository::refreshByExternalId);
