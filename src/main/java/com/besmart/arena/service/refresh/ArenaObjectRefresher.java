@@ -61,7 +61,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     }
 
     private void refreshTags(RESPONSE response) {
-        refreshObjects(response, this::getTagSources, this::createTag, tagRepository::refreshByExternalId);
+        refreshObjects(response, this::getTagSources, this::createTag, tagRepository::refreshByName);
     }
 
     private void refreshPromoters(RESPONSE response) {

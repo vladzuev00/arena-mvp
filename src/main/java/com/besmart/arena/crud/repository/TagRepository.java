@@ -14,14 +14,7 @@ import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 public final class TagRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void refreshByExternalId(List<Tag> tags) {
-        batchUpdate(
-                jdbcTemplate,
-                tags,
-                """
-                        INSERT INTO tags(name) VALUES(:name)
-                        ON CONFLICT (name) DO
-                        UPDATE SET name = :name WHERE tags.name = :name"""
-        );
+    public void refreshByName(List<Tag> tags) {
+        batchUpdate(jdbcTemplate, tags, "INSERT INTO tags(name) VALUES(:name) ON CONFLICT (name) DO NOTHING");
     }
 }
