@@ -17,7 +17,6 @@ public class ShowTO {
     List<CategoryTO> eventCategories;
     LocalDateTime startDateTime;
     List<String> marks;
-    List<ShowMarkTO> customMarks;
     ShowLocationTO location;
     String venueAddress;
     int priceFrom;
@@ -32,7 +31,6 @@ public class ShowTO {
                   @JsonProperty("eventCategories") List<CategoryTO> eventCategories,
                   @JsonProperty("startDateTime") LocalDateTime startDateTime,
                   @JsonProperty("marks") List<String> marks,
-                  @JsonProperty("customMarks") List<ShowMarkTO> customMarks,
                   @JsonProperty("location") ShowLocationTO location,
                   @JsonProperty("venueAddress") String venueAddress,
                   @JsonProperty("priceFrom") int priceFrom,
@@ -45,7 +43,6 @@ public class ShowTO {
         this.eventCategories = eventCategories;
         this.startDateTime = startDateTime;
         this.marks = marks;
-        this.customMarks = customMarks;
         this.location = location;
         this.venueAddress = venueAddress;
         this.priceFrom = priceFrom;

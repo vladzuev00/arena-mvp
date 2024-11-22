@@ -33,7 +33,6 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                                 List.of(new CategoryTO(4)),
                                 LocalDateTime.of(2026, 9, 29, 16, 3, 0),
                                 List.of("PROMOTION"),
-                                List.of(new ShowMarkTO("Akcija")),
                                 new ShowLocationTO(
                                         fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"),
                                         "Šiaulių arena",
@@ -73,11 +72,6 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                        "startDateTime": "2026-09-29T16:03:00",
                        "marks": [
                          "PROMOTION"
-                       ],
-                       "customMarks": [
-                         {
-                           "name": "Akcija"
-                         }
                        ],
                        "location": {
                          "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
@@ -206,7 +200,6 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                                 List.of(new CategoryTO(4)),
                                 LocalDateTime.of(2026, 9, 29, 16, 3, 0),
                                 List.of("PROMOTION"),
-                                List.of(new ShowMarkTO("Akcija")),
                                 new ShowLocationTO(
                                         fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"),
                                         "Šiaulių arena",
