@@ -7,6 +7,7 @@ import com.besmart.arena.client.domain.ShowsResponseTO;
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 
@@ -19,7 +20,8 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     private static final String NOT_DEFINED_STRING = "NOT DEFINED";
     private static final double NOT_DEFINED_DOUBLE = NaN;
 
-    public KakavaObjectRefresher(CategoryRepository categoryRepository,
+    public KakavaObjectRefresher(TransactionTemplate transactionTemplate,
+                                 CategoryRepository categoryRepository,
                                  TagRepository tagRepository,
                                  PromoterRepository promoterRepository,
                                  VenueRepository venueRepository,
@@ -27,6 +29,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                                  EventRepository eventRepository) {
         super(
                 ShowsResponseTO.class,
+                transactionTemplate,
                 categoryRepository,
                 tagRepository,
                 promoterRepository,
