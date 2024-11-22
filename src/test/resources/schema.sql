@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS shows_categories;
 DROP TABLE IF EXISTS shows_tags;
 DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS categories;
@@ -42,13 +43,20 @@ CREATE TABLE shows(
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
     description VARCHAR(256) NOT NULL,
-    category_id INTEGER NOT NULL,
     venue_id INTEGER NOT NULL,
     image_url VARCHAR(256) NOT NULL
 );
 
-ALTER TABLE shows ADD CONSTRAINT fk_shows_to_categories FOREIGN KEY (category_id) REFERENCES categories(id);
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_venues FOREIGN KEY (venue_id) REFERENCES venues(id);
+
+CREATE TABLE shows_categories(
+    show_id INTEGER,
+    category_id INTEGER
+);
+
+ALTER TABLE shows_categories ADD PRIMARY KEY (show_id, category_id);
+ALTER TABLE shows_categories ADD CONSTRAINT fk_shows_categories_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
+ALTER TABLE shows_categories ADD CONSTRAINT fk_shows_categories_to_categories FOREIGN KEY (category_id) REFERENCES categories(id);
 
 CREATE TABLE shows_tags(
     show_id INTEGER,
