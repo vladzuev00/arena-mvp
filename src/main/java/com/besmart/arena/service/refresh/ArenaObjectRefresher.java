@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 @RequiredArgsConstructor
-public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_TO, TAG_TO, PROMOTER_TO, VENUE_TO, SHOW_TO, EVENT_TO> {
+public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
     private final Class<RESPONSE> responseType;
     private final CategoryRepository categoryRepository;
     private final TagRepository tagRepository;
@@ -32,59 +32,59 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_TO, TAG_TO, PROMOT
         refreshEvents(castedResponse);
     }
 
-    protected abstract List<CATEGORY_TO> getCategoryTos(RESPONSE response);
+    protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
 
-    protected abstract List<TAG_TO> getTagTos(RESPONSE response);
+    protected abstract List<TAG_SOURCE> getTagSources(RESPONSE response);
 
-    protected abstract List<PROMOTER_TO> getPromoterTos(RESPONSE response);
+    protected abstract List<PROMOTER_SOURCE> getPromoterSources(RESPONSE response);
 
-    protected abstract List<VENUE_TO> getVenueTos(RESPONSE response);
+    protected abstract List<VENUE_SOURCE> getVenueSources(RESPONSE response);
 
-    protected abstract List<SHOW_TO> getShowTos(RESPONSE response);
+    protected abstract List<SHOW_SOURCE> getShowSources(RESPONSE response);
 
-    protected abstract List<EVENT_TO> getEventTos(RESPONSE response);
+    protected abstract List<EVENT_SOURCE> getEventSources(RESPONSE response);
 
-    protected abstract Category createCategory(CATEGORY_TO to);
+    protected abstract Category createCategory(CATEGORY_SOURCE source);
 
-    protected abstract Tag createTag(TAG_TO to);
+    protected abstract Tag createTag(TAG_SOURCE source);
 
-    protected abstract Promoter createPromoter(PROMOTER_TO to);
+    protected abstract Promoter createPromoter(PROMOTER_SOURCE source);
 
-    protected abstract Venue createVenue(VENUE_TO to);
+    protected abstract Venue createVenue(VENUE_SOURCE source);
 
-    protected abstract Show createShow(SHOW_TO to);
+    protected abstract Show createShow(SHOW_SOURCE source);
 
-    protected abstract Event createEvent(EVENT_TO to);
+    protected abstract Event createEvent(EVENT_SOURCE source);
 
     private void refreshCategories(RESPONSE response) {
-        refreshObjects(response, this::getCategoryTos, this::createCategory, categoryRepository::refreshByExternalId);
+        refreshObjects(response, this::getCategorySources, this::createCategory, categoryRepository::refreshByExternalId);
     }
 
     private void refreshTags(RESPONSE response) {
-        refreshObjects(response, this::getTagTos, this::createTag, tagRepository::refreshByExternalId);
+        refreshObjects(response, this::getTagSources, this::createTag, tagRepository::refreshByExternalId);
     }
 
     private void refreshPromoters(RESPONSE response) {
-        refreshObjects(response, this::getPromoterTos, this::createPromoter, promoterRepository::refreshByExternalId);
+        refreshObjects(response, this::getPromoterSources, this::createPromoter, promoterRepository::refreshByExternalId);
     }
 
     private void refreshVenues(RESPONSE response) {
-        refreshObjects(response, this::getVenueTos, this::createVenue, venueRepository::refreshByExternalId);
+        refreshObjects(response, this::getVenueSources, this::createVenue, venueRepository::refreshByExternalId);
     }
 
     private void refreshShows(RESPONSE response) {
-        refreshObjects(response, this::getShowTos, this::createShow, showRepository::refreshByExternalId);
+        refreshObjects(response, this::getShowSources, this::createShow, showRepository::refreshByExternalId);
     }
 
     private void refreshEvents(RESPONSE response) {
-        refreshObjects(response, this::getEventTos, this::createEvent, eventRepository::refreshByExternalId);
+        refreshObjects(response, this::getEventSources, this::createEvent, eventRepository::refreshByExternalId);
     }
 
-    private <TO, OBJECT> void refreshObjects(RESPONSE response,
-                                             Function<RESPONSE, List<TO>> tosGetter,
-                                             Function<TO, OBJECT> objectFactory,
-                                             Consumer<List<OBJECT>> refreshExecutor) {
-        List<OBJECT> objects = tosGetter.apply(response)
+    private <SOURCE, OBJECT> void refreshObjects(RESPONSE response,
+                                                 Function<RESPONSE, List<SOURCE>> sourcesGetter,
+                                                 Function<SOURCE, OBJECT> objectFactory,
+                                                 Consumer<List<OBJECT>> refreshExecutor) {
+        List<OBJECT> objects = sourcesGetter.apply(response)
                 .stream()
                 .map(objectFactory)
                 .distinct()

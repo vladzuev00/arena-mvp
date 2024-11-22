@@ -37,7 +37,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<CategoryTO> getCategoryTos(ShowsResponseTO response) {
+    protected List<CategoryTO> getCategorySources(ShowsResponseTO response) {
         return response.getShows()
                 .stream()
                 .flatMap(show -> show.getEventCategories().stream())
@@ -45,12 +45,12 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<ShowTO> getTagTos(ShowsResponseTO response) {
+    protected List<ShowTO> getTagSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<PromoterTO> getPromoterTos(ShowsResponseTO response) {
+    protected List<PromoterTO> getPromoterSources(ShowsResponseTO response) {
         return response.getShows()
                 .stream()
                 .map(ShowTO::getPromoter)
@@ -58,24 +58,24 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<ShowTO> getVenueTos(ShowsResponseTO response) {
+    protected List<ShowTO> getVenueSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getShowTos(ShowsResponseTO response) {
+    protected List<ShowTO> getShowSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getEventTos(ShowsResponseTO response) {
+    protected List<ShowTO> getEventSources(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected Category createCategory(CategoryTO to) {
+    protected Category createCategory(CategoryTO source) {
         return Category.builder()
-                .externalId(to.getId())
+                .externalId(source.getId())
                 .name(NOT_DEFINED_STRING)
                 .primaryColor(NOT_DEFINED_STRING)
                 .secondaryColor(NOT_DEFINED_STRING)
@@ -84,27 +84,27 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
 
     //TODO: у Тихана извлекаются marks и customMarks, так нужно ли делать
     @Override
-    protected Tag createTag(ShowTO to) {
+    protected Tag createTag(ShowTO source) {
         throw new UnsupportedOperationException();
     }
 
     //TODO: что делать с iconUrl и webPageUrl
     @Override
-    protected Promoter createPromoter(PromoterTO to) {
+    protected Promoter createPromoter(PromoterTO source) {
         return Promoter.builder()
-                .externalId(to.getId())
-                .name(to.getName())
+                .externalId(source.getId())
+                .name(source.getName())
                 .iconUrl(NOT_DEFINED_STRING)
                 .webPageUrl(NOT_DEFINED_STRING)
                 .build();
     }
 
     @Override
-    protected Venue createVenue(ShowTO to) {
+    protected Venue createVenue(ShowTO source) {
         return Venue.builder()
-                .externalId(to.getLocation().getId())
-                .name(to.getLocation().getName())
-                .address(to.getVenueAddress())
+                .externalId(source.getLocation().getId())
+                .name(source.getLocation().getName())
+                .address(source.getVenueAddress())
                 .latitude(NOT_DEFINED_DOUBLE)
                 .longitude(NOT_DEFINED_DOUBLE)
                 .build();
@@ -114,24 +114,24 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     //TODO: что делать с категориями: у Тихана только 1 категория может быть у Show, от provider-а приходит массив
     //TODO: что делать с Venue - нет externalId
     @Override
-    protected Show createShow(ShowTO to) {
+    protected Show createShow(ShowTO source) {
         return Show.builder()
-                .externalShortId(to.getShortId())
-                .title(to.getEventTitle())
-                .description(render(to.getEventDescriptionHtml()))
-                .imageUrl(to.getEventPicture().getDesktopPictureUrl())
+                .externalShortId(source.getShortId())
+                .title(source.getEventTitle())
+                .description(render(source.getEventDescriptionHtml()))
+                .imageUrl(source.getEventPicture().getDesktopPictureUrl())
                 .build();
     }
 
     //TODO: что должно быть в subtitle
     @Override
-    protected Event createEvent(ShowTO to) {
+    protected Event createEvent(ShowTO source) {
         return Event.builder()
-                .externalShortId(to.getEventShortId())
-                .title(to.getEventTitle())
-                .description(render(to.getEventDescriptionHtml()))
-                .dateTime(to.getStartDateTime())
-                .show(Show.builder().externalShortId(to.getEventShortId()).build())
+                .externalShortId(source.getEventShortId())
+                .title(source.getEventTitle())
+                .description(render(source.getEventDescriptionHtml()))
+                .dateTime(source.getStartDateTime())
+                .show(Show.builder().externalShortId(source.getEventShortId()).build())
                 .build();
     }
 }
