@@ -16,8 +16,7 @@ CREATE TABLE categories(
 
 CREATE TABLE tags(
     id SERIAL PRIMARY KEY,
-    external_id INTEGER NOT NULL UNIQUE,
-    name VARCHAR(256) NOT NULL
+    name VARCHAR(256) NOT NULL UNIQUE
 );
 
 CREATE TABLE promoters(
