@@ -15,7 +15,7 @@ import static java.lang.Double.NaN;
 
 //TODO: remove NOT_DEFINED, refactor and test
 @Component
-public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, ShowTO, PromoterTO, ShowTO, ShowTO, ShowTO> {
+public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, String, PromoterTO, ShowTO, ShowTO, ShowTO> {
     private static final String NOT_DEFINED_STRING = "NOT DEFINED";
     private static final double NOT_DEFINED_DOUBLE = NaN;
 
@@ -45,8 +45,11 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<ShowTO> getTagSources(ShowsResponseTO response) {
-        return response.getShows();
+    protected List<String> getTagSources(ShowsResponseTO response) {
+        return response.getShows()
+                .stream()
+                .flatMap(show -> show.getMarks().stream())
+                .toList();
     }
 
     @Override
@@ -82,13 +85,13 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .build();
     }
 
-    //TODO: у Тихана извлекаются marks и customMarks, так нужно ли делать
     @Override
-    protected Tag createTag(ShowTO source) {
-        throw new UnsupportedOperationException();
+    protected Tag createTag(String source) {
+        return Tag.builder()
+                .name(source)
+                .build();
     }
 
-    //TODO: что делать с iconUrl и webPageUrl
     @Override
     protected Promoter createPromoter(PromoterTO source) {
         return Promoter.builder()
@@ -110,25 +113,25 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .build();
     }
 
-    //TODO: что должно быть в subtitle
-    //TODO: что делать с категориями: у Тихана только 1 категория может быть у Show, от provider-а приходит массив
-    //TODO: что делать с Venue - нет externalId
+    //TODO: что делать с категориями: по домену только 1 категория может быть у Show, от provider-а приходит массив
     @Override
     protected Show createShow(ShowTO source) {
         return Show.builder()
                 .externalShortId(source.getShortId())
                 .title(source.getEventTitle())
+                .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
+                .venue(Venue.builder().externalId(source.getLocation().getId()).build())
                 .imageUrl(source.getEventPicture().getDesktopPictureUrl())
                 .build();
     }
 
-    //TODO: что должно быть в subtitle
     @Override
     protected Event createEvent(ShowTO source) {
         return Event.builder()
                 .externalShortId(source.getEventShortId())
                 .title(source.getEventTitle())
+                .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
                 .dateTime(source.getStartDateTime())
                 .show(Show.builder().externalShortId(source.getEventShortId()).build())
