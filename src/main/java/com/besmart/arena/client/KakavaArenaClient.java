@@ -10,6 +10,7 @@ import static java.util.Collections.singletonList;
 import static org.springframework.http.HttpHeaders.ACCEPT_LANGUAGE;
 import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
+//TODO: test
 @Component
 @RequiredArgsConstructor
 public final class KakavaArenaClient implements ArenaClient {
