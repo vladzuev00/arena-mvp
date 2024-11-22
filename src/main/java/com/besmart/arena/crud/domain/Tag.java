@@ -9,6 +9,5 @@ import lombok.Value;
 @AllArgsConstructor
 public class Tag {
     Long id;
-    int externalId;
     String name;
 }

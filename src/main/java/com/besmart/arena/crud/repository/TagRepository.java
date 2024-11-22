@@ -19,9 +19,9 @@ public final class TagRepository {
                 jdbcTemplate,
                 tags,
                 """
-                        INSERT INTO tags(external_id, name) VALUES(:externalId, :name)
-                        ON CONFLICT (external_id) DO
-                        UPDATE SET name = :name WHERE tags.external_id = :externalId"""
+                        INSERT INTO tags(name) VALUES(:name)
+                        ON CONFLICT (name) DO
+                        UPDATE SET name = :name WHERE tags.name = :name"""
         );
     }
 }
