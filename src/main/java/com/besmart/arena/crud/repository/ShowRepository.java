@@ -19,14 +19,13 @@ public final class ShowRepository {
                 jdbcTemplate,
                 shows,
                 """
-                        INSERT INTO shows(external_short_id, title, subtitle, description, category_id, venue_id, image_url)
-                        VALUES(:externalShortId, :title, :subtitle, :description, (SELECT id FROM categories WHERE external_id = :category.externalId), (SELECT id FROM venues WHERE external_id = :venue.externalId), :imageUrl)
+                        INSERT INTO shows(external_short_id, title, subtitle, description, venue_id, image_url)
+                        VALUES(:externalShortId, :title, :subtitle, :description, (SELECT id FROM venues WHERE external_id = :venue.externalId), :imageUrl)
                         ON CONFLICT (external_short_id) DO
                         UPDATE SET
                             title = :title,
                             subtitle = :subtitle,
                             description = :description,
-                            category_id = (SELECT id FROM categories WHERE external_id = :category.externalId),
                             venue_id = (SELECT id FROM venues WHERE external_id = :venue.externalId),
                             image_url = :imageUrl
                         WHERE shows.external_short_id = :externalShortId"""

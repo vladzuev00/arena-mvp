@@ -13,6 +13,8 @@ public class Show {
     String title;
     String subtitle;
     String description;
+
+    //TODO: do list or remove
     Category category;
     Venue venue;
     String imageUrl;
