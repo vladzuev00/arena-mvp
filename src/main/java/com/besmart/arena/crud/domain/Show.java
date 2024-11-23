@@ -21,14 +21,12 @@ public class Show {
     List<Category> categories;
     List<Tag> tags;
 
-    //TODO: test
     public int[] getCategoryExternalIds() {
         return categories.stream()
                 .mapToInt(Category::getExternalId)
                 .toArray();
     }
 
-    //TODO: test
     public String[] getTagNames() {
         return tags.stream()
                 .map(Tag::getName)
