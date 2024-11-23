@@ -1,10 +1,7 @@
 //package com.besmart.arena.service.refresh;
 //
 //import com.besmart.arena.client.KakavaArenaClient;
-//import com.besmart.arena.client.domain.CategoryTO;
-//import com.besmart.arena.client.domain.PromoterTO;
-//import com.besmart.arena.client.domain.ShowTO;
-//import com.besmart.arena.client.domain.ShowsResponseTO;
+//import com.besmart.arena.client.domain.*;
 //import com.besmart.arena.crud.domain.Category;
 //import com.besmart.arena.crud.domain.Promoter;
 //import com.besmart.arena.crud.domain.Tag;
@@ -99,9 +96,9 @@
 //
 //    @Test
 //    public void promoterSourcesShouldBeGot() {
-//        var firstGivenSource = PromoterTO.builder().id(fromString("550e8400-e29b-41d4-a716-446655440000")).build();
-//        var secondGivenSource = PromoterTO.builder().id(fromString("550e8400-e29b-41d4-a716-446655440001")).build();
-//        var thirdGivenSource = PromoterTO.builder().id(fromString("550e8400-e29b-41d4-a716-446655440002")).build();
+//        PromoterTO firstGivenSource = mock(PromoterTO.class);
+//        PromoterTO secondGivenSource = mock(PromoterTO.class);
+//        PromoterTO thirdGivenSource = mock(PromoterTO.class);
 //        ShowsResponseTO givenResponse = new ShowsResponseTO(
 //                List.of(
 //                        ShowTO.builder().promoter(firstGivenSource).build(),
@@ -163,6 +160,24 @@
 //        String givenName = "test-name";
 //        PromoterTO givenSource = new PromoterTO(givenExternalId, givenName);
 //
+//        Promoter actual = refresher.createPromoter(givenSource);
+//        Promoter expected = Promoter.builder()
+//                .externalId(givenExternalId)
+//                .name(givenName)
+//                .iconUrl(NOT_DEFINED_STRING)
+//                .webPageUrl(NOT_DEFINED_STRING)
+//                .build();
+//        assertEquals(expected, actual);
+//    }
 //
+//    @Test
+//    public void venueShouldBeCreated() {
+//        UUID givenExternalId = fromString("550e8400-e29b-41d4-a716-446655440001");
+//        String givenName = "test-name";
+//        String givenAddress = "test-address";
+//        ShowTO givenSource = ShowTO.builder()
+//                .location(ShowLocationTO.builder().id(givenExternalId).name(givenName).build())
+//
+//                .build();
 //    }
 //}

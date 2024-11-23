@@ -33,11 +33,7 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                                 List.of(new CategoryTO(4)),
                                 LocalDateTime.of(2026, 9, 29, 16, 3, 0),
                                 List.of("PROMOTION"),
-                                new ShowLocationTO(
-                                        fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"),
-                                        "Šiaulių arena",
-                                        "ner"
-                                ),
+                                new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena"),
                                 "ner, Vilnius, Lithuania",
                                 100,
                                 new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")
@@ -68,8 +64,7 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                        ],
                        "location": {
                          "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
-                         "name": "Šiaulių arena",
-                         "address": "ner"
+                         "name": "Šiaulių arena"
                        },
                        "venueAddress": "ner, Vilnius, Lithuania",
                        "priceFrom": 100,
@@ -189,11 +184,7 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                                 List.of(new CategoryTO(4)),
                                 LocalDateTime.of(2026, 9, 29, 16, 3, 0),
                                 List.of("PROMOTION"),
-                                new ShowLocationTO(
-                                        fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"),
-                                        "Šiaulių arena",
-                                        "ner"
-                                ),
+                                new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena"),
                                 "ner, Vilnius, Lithuania",
                                 100,
                                 new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")

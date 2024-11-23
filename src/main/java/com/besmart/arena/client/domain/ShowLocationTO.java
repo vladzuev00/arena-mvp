@@ -10,14 +10,10 @@ import java.util.UUID;
 public class ShowLocationTO {
     UUID id;
     String name;
-    String address;
 
     @JsonCreator
-    public ShowLocationTO(@JsonProperty("id") UUID id,
-                          @JsonProperty("name") String name,
-                          @JsonProperty("address") String address) {
+    public ShowLocationTO(@JsonProperty("id") UUID id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
-        this.address = address;
     }
 }
