@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 
-//TODO correct and test
+//TODO test
 @Service
 @RequiredArgsConstructor
 public final class ShowRepository {
@@ -19,29 +19,7 @@ public final class ShowRepository {
         batchUpdate(
                 jdbcTemplate,
                 shows,
-                """
-                        INSERT INTO shows(external_short_id, title, subtitle, description, venue_id, image_url, promoter_id)
-                        VALUES(
-                            :externalShortId,
-                            :title,
-                            :subtitle,
-                            :description,
-                            (SELECT id FROM venues WHERE external_id = :venue.externalId),
-                            :imageUrl,
-                            (SELECT id FROM promoters WHERE external_id = :promoter.externalId)
-                        )
-                        ON CONFLICT (external_short_id) DO
-                        UPDATE SET
-                            title = :title,
-                            subtitle = :subtitle,
-                            description = :description,
-                            venue_id = (SELECT id FROM venues WHERE external_id = :venue.externalId),
-                            image_url = :imageUrl,
-                            promoter_id = (SELECT id FROM promoters WHERE external_id = :promoter.externalId)
-                        WHERE shows.external_short_id = :externalShortId;
-                        
-                        
-                        """
+                "CALL refresh_show(:externalShortId, :title, :subtitle, :description, :venue.externalId, :imageUrl, :promoter.externalId, :categoryExternalIds, :tagNames)"
         );
     }
 }

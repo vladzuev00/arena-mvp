@@ -59,7 +59,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
                     refreshPromoters(response);
                     refreshVenues(response);
                     refreshShows(response);
-//                    refreshEvents(response);
+                    refreshEvents(response);
                 }
         );
     }

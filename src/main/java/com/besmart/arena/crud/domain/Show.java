@@ -20,4 +20,16 @@ public class Show {
     Promoter promoter;
     List<Category> categories;
     List<Tag> tags;
+
+    public int[] getCategoryExternalIds() {
+        return categories.stream()
+                .mapToInt(Category::getExternalId)
+                .toArray();
+    }
+
+    public String[] getTagNames() {
+        return tags.stream()
+                .map(Tag::getName)
+                .toArray(String[]::new);
+    }
 }

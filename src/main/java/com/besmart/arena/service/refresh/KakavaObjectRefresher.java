@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.besmart.arena.util.HtmlUtil.render;
 import static java.lang.Double.NaN;
@@ -135,6 +136,10 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .venue(Venue.builder().externalId(source.getLocation().getId()).build())
                 .imageUrl(source.getEventPicture().getDesktopPictureUrl())
                 .promoter(Promoter.builder().externalId(source.getPromoter().getId()).build())
+                //TODO: do explicitly only with name
+                .tags(source.getMarks().stream().map(this::createTag).toList())
+                //TODO: do explicitly only with externalId
+                .categories(source.getEventCategories().stream().map(this::createCategory).collect(Collectors.toList()))
                 .build();
     }
 
@@ -146,7 +151,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
                 .dateTime(source.getStartDateTime())
-                .show(Show.builder().externalShortId(source.getEventShortId()).build())
+                .show(Show.builder().externalShortId(source.getShortId()).build())
                 .build();
     }
 }
