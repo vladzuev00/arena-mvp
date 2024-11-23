@@ -10,23 +10,10 @@ import java.util.UUID;
 public class PromoterTO {
     UUID id;
     String name;
-    String address;
-    String email;
-    String phoneNumber;
-    String pictureUrl;
 
     @JsonCreator
-    public PromoterTO(@JsonProperty("id") UUID id,
-                      @JsonProperty("name") String name,
-                      @JsonProperty("address") String address,
-                      @JsonProperty("email") String email,
-                      @JsonProperty("phone") String phoneNumber,
-                      @JsonProperty("pictureUrl") String pictureUrl) {
+    public PromoterTO(@JsonProperty("id") UUID id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.pictureUrl = pictureUrl;
     }
 }

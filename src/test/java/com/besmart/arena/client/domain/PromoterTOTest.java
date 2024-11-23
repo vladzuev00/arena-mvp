@@ -17,24 +17,13 @@ public final class PromoterTOTest extends AbstractSpringBootTest {
     @Test
     public void promoterShouldBeSerializedToJson()
             throws Exception {
-        PromoterTO givenPromoter = new PromoterTO(
-                fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"),
-                "Organizatorius Z, VŠĮ",
-                "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                "testkakava@gmail.com",
-                "+37060000001",
-                "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
-        );
+        PromoterTO givenPromoter = new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ");
 
         String actual = objectMapper.writeValueAsString(givenPromoter);
         String expected = """
                 {
                    "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
-                   "name": "Organizatorius Z, VŠĮ",
-                   "address": "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                   "email": "testkakava@gmail.com",
-                   "phone": "+37060000001",
-                   "pictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
+                   "name": "Organizatorius Z, VŠĮ"
                 }""";
         JSONAssert.assertEquals(expected, actual, true);
     }
@@ -56,14 +45,7 @@ public final class PromoterTOTest extends AbstractSpringBootTest {
                 }""";
 
         PromoterTO actual = objectMapper.readValue(givenJson, PromoterTO.class);
-        PromoterTO expected = new PromoterTO(
-                fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"),
-                "Organizatorius Z, VŠĮ",
-                "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                "testkakava@gmail.com",
-                "+37060000001",
-                "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
-        );
+        PromoterTO expected = new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ");
         Assertions.assertEquals(expected, actual);
     }
 }

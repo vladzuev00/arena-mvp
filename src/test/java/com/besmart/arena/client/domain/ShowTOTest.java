@@ -34,14 +34,7 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena", "ner"),
                 "ner, Vilnius, Lithuania",
                 2100,
-                new PromoterTO(
-                        fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"),
-                        "Organizatorius Z, VŠĮ",
-                        "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                        "testkakava@gmail.com",
-                        "+37060000001",
-                        ""
-                )
+                new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")
         );
 
         String actual = objectMapper.writeValueAsString(givenShow);
@@ -72,11 +65,7 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                    "priceFrom": 2100,
                    "promoter": {
                      "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
-                     "name": "Organizatorius Z, VŠĮ",
-                     "address": "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                     "email": "testkakava@gmail.com",
-                     "phone": "+37060000001",
-                     "pictureUrl": ""
+                     "name": "Organizatorius Z, VŠĮ"
                    }
                 }""";
         JSONAssert.assertEquals(expected, actual, true);
@@ -181,14 +170,7 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena", "ner"),
                 "ner, Vilnius, Lithuania",
                 2100,
-                new PromoterTO(
-                        fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"),
-                        "Organizatorius Z, VŠĮ",
-                        "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                        "testkakava@gmail.com",
-                        "+37060000001",
-                        ""
-                )
+                new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")
         );
         Assertions.assertEquals(expected, actual);
     }

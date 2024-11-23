@@ -16,11 +16,13 @@ import java.util.stream.Collectors;
 import static com.besmart.arena.util.HtmlUtil.render;
 import static java.lang.Double.NaN;
 
-//TODO: remove NOT_DEFINED, refactor and test
 @Component
 public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsResponseTO, CategoryTO, String, PromoterTO, ShowTO, ShowTO, ShowTO> {
-    private static final String NOT_DEFINED_STRING = "NOT DEFINED";
-    private static final double NOT_DEFINED_DOUBLE = NaN;
+    //TODO: remove
+    static final String NOT_DEFINED_STRING = "NOT DEFINED";
+
+    //TODO: remove
+    static final double NOT_DEFINED_DOUBLE = NaN;
 
     private final KakavaArenaClient client;
 
@@ -100,9 +102,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
 
     @Override
     protected Tag createTag(String source) {
-        return Tag.builder()
-                .name(source)
-                .build();
+        return Tag.builder().name(source).build();
     }
 
     @Override

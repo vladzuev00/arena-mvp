@@ -2,6 +2,7 @@ package com.besmart.arena.client.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class ShowTO {
     int priceFrom;
     PromoterTO promoter;
 
+    @Builder
     @JsonCreator
     public ShowTO(@JsonProperty("shortId") int shortId,
                   @JsonProperty("eventShortId") int eventShortId,
