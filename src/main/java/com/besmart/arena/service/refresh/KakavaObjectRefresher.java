@@ -1,5 +1,6 @@
 package com.besmart.arena.service.refresh;
 
+import com.besmart.arena.client.KakavaArenaClient;
 import com.besmart.arena.client.domain.CategoryTO;
 import com.besmart.arena.client.domain.PromoterTO;
 import com.besmart.arena.client.domain.ShowTO;
@@ -20,15 +21,17 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     private static final String NOT_DEFINED_STRING = "NOT DEFINED";
     private static final double NOT_DEFINED_DOUBLE = NaN;
 
+    private final KakavaArenaClient client;
+
     public KakavaObjectRefresher(TransactionTemplate transactionTemplate,
                                  CategoryRepository categoryRepository,
                                  TagRepository tagRepository,
                                  PromoterRepository promoterRepository,
                                  VenueRepository venueRepository,
                                  ShowRepository showRepository,
-                                 EventRepository eventRepository) {
+                                 EventRepository eventRepository,
+                                 KakavaArenaClient client) {
         super(
-                ShowsResponseTO.class,
                 transactionTemplate,
                 categoryRepository,
                 tagRepository,
@@ -37,6 +40,12 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 showRepository,
                 eventRepository
         );
+        this.client = client;
+    }
+
+    @Override
+    protected ShowsResponseTO requestObjets() {
+        return client.request();
     }
 
     @Override

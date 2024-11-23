@@ -1,3 +1,4 @@
+--TODO исправить
 INSERT INTO categories(id, external_id, name, primary_color, secondary_color)
 VALUES(1000, 2000, 'first-category', '#90caef', '#faa538'),
       (1001, 2001, 'second-category', '#90caee', '#faa639');

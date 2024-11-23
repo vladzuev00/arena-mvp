@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+//TODO test
 @RequiredArgsConstructor
 public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
-    private final Class<RESPONSE> responseType;
     private final TransactionTemplate transactionTemplate;
     private final CategoryRepository categoryRepository;
     private final TagRepository tagRepository;
@@ -20,14 +20,12 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     private final ShowRepository showRepository;
     private final EventRepository eventRepository;
 
-    public final boolean isSuitableResponse(Object response) {
-        return responseType.isInstance(response);
-    }
-
-    public final void refresh(Object response) {
-        RESPONSE castedResponse = responseType.cast(response);
+    public final void refresh() {
+        RESPONSE castedResponse = requestObjets();
         refreshWithinNewTransaction(castedResponse);
     }
+
+    protected abstract RESPONSE requestObjets();
 
     protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
 
