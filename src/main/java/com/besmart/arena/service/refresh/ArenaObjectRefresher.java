@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-//TODO test
+//TODO refactor and test
 @RequiredArgsConstructor
 public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
     private final TransactionTemplate transactionTemplate;
@@ -21,11 +21,11 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     private final EventRepository eventRepository;
 
     public final void refresh() {
-        RESPONSE castedResponse = requestObjets();
+        RESPONSE castedResponse = requestObjects();
         refreshWithinNewTransaction(castedResponse);
     }
 
-    protected abstract RESPONSE requestObjets();
+    protected abstract RESPONSE requestObjects();
 
     protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
 
@@ -58,8 +58,8 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
                     refreshTags(response);
                     refreshPromoters(response);
                     refreshVenues(response);
-                    refreshShows(response);
-                    refreshEvents(response);
+//                    refreshShows(response);
+//                    refreshEvents(response);
                 }
         );
     }
