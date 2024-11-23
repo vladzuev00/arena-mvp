@@ -45,7 +45,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
 
     @Override
     protected ShowsResponseTO requestObjets() {
-        return client.request();
+        return client.requestShows();
     }
 
     @Override

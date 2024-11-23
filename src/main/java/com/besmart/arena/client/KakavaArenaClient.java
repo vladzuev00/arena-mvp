@@ -13,15 +13,14 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 //TODO: test
 @Component
 @RequiredArgsConstructor
-public final class KakavaArenaClient implements ArenaClient {
+public final class KakavaArenaClient {
     private static final String VENUES_PARAM_NAME = "venues";
     private static final String GETTING_SHOWS_URL = "https://app-kkv-be-test.azurewebsites.net/api/v1/event/show";
 
     private final WebClient webClient;
     private final KakavaClientProperty property;
 
-    @Override
-    public ShowsResponseTO request() {
+    public ShowsResponseTO requestShows() {
         return webClient.get()
                 .uri(buildGettingShowsUri())
                 .header(ACCEPT_LANGUAGE, property.getLanguage())
