@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 
+//TODO correct and test
 @Service
 @RequiredArgsConstructor
 public final class ShowRepository {

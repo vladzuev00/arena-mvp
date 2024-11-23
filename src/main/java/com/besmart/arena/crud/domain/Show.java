@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.List;
+
 @Value
 @Builder
 @AllArgsConstructor
@@ -13,9 +15,9 @@ public class Show {
     String title;
     String subtitle;
     String description;
-
-    //TODO: do list or remove
-    Category category;
     Venue venue;
     String imageUrl;
+    Promoter promoter;
+    List<Category> categories;
+    List<Tag> tags;
 }
