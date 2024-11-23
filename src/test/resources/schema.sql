@@ -97,7 +97,7 @@ CREATE OR REPLACE PROCEDURE refresh_show(
 LANGUAGE plpgsql
 AS $$
 DECLARE
-    saved_show_id INTEGER;
+    refreshed_show_id INTEGER;
 	category_external_id INTEGER;
 	tag_name VARCHAR;
 BEGIN
@@ -121,20 +121,20 @@ BEGIN
       promoter_id = (SELECT id FROM promoters WHERE external_id = in_promoter_external_id)
   WHERE shows.external_short_id = in_external_short_id
   RETURNING id
-  INTO saved_show_id;
+  INTO refreshed_show_id;
 
-  DELETE FROM shows_categories WHERE show_id = saved_show_id;
+  DELETE FROM shows_categories WHERE show_id = refreshed_show_id;
   FOREACH category_external_id IN ARRAY in_category_external_ids
   LOOP
      INSERT INTO shows_categories(show_id, category_id)
-     VALUES (saved_show_id, (SELECT id FROM categories WHERE external_id = category_external_id));
+     VALUES (refreshed_show_id, (SELECT id FROM categories WHERE external_id = category_external_id));
   END LOOP;
 
-  DELETE FROM shows_tags WHERE show_id = saved_show_id;
+  DELETE FROM shows_tags WHERE show_id = refreshed_show_id;
   FOREACH tag_name IN ARRAY in_tag_names
   LOOP
      INSERT INTO shows_tags(show_id, tag_id)
-     VALUES (saved_show_id, (SELECT id FROM tags WHERE name = tag_name));
+     VALUES (refreshed_show_id, (SELECT id FROM tags WHERE name = tag_name));
   END LOOP;
 
 END;
