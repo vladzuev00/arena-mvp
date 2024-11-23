@@ -94,8 +94,7 @@ CREATE OR REPLACE PROCEDURE refresh_show(
     in_category_external_ids INTEGER[],
     in_tag_names VARCHAR[]
 )
-LANGUAGE plpgsql
-AS $$
+AS '
 DECLARE
     refreshed_show_id INTEGER;
 	category_external_id INTEGER;
@@ -138,4 +137,4 @@ BEGIN
   END LOOP;
 
 END;
-$$;
+' LANGUAGE plpgsql;
