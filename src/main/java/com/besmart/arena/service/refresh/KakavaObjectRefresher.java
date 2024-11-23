@@ -125,7 +125,6 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .build();
     }
 
-    //TODO: что делать с категориями: по домену только 1 категория может быть у Show, от provider-а приходит массив
     @Override
     protected Show createShow(ShowTO source) {
         return Show.builder()
@@ -135,6 +134,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .description(render(source.getEventDescriptionHtml()))
                 .venue(Venue.builder().externalId(source.getLocation().getId()).build())
                 .imageUrl(source.getEventPicture().getDesktopPictureUrl())
+                .promoter(Promoter.builder().externalId(source.getPromoter().getId()).build())
                 .build();
     }
 

@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS events;
 DROP TABLE IF EXISTS shows_categories;
 DROP TABLE IF EXISTS shows_tags;
-DROP TABLE IF EXISTS promoters;
 DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS promoters;
 DROP TABLE IF EXISTS venues;
 
 CREATE TABLE categories(
@@ -42,7 +42,7 @@ CREATE TABLE shows(
     external_short_id INTEGER NOT NULL UNIQUE,
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
-    description VARCHAR(256) NOT NULL,
+    description TEXT NOT NULL,
     venue_id INTEGER NOT NULL,
     image_url VARCHAR(256) NOT NULL,
     promoter_id INTEGER NOT NULL
