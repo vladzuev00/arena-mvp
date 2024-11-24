@@ -42,29 +42,29 @@ public final class ShowRowMapperTest {
             int givenRowNumber = 20;
 
             long givenId = 255;
-            when(givenResultSet.getLong(same(COLUMN_NAME_ID))).thenReturn(givenId);
+            when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
             int givenExternalShortId = 256;
-            when(givenResultSet.getInt(same(COLUMN_NAME_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
+            when(givenResultSet.getInt(same(ALIAS_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
 
             String givenTitle = "test-title";
-            when(givenResultSet.getString(same(COLUMN_NAME_TITLE))).thenReturn(givenTitle);
+            when(givenResultSet.getString(same(ALIAS_TITLE))).thenReturn(givenTitle);
 
             String givenSubtitle = "test-subtitle";
-            when(givenResultSet.getString(same(COLUMN_NAME_SUBTITLE))).thenReturn(givenSubtitle);
+            when(givenResultSet.getString(same(ALIAS_SUBTITLE))).thenReturn(givenSubtitle);
 
             String givenDescription = "test-description";
-            when(givenResultSet.getString(same(COLUMN_NAME_DESCRIPTION))).thenReturn(givenDescription);
+            when(givenResultSet.getString(same(ALIAS_DESCRIPTION))).thenReturn(givenDescription);
 
             Venue givenVenue = Venue.builder().id(257L).build();
-            mockedUtil.when(() -> getVenueLazily(same(givenResultSet), same(COLUMN_NAME_VENUE_ID)))
+            mockedUtil.when(() -> getVenueLazily(same(givenResultSet), same(ALIAS_VENUE_ID)))
                     .thenReturn(givenVenue);
 
             String givenImageUrl = "test-url";
-            when(givenResultSet.getString(same(COLUMN_NAME_IMAGE_URL))).thenReturn(givenImageUrl);
+            when(givenResultSet.getString(same(ALIAS_IMAGE_URL))).thenReturn(givenImageUrl);
 
             Promoter givenPromoter = Promoter.builder().id(258L).build();
-            mockedUtil.when(() -> getPromoterLazily(same(givenResultSet), same(COLUMN_NAME_PROMOTER_ID)))
+            mockedUtil.when(() -> getPromoterLazily(same(givenResultSet), same(ALIAS_PROMOTER_ID)))
                     .thenReturn(givenPromoter);
 
             Category givenCategory = Category.builder().id(259L).build();

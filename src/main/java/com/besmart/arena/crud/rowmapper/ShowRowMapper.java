@@ -15,14 +15,14 @@ import static java.util.Collections.singletonList;
 @Component
 @RequiredArgsConstructor
 public final class ShowRowMapper implements RowMapper<Show> {
-    static final String COLUMN_NAME_ID = "id";
-    static final String COLUMN_NAME_EXTERNAL_SHORT_ID = "external_short_id";
-    static final String COLUMN_NAME_TITLE = "title";
-    static final String COLUMN_NAME_SUBTITLE = "subtitle";
-    static final String COLUMN_NAME_DESCRIPTION = "description";
-    static final String COLUMN_NAME_VENUE_ID = "venue_id";
-    static final String COLUMN_NAME_IMAGE_URL = "image_url";
-    static final String COLUMN_NAME_PROMOTER_ID = "promoter_id";
+    static final String ALIAS_ID = "showId";
+    static final String ALIAS_EXTERNAL_SHORT_ID = "showExternalShortId";
+    static final String ALIAS_TITLE = "showTitle";
+    static final String ALIAS_SUBTITLE = "showSubtitle";
+    static final String ALIAS_DESCRIPTION = "showDescription";
+    static final String ALIAS_VENUE_ID = "showVenueId";
+    static final String ALIAS_IMAGE_URL = "showImageUrl";
+    static final String ALIAS_PROMOTER_ID = "showPromoterId";
 
     private final CategoryRowMapper categoryRowMapper;
     private final TagRowMapper tagRowMapper;
@@ -30,14 +30,14 @@ public final class ShowRowMapper implements RowMapper<Show> {
     @Override
     public Show mapRow(ResultSet resultSet, int rowNumber)
             throws SQLException {
-        Long id = resultSet.getLong(COLUMN_NAME_ID);
-        int externalShortId = resultSet.getInt(COLUMN_NAME_EXTERNAL_SHORT_ID);
-        String title = resultSet.getString(COLUMN_NAME_TITLE);
-        String subtitle = resultSet.getString(COLUMN_NAME_SUBTITLE);
-        String description = resultSet.getString(COLUMN_NAME_DESCRIPTION);
-        Venue venue = getVenueLazily(resultSet, COLUMN_NAME_VENUE_ID);
-        String imageUrl = resultSet.getString(COLUMN_NAME_IMAGE_URL);
-        Promoter promoter = getPromoterLazily(resultSet, COLUMN_NAME_PROMOTER_ID);
+        Long id = resultSet.getLong(ALIAS_ID);
+        int externalShortId = resultSet.getInt(ALIAS_EXTERNAL_SHORT_ID);
+        String title = resultSet.getString(ALIAS_TITLE);
+        String subtitle = resultSet.getString(ALIAS_SUBTITLE);
+        String description = resultSet.getString(ALIAS_DESCRIPTION);
+        Venue venue = getVenueLazily(resultSet, ALIAS_VENUE_ID);
+        String imageUrl = resultSet.getString(ALIAS_IMAGE_URL);
+        Promoter promoter = getPromoterLazily(resultSet, ALIAS_PROMOTER_ID);
         Category category = categoryRowMapper.mapRow(resultSet, rowNumber);
         Tag tag = tagRowMapper.mapRow(resultSet, rowNumber);
         return new Show(
