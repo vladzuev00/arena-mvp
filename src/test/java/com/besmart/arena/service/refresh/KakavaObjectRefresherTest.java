@@ -195,7 +195,60 @@ public final class KakavaObjectRefresherTest {
 
     @Test
     public void showShouldBeCreated() {
-        throw new RuntimeException();
+        try (MockedStatic<HtmlUtil> mockedHtmlUtil = mockStatic(HtmlUtil.class)) {
+            int givenExternalShortId = 2334;
+            String givenTitle = "test-title";
+            String givenDescriptionHtml = "test-html";
+            UUID givenVenueExternalId = fromString("550e8400-e29b-41d4-a716-446655440001");
+            String givenImageUrl = "test-image-url";
+            UUID givenPromoterExternalId = fromString("550e8400-e29b-41d4-a716-446655440002");
+            int givenFirstCategoryExternalId = 2335;
+            int givenSecondCategoryExternalId = 2336;
+            String givenFirstTagName = "first-tag";
+            String givenSecondTagName = "second-tag";
+            ShowTO givenSource = ShowTO.builder()
+                    .shortId(givenExternalShortId)
+                    .eventTitle(givenTitle)
+                    .eventDescriptionHtml(givenDescriptionHtml)
+                    .location(ShowLocationTO.builder().id(givenVenueExternalId).build())
+                    .eventPicture(new EventPictureTO(givenImageUrl))
+                    .promoter(PromoterTO.builder().id(givenPromoterExternalId).build())
+                    .eventCategories(
+                            List.of(
+                                    new CategoryTO(givenFirstCategoryExternalId),
+                                    new CategoryTO(givenSecondCategoryExternalId)
+                            )
+                    )
+                    .marks(List.of(givenFirstTagName, givenSecondTagName))
+                    .build();
+
+            String givenDescriptionRenderedHtml = "test-rendered-html";
+            mockedHtmlUtil.when(() -> render(same(givenDescriptionHtml))).thenReturn(givenDescriptionRenderedHtml);
+
+            Show actual = refresher.createShow(givenSource);
+            Show expected = Show.builder()
+                    .externalShortId(givenExternalShortId)
+                    .title(givenTitle)
+                    .subtitle(NOT_DEFINED_STRING)
+                    .description(givenDescriptionRenderedHtml)
+                    .venue(Venue.builder().externalId(givenVenueExternalId).build())
+                    .imageUrl(givenImageUrl)
+                    .promoter(Promoter.builder().externalId(givenPromoterExternalId).build())
+                    .categories(
+                            List.of(
+                                    Category.builder().externalId(givenFirstCategoryExternalId).build(),
+                                    Category.builder().externalId(givenSecondCategoryExternalId).build()
+                            )
+                    )
+                    .tags(
+                            List.of(
+                                    Tag.builder().name(givenFirstTagName).build(),
+                                    Tag.builder().name(givenSecondTagName).build()
+                            )
+                    )
+                    .build();
+            assertEquals(expected, actual);
+        }
     }
 
     @Test
