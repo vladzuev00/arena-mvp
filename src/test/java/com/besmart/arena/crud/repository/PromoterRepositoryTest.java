@@ -72,6 +72,17 @@ public final class PromoterRepositoryTest extends AbstractSpringBootTest {
     }
 
     private Set<Promoter> findAllPromoters() {
-        return queryForSet(jdbcTemplate, rowMapper, "SELECT id, external_id, name, icon_url, web_page_url FROM promoters");
+        return queryForSet(
+                jdbcTemplate,
+                rowMapper,
+                """
+                        SELECT
+                            id AS promoterId,
+                            external_id AS promoterExternalId,
+                            name AS promoterName,
+                            icon_url AS promoterIconUrl,
+                            web_page_url AS promoterWebPageUrl
+                        FROM promoters"""
+        );
     }
 }

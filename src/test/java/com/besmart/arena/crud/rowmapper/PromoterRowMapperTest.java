@@ -27,20 +27,20 @@ public final class PromoterRowMapperTest {
             int givenRowNumber = 20;
 
             long givenId = 255L;
-            when(givenResultSet.getLong(same(COLUMN_NAME_ID))).thenReturn(givenId);
+            when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
             UUID givenExternalId = fromString("a60de864-5c52-11ee-a81c-000d3aa868a2");
-            mockedUtil.when(() -> getUUID(same(givenResultSet), eq(COLUMN_NAME_EXTERNAL_ID)))
+            mockedUtil.when(() -> getUUID(same(givenResultSet), eq(ALIAS_EXTERNAL_ID)))
                     .thenReturn(givenExternalId);
 
             String givenName = "test-name";
-            when(givenResultSet.getString(same(COLUMN_NAME_NAME))).thenReturn(givenName);
+            when(givenResultSet.getString(same(ALIAS_NAME))).thenReturn(givenName);
 
             String givenIconUrl = "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2";
-            when(givenResultSet.getString(same(COLUMN_NAME_ICON_URL))).thenReturn(givenIconUrl);
+            when(givenResultSet.getString(same(ALIAS_ICON_URL))).thenReturn(givenIconUrl);
 
             String givenWebPageUrl = "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3";
-            when(givenResultSet.getString(same(COLUMN_NAME_WEB_PAGE_URL))).thenReturn(givenWebPageUrl);
+            when(givenResultSet.getString(same(ALIAS_WEB_PAGE_URL))).thenReturn(givenWebPageUrl);
 
             Promoter actual = mapper.mapRow(givenResultSet, givenRowNumber);
             Promoter expected = new Promoter(givenId, givenExternalId, givenName, givenIconUrl, givenWebPageUrl);
