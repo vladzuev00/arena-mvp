@@ -21,19 +21,19 @@ public final class CategoryRowMapperTest {
         int givenRowNumber = 20;
 
         long givenId = 255;
-        when(givenResultSet.getLong(same(COLUMN_NAME_ID))).thenReturn(givenId);
+        when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
         int givenInternalId = 55;
-        when(givenResultSet.getInt(same(COLUMN_NAME_EXTERNAL_ID))).thenReturn(givenInternalId);
+        when(givenResultSet.getInt(same(ALIAS_EXTERNAL_ID))).thenReturn(givenInternalId);
 
         String givenName = "test-name";
-        when(givenResultSet.getString(same(COLUMN_NAME_NAME))).thenReturn(givenName);
+        when(givenResultSet.getString(same(ALIAS_NAME))).thenReturn(givenName);
 
         String givenPrimaryColor = "#3d4761";
-        when(givenResultSet.getString(same(COLUMN_NAME_PRIMARY_COLOR))).thenReturn(givenPrimaryColor);
+        when(givenResultSet.getString(same(ALIAS_PRIMARY_COLOR))).thenReturn(givenPrimaryColor);
 
         String givenSecondaryColor = "#3d4762";
-        when(givenResultSet.getString(same(COLUMN_NAME_SECONDARY_COLOR))).thenReturn(givenSecondaryColor);
+        when(givenResultSet.getString(same(ALIAS_SECONDARY_COLOR))).thenReturn(givenSecondaryColor);
 
         Category actual = mapper.mapRow(givenResultSet, givenRowNumber);
         Category expected = new Category(givenId, givenInternalId, givenName, givenPrimaryColor, givenSecondaryColor);

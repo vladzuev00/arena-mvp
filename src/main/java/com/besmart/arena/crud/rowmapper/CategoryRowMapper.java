@@ -9,20 +9,20 @@ import java.sql.SQLException;
 
 @Component
 public final class CategoryRowMapper implements RowMapper<Category> {
-    static final String COLUMN_NAME_ID = "id";
-    static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
-    static final String COLUMN_NAME_NAME = "name";
-    static final String COLUMN_NAME_PRIMARY_COLOR = "primary_color";
-    static final String COLUMN_NAME_SECONDARY_COLOR = "secondary_color";
+    static final String ALIAS_ID = "categoryId";
+    static final String ALIAS_EXTERNAL_ID = "categoryExternalId";
+    static final String ALIAS_NAME = "categoryName";
+    static final String ALIAS_PRIMARY_COLOR = "categoryPrimaryColor";
+    static final String ALIAS_SECONDARY_COLOR = "categorySecondaryColor";
 
     @Override
     public Category mapRow(ResultSet resultSet, int rowNumber)
             throws SQLException {
-        Long id = resultSet.getLong(COLUMN_NAME_ID);
-        int externalId = resultSet.getInt(COLUMN_NAME_EXTERNAL_ID);
-        String name = resultSet.getString(COLUMN_NAME_NAME);
-        String primaryColor = resultSet.getString(COLUMN_NAME_PRIMARY_COLOR);
-        String secondaryColor = resultSet.getString(COLUMN_NAME_SECONDARY_COLOR);
+        Long id = resultSet.getLong(ALIAS_ID);
+        int externalId = resultSet.getInt(ALIAS_EXTERNAL_ID);
+        String name = resultSet.getString(ALIAS_NAME);
+        String primaryColor = resultSet.getString(ALIAS_PRIMARY_COLOR);
+        String secondaryColor = resultSet.getString(ALIAS_SECONDARY_COLOR);
         return new Category(id, externalId, name, primaryColor, secondaryColor);
     }
 }

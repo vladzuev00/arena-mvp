@@ -56,7 +56,14 @@ public final class CategoryRepositoryTest extends AbstractSpringBootTest {
         return queryForSet(
                 jdbcTemplate,
                 rowMapper,
-                "SELECT id, external_id, name, primary_color, secondary_color FROM categories"
+                """
+                        SELECT
+                            id AS categoryId,
+                            external_id AS categoryExternalId,
+                            name AS categoryName,
+                            primary_color AS categoryPrimaryColor,
+                            secondary_color AS categorySecondaryColor
+                        FROM categories"""
         );
     }
 }
