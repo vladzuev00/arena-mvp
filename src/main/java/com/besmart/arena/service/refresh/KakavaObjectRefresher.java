@@ -125,7 +125,6 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .build();
     }
 
-    //TODO: refactor and test
     @Override
     protected Show createShow(ShowTO source) {
         return Show.builder()
@@ -133,13 +132,11 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .title(source.getEventTitle())
                 .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
-                .venue(Venue.builder().externalId(source.getLocation().getId()).build())
+                .venue(getVenueOnlyWithExternalId(source))
                 .imageUrl(source.getEventPicture().getDesktopPictureUrl())
-                .promoter(Promoter.builder().externalId(source.getPromoter().getId()).build())
-                //TODO: do explicitly only with externalId
-                .categories(source.getEventCategories().stream().map(this::createCategory).toList())
-                //TODO: do explicitly only with name
-                .tags(source.getMarks().stream().map(this::createTag).toList())
+                .promoter(getPromoterOnlyWithExternalId(source))
+                .categories(getCategoriesOnlyWithExternalId(source))
+                .tags(getTagsOnlyWithName(source))
                 .build();
     }
 
@@ -151,7 +148,33 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
                 .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
                 .dateTime(source.getStartDateTime())
-                .show(Show.builder().externalShortId(source.getShortId()).build())
+                .show(getShowOnlyWithExternalId(source))
                 .build();
+    }
+
+    private Venue getVenueOnlyWithExternalId(ShowTO source) {
+        return Venue.builder().externalId(source.getLocation().getId()).build();
+    }
+
+    private Promoter getPromoterOnlyWithExternalId(ShowTO source) {
+        return Promoter.builder().externalId(source.getPromoter().getId()).build();
+    }
+
+    private Show getShowOnlyWithExternalId(ShowTO source) {
+        return Show.builder().externalShortId(source.getShortId()).build();
+    }
+
+    private List<Category> getCategoriesOnlyWithExternalId(ShowTO source) {
+        return source.getEventCategories()
+                .stream()
+                .map(categorySource -> Category.builder().externalId(categorySource.getId()).build())
+                .toList();
+    }
+
+    private List<Tag> getTagsOnlyWithName(ShowTO source) {
+        return source.getMarks()
+                .stream()
+                .map(this::createTag)
+                .toList();
     }
 }

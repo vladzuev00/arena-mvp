@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public final class RefreshArenaEventConsumer {
     private final ArenaObjectRefreshingService service;
 
-    @KafkaListener(topics = "arena-events", groupId = "arena-event-group", concurrency = "1")
+//    @KafkaListener(topics = "arena-events", groupId = "arena-event-group", concurrency = "1")
     public void consume(RefreshArenaEvent event) {
         service.refresh();
     }
