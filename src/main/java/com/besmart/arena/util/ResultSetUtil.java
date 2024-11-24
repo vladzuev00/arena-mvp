@@ -1,8 +1,6 @@
 package com.besmart.arena.util;
 
-import com.besmart.arena.crud.domain.Promoter;
-import com.besmart.arena.crud.domain.Show;
-import com.besmart.arena.crud.domain.Venue;
+import com.besmart.arena.crud.domain.*;
 import lombok.experimental.UtilityClass;
 
 import java.sql.ResultSet;
@@ -29,6 +27,20 @@ public final class ResultSetUtil {
             throws SQLException {
         Long id = resultSet.getLong(columnNameId);
         return Promoter.builder().id(id).build();
+    }
+
+    //TODO: test
+    public static Category getCategoryLazily(ResultSet resultSet, String columnNameId)
+            throws SQLException {
+        Long id = resultSet.getLong(columnNameId);
+        return Category.builder().id(id).build();
+    }
+
+    //TODO: test
+    public static Tag getTagLazily(ResultSet resultSet, String columnNameId)
+            throws SQLException {
+        Long id = resultSet.getLong(columnNameId);
+        return Tag.builder().id(id).build();
     }
 
     public static Show getShowLazily(ResultSet resultSet, String columnNameId)
