@@ -37,9 +37,7 @@ public final class KakavaClientPropertyTest extends AbstractSpringBootTest {
 
     @Test
     public void propertyShouldNotBeValidBecauseOfVenueIdIsNull() {
-        KakavaClientProperty givenProperty = KakavaClientProperty.builder()
-                .language("EN")
-                .build();
+        KakavaClientProperty givenProperty = KakavaClientProperty.builder().language("EN").build();
 
         validateExpectingOneViolation(givenProperty, validator, "must not be null");
     }

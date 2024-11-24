@@ -178,9 +178,7 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                                 1755,
                                 "Šiaulių arena. Šiaulių „Šiauliai“ - Mažeikių „M Basket",
                                 "<a href=\"https://cms.kakava.lt/api/assets/7b0d4de6-aa49-4bd6-bb9b-6c5f106118a3?q=d7fcefda-248a-0f6e-bc3e-20543c095f6f\" target=\"_blank\">taisyklės</a>&nbsp;Rajoną pavadinti&nbsp;<i><b>Pilaite</b></i>&nbsp;nuspręsta ne iš karto. Buvo siūlomi įvairūs vietovardžio variantai, pavyzdžiui&nbsp;<i><b>Sudervėlė</b></i>. Kalbininkui Jonui Jurkštui ir parkotyrininkui Kęstučiui Labanauskui pavyko įtikinti, kad šis pavadinimas yra autentiškas.&nbsp;<i><b>Pilaitė</b></i>&nbsp;– istorinis vietovardis, kilęs iš bendrinio žodžio „pilis“. Netoli Pilaitės XIX a. buvo dvi gyvenvietės: Papilėnai ir Papilaičiai. Pasak Jono Jurkšto, jie žymi vietas, esančias prie pilies (pilaitės), ir patvirtina, kad čia yra buvęs vietovardis&nbsp;<i><b>Pilaitė</b></i>&nbsp;ir tikrai yra stovėjusi pilis. Todėl&nbsp;<a href=\"https://lt.wikipedia.org/wiki/Lenk%C5%B3_kalba\" title=\"Lenkų kalba\">lenk.</a>&nbsp;<i>Zameczek</i>&nbsp;yra vertinys iš žodžio pilaitė, o ne atvirkščiai, kaip manė kai kurie tyrinėtojai.    <br>",
-                                new EventPictureTO(
-                                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"
-                                ),
+                                new EventPictureTO("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2"),
                                 List.of(new CategoryTO(4)),
                                 LocalDateTime.of(2026, 9, 29, 16, 3, 0),
                                 List.of("PROMOTION"),

@@ -87,5 +87,13 @@
             <scope>test</scope>
         </dependency>
 
+<!--        TODO-->
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>3.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 </project>
