@@ -86,7 +86,16 @@ public final class EventRepositoryTest extends AbstractSpringBootTest {
         return queryForSet(
                 jdbcTemplate,
                 rowMapper,
-                "SELECT id, external_short_id, title, subtitle, description, date_time, show_id FROM events"
+                """
+                        SELECT
+                            id AS eventId,
+                            external_short_id AS eventExternalShortId,
+                            title AS eventTitle,
+                            subtitle AS eventSubtitle,
+                            description AS eventDescription,
+                            date_time AS eventDateTime,
+                            show_id AS eventShowId
+                        FROM events"""
         );
     }
 }

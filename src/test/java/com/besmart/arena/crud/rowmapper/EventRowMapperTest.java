@@ -26,26 +26,26 @@ public final class EventRowMapperTest {
             int givenRowNumber = 20;
 
             long givenId = 255;
-            when(givenResultSet.getLong(same(COLUMN_NAME_ID))).thenReturn(givenId);
+            when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
             int givenExternalShortId = 256;
-            when(givenResultSet.getInt(same(COLUMN_NAME_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
+            when(givenResultSet.getInt(same(ALIAS_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
 
             String givenTitle = "test-title";
-            when(givenResultSet.getString(same(COLUMN_NAME_TITLE))).thenReturn(givenTitle);
+            when(givenResultSet.getString(same(ALIAS_TITLE))).thenReturn(givenTitle);
 
             String givenSubtitle = "test-subtitle";
-            when(givenResultSet.getString(same(COLUMN_NAME_SUBTITLE))).thenReturn(givenSubtitle);
+            when(givenResultSet.getString(same(ALIAS_SUBTITLE))).thenReturn(givenSubtitle);
 
             String givenDescription = "test-description";
-            when(givenResultSet.getString(same(COLUMN_NAME_DESCRIPTION))).thenReturn(givenDescription);
+            when(givenResultSet.getString(same(ALIAS_DESCRIPTION))).thenReturn(givenDescription);
 
             LocalDateTime givenDateTime = LocalDateTime.of(2024, 11, 20, 21, 22, 23);
             Timestamp givenTimestamp = createTimestamp(givenDateTime);
-            when(givenResultSet.getTimestamp(same(COLUMN_NAME_DATE_TIME))).thenReturn(givenTimestamp);
+            when(givenResultSet.getTimestamp(same(ALIAS_DATE_TIME))).thenReturn(givenTimestamp);
 
             Show givenShow = Show.builder().id(257L).build();
-            mockedUtil.when(() -> getShowLazily(same(givenResultSet), same(COLUMN_NAME_SHOW_ID))).thenReturn(givenShow);
+            mockedUtil.when(() -> getShowLazily(same(givenResultSet), same(ALIAS_SHOW_ID))).thenReturn(givenShow);
 
             Event actual = mapper.mapRow(givenResultSet, givenRowNumber);
             Event expected = new Event(
