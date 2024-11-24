@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 
-//TODO test
+//TODO: test
 @Service
 @RequiredArgsConstructor
 public final class ShowRepository {
@@ -19,7 +19,17 @@ public final class ShowRepository {
         batchUpdate(
                 jdbcTemplate,
                 shows,
-                "CALL refresh_show(:externalShortId, :title, :subtitle, :description, :venue.externalId, :imageUrl, :promoter.externalId, :categoryExternalIds, :tagNames)"
+                """
+                        CALL refresh_show(
+                            :externalShortId,
+                            :title,
+                            :subtitle,
+                            :description,
+                            :venue.externalId,
+                            :imageUrl,
+                            :promoter.externalId,
+                            :categoryExternalIds,
+                            :tagNames)"""
         );
     }
 }

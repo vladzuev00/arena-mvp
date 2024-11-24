@@ -1,19 +1,23 @@
 //package com.besmart.arena.crud.repository;
 //
 //import com.besmart.arena.base.AbstractSpringBootTest;
-//import com.besmart.arena.crud.domain.Category;
-//import com.besmart.arena.crud.domain.Show;
-//import com.besmart.arena.crud.domain.Venue;
+//import com.besmart.arena.crud.domain.*;
 //import com.besmart.arena.crud.rowmapper.ShowRowMapper;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.jdbc.core.JdbcTemplate;
 //
 //import java.util.List;
+//import java.util.Optional;
 //import java.util.Set;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 //
 //import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
+//import static java.util.Collections.emptyList;
 //import static java.util.UUID.fromString;
+//import static java.util.stream.Collectors.groupingBy;
+//import static java.util.stream.Collectors.reducing;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //
 //public final class ShowRepositoryTest extends AbstractSpringBootTest {
@@ -35,18 +39,22 @@
 //                        .title("third-title")
 //                        .subtitle("third-subtitle")
 //                        .description("third-description")
-//                        .category(Category.builder().externalId(2001).build())
-//                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a716-446655440001")).build())
+//                        .venue(Venue.builder().externalId(fromString("a60de864-5c52-11ee-a81c-000d3aa868a3")).build())
 //                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4")
+//                        .promoter(Promoter.builder().externalId(fromString("11aa329a-44a6-11ed-a81c-000d3a29938e")).build())
+//                        .categories(List.of(Category.builder().externalId(2001).build()))
+//                        .tags(emptyList())
 //                        .build(),
 //                Show.builder()
 //                        .externalShortId(2002)
 //                        .title("fourth-title")
 //                        .subtitle("fourth-subtitle")
 //                        .description("fourth-description")
-//                        .category(Category.builder().externalId(2001).build())
-//                        .venue(Venue.builder().externalId(fromString("550e8400-e29b-41d4-a716-446655440001")).build())
+//                        .venue(Venue.builder().externalId(fromString("a60de864-5c52-11ee-a81c-000d3aa868a3")).build())
 //                        .imageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5")
+//                        .promoter(Promoter.builder().externalId(fromString("11aa329a-44a6-11ed-a81c-000d3a29938e")).build())
+//                        .categories(List.of(Category.builder().externalId(2001).build()))
+//                        .tags(List.of(Tag.builder().name("first-tag").build(), Tag.builder().name("PROMOTION").build()))
 //                        .build()
 //        );
 //
@@ -54,45 +62,42 @@
 //
 //        Set<Show> actual = findAllShows();
 //        Set<Show> expected = Set.of(
-//                new Show(
-//                        1000L,
-//                        2000,
-//                        "third-title",
-//                        "third-subtitle",
-//                        "third-description",
-//                        Category.builder().id(1001L).build(),
-//                        Venue.builder().id(1001L).build(),
-//                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4"
-//                ),
-//                new Show(
-//                        1001L,
-//                        2001,
-//                        "second-title",
-//                        "second-subtitle",
-//                        "second-description",
-//                        Category.builder().id(1001L).build(),
-//                        Venue.builder().id(1001L).build(),
-//                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3"
-//                ),
-//                new Show(
-//                        2L,
-//                        2002,
-//                        "fourth-title",
-//                        "fourth-subtitle",
-//                        "fourth-description",
-//                        Category.builder().id(1001L).build(),
-//                        Venue.builder().id(1001L).build(),
-//                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5"
-//                )
+//
 //        );
 //        assertEquals(expected, actual);
 //    }
 //
 //    private Set<Show> findAllShows() {
-//        return queryForSet(
-//                jdbcTemplate,
-//                rowMapper,
-//                "SELECT id, external_short_id, title, subtitle, description, category_id, venue_id, image_url FROM shows"
-//        );
+//        try (Stream<Show> stream = jdbcTemplate.queryForStream(
+//                "SELECT shows.id, shows.external_short_id, shows.title, shows.subtitle, shows.description, shows.category_id, shows.venue_id, shows.image_url FROM shows "
+//                        + "LEFT OUTER JOIN shows_categories ON shows.id = shows_categories.", rowMapper)
+//        ) {
+//            return stream.collect(
+//                            groupingBy(
+//                                    Show::getId,
+//                                    reducing(
+//                                            (result, show) -> new Show(
+//                                                    result.getId(),
+//                                                    result.getExternalShortId(),
+//                                                    result.getTitle(),
+//                                                    result.getSubtitle(),
+//                                                    result.getDescription(),
+//                                                    result.getVenue(),
+//                                                    result.getImageUrl(),
+//                                                    result.getPromoter(),
+//                                                    Stream.concat(result.getCategories().stream(), result.getCategories().stream()).toList(),
+//                                                    Stream.concat(result.getTags().stream(), result.getTags().stream()).toList()
+//                                            )
+//                                    )
+//                            )
+//                    )
+//                    .values().stream().map(Optional::get).collect(Collectors.toSet());
+//        }
+//
+////        return queryForSet(
+////                jdbcTemplate,
+////                rowMapper,
+////                "SELECT id, external_short_id, title, subtitle, description, category_id, venue_id, image_url FROM shows"
+////        );
 //    }
 //}

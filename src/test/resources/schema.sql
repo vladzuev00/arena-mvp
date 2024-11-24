@@ -82,7 +82,6 @@ CREATE TABLE events(
 
 ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
 
---TODO: test
 CREATE OR REPLACE PROCEDURE refresh_show(
     in_external_short_id INTEGER,
     in_title VARCHAR,
