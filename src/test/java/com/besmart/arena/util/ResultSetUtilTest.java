@@ -1,6 +1,5 @@
 package com.besmart.arena.util;
 
-import com.besmart.arena.crud.domain.Category;
 import com.besmart.arena.crud.domain.Show;
 import com.besmart.arena.crud.domain.Venue;
 import org.junit.jupiter.api.Test;
@@ -29,20 +28,6 @@ public final class ResultSetUtilTest {
 
         UUID actual = getUUID(givenResultSet, givenColumnName);
         UUID expected = fromString(givenUUIDString);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void categoryShouldBeGotLazily()
-            throws Exception {
-        ResultSet givenResultSet = mock(ResultSet.class);
-        String givenColumnNameId = "id";
-
-        final long givenId = 255;
-        when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
-
-        Category actual = getCategoryLazily(givenResultSet, givenColumnNameId);
-        Category expected = Category.builder().id(givenId).build();
         assertEquals(expected, actual);
     }
 
