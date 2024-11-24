@@ -12,40 +12,38 @@ import static java.util.UUID.fromString;
 @UtilityClass
 public final class ResultSetUtil {
 
-    public static UUID getUUID(ResultSet resultSet, String columnName)
+    public static UUID getUUID(ResultSet resultSet, String alias)
             throws SQLException {
-        return fromString(resultSet.getString(columnName));
+        return fromString(resultSet.getString(alias));
     }
 
-    public static Venue getVenueLazily(ResultSet resultSet, String columnNameId)
+    public static Venue getVenueLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
-        Long id = resultSet.getLong(columnNameId);
+        Long id = resultSet.getLong(aliasId);
         return Venue.builder().id(id).build();
     }
 
-    public static Promoter getPromoterLazily(ResultSet resultSet, String columnNameId)
+    public static Promoter getPromoterLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
-        Long id = resultSet.getLong(columnNameId);
+        Long id = resultSet.getLong(aliasId);
         return Promoter.builder().id(id).build();
     }
 
-    //TODO: test
-    public static Category getCategoryLazily(ResultSet resultSet, String columnNameId)
+    public static Category getCategoryLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
-        Long id = resultSet.getLong(columnNameId);
+        Long id = resultSet.getLong(aliasId);
         return Category.builder().id(id).build();
     }
 
-    //TODO: test
-    public static Tag getTagLazily(ResultSet resultSet, String columnNameId)
+    public static Tag getTagLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
-        Long id = resultSet.getLong(columnNameId);
+        Long id = resultSet.getLong(aliasId);
         return Tag.builder().id(id).build();
     }
 
-    public static Show getShowLazily(ResultSet resultSet, String columnNameId)
+    public static Show getShowLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
-        Long id = resultSet.getLong(columnNameId);
+        Long id = resultSet.getLong(aliasId);
         return Show.builder().id(id).build();
     }
 }

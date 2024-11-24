@@ -1,8 +1,6 @@
 package com.besmart.arena.util;
 
-import com.besmart.arena.crud.domain.Promoter;
-import com.besmart.arena.crud.domain.Show;
-import com.besmart.arena.crud.domain.Venue;
+import com.besmart.arena.crud.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
@@ -22,12 +20,12 @@ public final class ResultSetUtilTest {
     public void uuidShouldBeGot()
             throws SQLException {
         ResultSet givenResultSet = mock(ResultSet.class);
-        String givenColumnName = "id";
+        String givenAlias = "id";
 
         String givenUUIDString = "550e8400-e29b-41d4-a716-446655440000";
-        when(givenResultSet.getString(same(givenColumnName))).thenReturn(givenUUIDString);
+        when(givenResultSet.getString(same(givenAlias))).thenReturn(givenUUIDString);
 
-        UUID actual = getUUID(givenResultSet, givenColumnName);
+        UUID actual = getUUID(givenResultSet, givenAlias);
         UUID expected = fromString(givenUUIDString);
         assertEquals(expected, actual);
     }
@@ -36,12 +34,12 @@ public final class ResultSetUtilTest {
     public void venueShouldBeGotLazily()
             throws Exception {
         ResultSet givenResultSet = mock(ResultSet.class);
-        String givenColumnNameId = "id";
+        String givenAliasId = "id";
 
         long givenId = 255;
-        when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
+        when(givenResultSet.getLong(same(givenAliasId))).thenReturn(givenId);
 
-        Venue actual = getVenueLazily(givenResultSet, givenColumnNameId);
+        Venue actual = getVenueLazily(givenResultSet, givenAliasId);
         Venue expected = Venue.builder().id(givenId).build();
         assertEquals(expected, actual);
     }
@@ -50,13 +48,41 @@ public final class ResultSetUtilTest {
     public void promoterShouldBeGotLazily()
             throws Exception {
         ResultSet givenResultSet = mock(ResultSet.class);
-        String givenColumnNameId = "id";
+        String givenAliasId = "id";
 
         long givenId = 255;
-        when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
+        when(givenResultSet.getLong(same(givenAliasId))).thenReturn(givenId);
 
-        Promoter actual = getPromoterLazily(givenResultSet, givenColumnNameId);
+        Promoter actual = getPromoterLazily(givenResultSet, givenAliasId);
         Promoter expected = Promoter.builder().id(givenId).build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void categoryShouldBeGotLazily()
+            throws SQLException {
+        ResultSet givenResultSet = mock(ResultSet.class);
+        String givenAliasId = "id";
+
+        long givenId = 255;
+        when(givenResultSet.getLong(same(givenAliasId))).thenReturn(givenId);
+
+        Category actual = getCategoryLazily(givenResultSet, givenAliasId);
+        Category expected = Category.builder().id(givenId).build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void tagShouldBeGotLazily()
+            throws SQLException {
+        ResultSet givenResultSet = mock(ResultSet.class);
+        String givenAliasId = "id";
+
+        long givenId = 255;
+        when(givenResultSet.getLong(same(givenAliasId))).thenReturn(givenId);
+
+        Tag actual = getTagLazily(givenResultSet, givenAliasId);
+        Tag expected = Tag.builder().id(givenId).build();
         assertEquals(expected, actual);
     }
 
@@ -64,12 +90,12 @@ public final class ResultSetUtilTest {
     public void showShouldBeGotLazily()
             throws Exception {
         ResultSet givenResultSet = mock(ResultSet.class);
-        String givenColumnNameId = "id";
+        String givenAliasId = "id";
 
         long givenId = 255;
-        when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
+        when(givenResultSet.getLong(same(givenAliasId))).thenReturn(givenId);
 
-        Show actual = getShowLazily(givenResultSet, givenColumnNameId);
+        Show actual = getShowLazily(givenResultSet, givenAliasId);
         Show expected = Show.builder().id(givenId).build();
         assertEquals(expected, actual);
     }
