@@ -29,16 +29,16 @@ public final class VenueRepositoryTest extends AbstractSpringBootTest {
     public void venuesShouldBeRefreshedByExternalId() {
         List<Venue> givenVenues = List.of(
                 Venue.builder()
-                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440000"))
-                        .name("third-name")
-                        .address("third-address")
+                        .externalId(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"))
+                        .name("second-name")
+                        .address("second-address")
                         .latitude(9.9)
                         .longitude(10.1)
                         .build(),
                 Venue.builder()
-                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440002"))
-                        .name("fourth-name")
-                        .address("fourth-address")
+                        .externalId(fromString("a60de864-5c52-11ee-a81c-000d3aa868a4"))
+                        .name("third-name")
+                        .address("third-address")
                         .latitude(10.2)
                         .longitude(10.3)
                         .build()
@@ -50,28 +50,14 @@ public final class VenueRepositoryTest extends AbstractSpringBootTest {
         Set<Venue> expected = Set.of(
                 new Venue(
                         1001L,
-                        fromString("550e8400-e29b-41d4-a716-446655440001"),
-                        "second-name",
-                        "second-address",
+                        fromString("a60de864-5c52-11ee-a81c-000d3aa868a3"),
+                        "Šiaulių arena",
+                        "ner, Vilnius, Lithuania",
                         7.7,
                         8.8
                 ),
-                new Venue(
-                        2L,
-                        fromString("550e8400-e29b-41d4-a716-446655440002"),
-                        "fourth-name",
-                        "fourth-address",
-                        10.2,
-                        10.3
-                ),
-                new Venue(
-                        1000L,
-                        fromString("550e8400-e29b-41d4-a716-446655440000"),
-                        "third-name",
-                        "third-address",
-                        9.9,
-                        10.1
-                )
+                new Venue(1000L, fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "second-name", "second-address", 9.9, 10.1),
+                new Venue(2L, fromString("a60de864-5c52-11ee-a81c-000d3aa868a4"), "third-name", "third-address", 10.2, 10.3)
         );
         assertEquals(expected, actual);
     }
