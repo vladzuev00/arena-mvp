@@ -26,23 +26,23 @@ public final class VenueRowMapperTest {
             int givenRowNumber = 20;
 
             long givenId = 255;
-            when(givenResultSet.getLong(same(COLUMN_NAME_ID))).thenReturn(givenId);
+            when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
             UUID givenExternalId = fromString("550e8400-e29b-41d4-a716-446655440000");
-            mockedUtil.when(() -> getUUID(same(givenResultSet), same(COLUMN_NAME_EXTERNAL_ID)))
+            mockedUtil.when(() -> getUUID(same(givenResultSet), same(ALIAS_EXTERNAL_ID)))
                     .thenReturn(givenExternalId);
 
             String givenName = "test-name";
-            when(givenResultSet.getString(same(COLUMN_NAME_NAME))).thenReturn(givenName);
+            when(givenResultSet.getString(same(ALIAS_NAME))).thenReturn(givenName);
 
             String givenAddress = "test-address";
-            when(givenResultSet.getString(same(COLUMN_NAME_ADDRESS))).thenReturn(givenAddress);
+            when(givenResultSet.getString(same(ALIAS_ADDRESS))).thenReturn(givenAddress);
 
             double givenLatitude = 5.5;
-            when(givenResultSet.getDouble(same(COLUMN_NAME_LATITUDE))).thenReturn(givenLatitude);
+            when(givenResultSet.getDouble(same(ALIAS_LATITUDE))).thenReturn(givenLatitude);
 
             double givenLongitude = 6.6;
-            when(givenResultSet.getDouble(same(COLUMN_NAME_LONGITUDE))).thenReturn(givenLongitude);
+            when(givenResultSet.getDouble(same(ALIAS_LONGITUDE))).thenReturn(givenLongitude);
 
             Venue actual = mapper.mapRow(givenResultSet, givenRowNumber);
             var expected = new Venue(givenId, givenExternalId, givenName, givenAddress, givenLatitude, givenLongitude);

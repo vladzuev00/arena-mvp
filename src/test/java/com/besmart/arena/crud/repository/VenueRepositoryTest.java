@@ -56,13 +56,39 @@ public final class VenueRepositoryTest extends AbstractSpringBootTest {
                         7.7,
                         8.8
                 ),
-                new Venue(1000L, fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "second-name", "second-address", 9.9, 10.1),
-                new Venue(2L, fromString("a60de864-5c52-11ee-a81c-000d3aa868a4"), "third-name", "third-address", 10.2, 10.3)
+                new Venue(
+                        1000L,
+                        fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"),
+                        "second-name",
+                        "second-address",
+                        9.9,
+                        10.1
+                ),
+                new Venue(
+                        2L,
+                        fromString("a60de864-5c52-11ee-a81c-000d3aa868a4"),
+                        "third-name",
+                        "third-address",
+                        10.2,
+                        10.3
+                )
         );
         assertEquals(expected, actual);
     }
 
     private Set<Venue> findAllVenues() {
-        return queryForSet(jdbcTemplate, rowMapper, "SELECT id, external_id, name, address, latitude, longitude FROM venues");
+        return queryForSet(
+                jdbcTemplate,
+                rowMapper,
+                """
+                        SELECT
+                            id AS venueId,
+                            external_id AS venueExternalId,
+                            name AS venueName,
+                            address AS venueAddress,
+                            latitude AS venueLatitude,
+                            longitude AS venueLongitude
+                        FROM venues"""
+        );
     }
 }

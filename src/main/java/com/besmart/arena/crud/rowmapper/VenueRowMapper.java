@@ -12,22 +12,22 @@ import static com.besmart.arena.util.ResultSetUtil.getUUID;
 
 @Component
 public final class VenueRowMapper implements RowMapper<Venue> {
-    static final String COLUMN_NAME_ID = "id";
-    static final String COLUMN_NAME_EXTERNAL_ID = "external_id";
-    static final String COLUMN_NAME_NAME = "name";
-    static final String COLUMN_NAME_ADDRESS = "address";
-    static final String COLUMN_NAME_LATITUDE = "latitude";
-    static final String COLUMN_NAME_LONGITUDE = "longitude";
+    static final String ALIAS_ID = "venueId";
+    static final String ALIAS_EXTERNAL_ID = "venueExternalId";
+    static final String ALIAS_NAME = "venueName";
+    static final String ALIAS_ADDRESS = "venueAddress";
+    static final String ALIAS_LATITUDE = "venueLatitude";
+    static final String ALIAS_LONGITUDE = "venueLongitude";
 
     @Override
     public Venue mapRow(ResultSet resultSet, int rowNumber)
             throws SQLException {
-        Long id = resultSet.getLong(COLUMN_NAME_ID);
-        UUID externalId = getUUID(resultSet, COLUMN_NAME_EXTERNAL_ID);
-        String name = resultSet.getString(COLUMN_NAME_NAME);
-        String address = resultSet.getString(COLUMN_NAME_ADDRESS);
-        double latitude = resultSet.getDouble(COLUMN_NAME_LATITUDE);
-        double longitude = resultSet.getDouble(COLUMN_NAME_LONGITUDE);
+        Long id = resultSet.getLong(ALIAS_ID);
+        UUID externalId = getUUID(resultSet, ALIAS_EXTERNAL_ID);
+        String name = resultSet.getString(ALIAS_NAME);
+        String address = resultSet.getString(ALIAS_ADDRESS);
+        double latitude = resultSet.getDouble(ALIAS_LATITUDE);
+        double longitude = resultSet.getDouble(ALIAS_LONGITUDE);
         return new Venue(id, externalId, name, address, latitude, longitude);
     }
 }
