@@ -40,6 +40,6 @@ public final class TagRepositoryTest extends AbstractSpringBootTest {
     }
 
     private Set<Tag> findAllTags() {
-        return queryForSet(jdbcTemplate, rowMapper, "SELECT id, name FROM tags");
+        return queryForSet(jdbcTemplate, rowMapper, "SELECT id AS tagId, name AS tagName FROM tags");
     }
 }
