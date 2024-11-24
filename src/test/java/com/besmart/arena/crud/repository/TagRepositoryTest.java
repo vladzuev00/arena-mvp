@@ -31,7 +31,11 @@ public final class TagRepositoryTest extends AbstractSpringBootTest {
         repository.refreshByName(givenTags);
 
         Set<Tag> actual = findAllTags();
-        Set<Tag> expected = Set.of(new Tag(1000L, "first-tag"), new Tag(2L, "second-tag"));
+        Set<Tag> expected = Set.of(
+                new Tag(1000L, "first-tag"),
+                new Tag(2L, "second-tag"),
+                new Tag(1001L, "PROMOTION")
+        );
         assertEquals(expected, actual);
     }
 
