@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils.createBatch;
 
-//TODO: refactor and tests
 @UtilityClass
 public final class JdbcTemplateUtil {
 
