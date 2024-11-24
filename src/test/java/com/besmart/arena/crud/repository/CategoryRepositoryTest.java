@@ -45,9 +45,9 @@ public final class CategoryRepositoryTest extends AbstractSpringBootTest {
 
         Set<Category> actual = findAllCategories();
         Set<Category> expected = Set.of(
-                new Category(1000L, 2000, "third-category", "#b07289", "#e00e79"),
-                new Category(1001L, 2001, "second-category", "#90caee", "#faa639"),
-                new Category(2L, 2002, "fourth-category", "#3d4761", "#1f2431")
+                new Category(1001L, 2001, "second-category", "#FFFFFFAA", "#56135a"),
+                new Category(2L, 2002, "fourth-category", "#3d4761", "#1f2431"),
+                new Category(1000L, 2000, "third-category", "#b07289", "#e00e79")
         );
         assertEquals(expected, actual);
     }

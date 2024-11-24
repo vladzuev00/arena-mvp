@@ -1,8 +1,8 @@
---TODO исправить
 INSERT INTO categories(id, external_id, name, primary_color, secondary_color)
-VALUES(1000, 2000, 'first-category', '#90caef', '#faa538'),
-      (1001, 2001, 'second-category', '#90caee', '#faa639');
+VALUES(1000, 2000, 'first-category', '#FFF', '#FFFA'),
+      (1001, 2001, 'second-category', '#FFFFFFAA', '#56135a');
 
+--TODO исправить
 INSERT INTO promoters(id, external_id, name, icon_url, web_page_url)
 VALUES(
        1000,
