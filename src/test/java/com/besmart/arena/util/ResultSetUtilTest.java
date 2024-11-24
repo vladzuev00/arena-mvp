@@ -1,5 +1,6 @@
 package com.besmart.arena.util;
 
+import com.besmart.arena.crud.domain.Promoter;
 import com.besmart.arena.crud.domain.Show;
 import com.besmart.arena.crud.domain.Venue;
 import org.junit.jupiter.api.Test;
@@ -37,11 +38,25 @@ public final class ResultSetUtilTest {
         ResultSet givenResultSet = mock(ResultSet.class);
         String givenColumnNameId = "id";
 
-        final long givenId = 255;
+        long givenId = 255;
         when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
 
         Venue actual = getVenueLazily(givenResultSet, givenColumnNameId);
         Venue expected = Venue.builder().id(givenId).build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void promoterShouldBeGotLazily()
+            throws Exception {
+        ResultSet givenResultSet = mock(ResultSet.class);
+        String givenColumnNameId = "id";
+
+        long givenId = 255;
+        when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
+
+        Promoter actual = getPromoterLazily(givenResultSet, givenColumnNameId);
+        Promoter expected = Promoter.builder().id(givenId).build();
         assertEquals(expected, actual);
     }
 
@@ -51,7 +66,7 @@ public final class ResultSetUtilTest {
         ResultSet givenResultSet = mock(ResultSet.class);
         String givenColumnNameId = "id";
 
-        final long givenId = 255;
+        long givenId = 255;
         when(givenResultSet.getLong(same(givenColumnNameId))).thenReturn(givenId);
 
         Show actual = getShowLazily(givenResultSet, givenColumnNameId);

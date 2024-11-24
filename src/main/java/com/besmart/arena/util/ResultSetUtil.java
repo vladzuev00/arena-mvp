@@ -25,7 +25,6 @@ public final class ResultSetUtil {
         return Venue.builder().id(id).build();
     }
 
-    //TODO: test
     public static Promoter getPromoterLazily(ResultSet resultSet, String columnNameId)
             throws SQLException {
         Long id = resultSet.getLong(columnNameId);
