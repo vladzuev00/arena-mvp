@@ -2,16 +2,11 @@ INSERT INTO categories(id, external_id, name, primary_color, secondary_color)
 VALUES(1000, 2000, 'first-category', '#FFF', '#FFFA'),
       (1001, 2001, 'second-category', '#FFFFFFAA', '#56135a');
 
---TODO исправить
 INSERT INTO promoters(id, external_id, name, icon_url, web_page_url)
-VALUES(
-       1000,
-       '550e8400-e29b-41d4-a716-446655440000',
-       'first-promoter',
-       'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2',
-       'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3'
-);
+VALUES(1000, '11aa329a-44a6-11ed-a81c-000d3a29937e', 'first-promoter', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3'),
+      (1001, '11aa329a-44a6-11ed-a81c-000d3a29938e', 'Organizatorius Z, VŠĮ', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5');
 
+--TODO исправить
 INSERT INTO tags(id, name) VALUES(1000, 'first-tag');
 
 INSERT INTO venues(id, external_id, name, address, latitude, longitude)

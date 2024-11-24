@@ -29,13 +29,13 @@ public final class PromoterRepositoryTest extends AbstractSpringBootTest {
     public void promotersShouldBeRefreshedByExternalId() {
         List<Promoter> givenPromoters = List.of(
                 Promoter.builder()
-                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440000"))
+                        .externalId(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"))
                         .name("second-promoter")
                         .iconUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4")
                         .webPageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5")
                         .build(),
                 Promoter.builder()
-                        .externalId(fromString("550e8400-e29b-41d4-a716-446655440001"))
+                        .externalId(fromString("11aa329a-44a6-11ed-a81c-000d3a29939e"))
                         .name("third-promoter")
                         .iconUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a6")
                         .webPageUrl("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a7")
@@ -47,18 +47,25 @@ public final class PromoterRepositoryTest extends AbstractSpringBootTest {
         Set<Promoter> actual = findAllPromoters();
         Set<Promoter> expected = Set.of(
                 new Promoter(
-                        1000L,
-                        fromString("550e8400-e29b-41d4-a716-446655440000"),
-                        "second-promoter",
+                        1001L,
+                        fromString("11aa329a-44a6-11ed-a81c-000d3a29938e"),
+                        "Organizatorius Z, VŠĮ",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5"
                 ),
                 new Promoter(
                         2L,
-                        fromString("550e8400-e29b-41d4-a716-446655440001"),
+                        fromString("11aa329a-44a6-11ed-a81c-000d3a29939e"),
                         "third-promoter",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a6",
                         "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a7"
+                ),
+                new Promoter(
+                        1000L,
+                        fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"),
+                        "second-promoter",
+                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4",
+                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5"
                 )
         );
         assertEquals(expected, actual);
