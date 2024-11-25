@@ -64,7 +64,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     }
 
     private void refreshCategories(RESPONSE response) {
-        refreshObjects(response, this::getCategorySources, this::createCategory, categoryRepository::refreshByExternalId);
+        refreshObjects(response, this::getCategorySources, this::createCategory, categoryRepository::refreshByName);
     }
 
     private void refreshTags(RESPONSE response) {
