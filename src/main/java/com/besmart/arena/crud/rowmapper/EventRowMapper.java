@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import static com.besmart.arena.util.ResultSetUtil.getProviderLazily;
 import static com.besmart.arena.util.ResultSetUtil.getShowLazily;
 
-//TODO: correct test
 @Component
 public final class EventRowMapper implements RowMapper<Event> {
     static final String ALIAS_ID = "eventId";
