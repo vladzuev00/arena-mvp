@@ -76,7 +76,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     }
 
     private void refreshVenues(RESPONSE response) {
-        refreshObjects(response, this::getVenueSources, this::createVenue, venueRepository::refreshByExternalId);
+        refreshObjects(response, this::getVenueSources, this::createVenue, venueRepository::refreshByName);
     }
 
     private void refreshShows(RESPONSE response) {

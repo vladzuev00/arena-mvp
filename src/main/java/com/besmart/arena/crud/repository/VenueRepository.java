@@ -14,15 +14,14 @@ import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 public final class VenueRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void refreshByExternalId(List<Venue> venues) {
+    public void refreshByName(List<Venue> venues) {
         batchUpdate(
                 jdbcTemplate,
                 venues,
                 """
-                        INSERT INTO venues(external_id, name, address, latitude, longitude, provider_id) VALUES(:externalId, :name, :address, :latitude, :longitude, :provider.id)
-                        ON CONFLICT (external_id, provider_id) DO
-                        UPDATE SET name = :name, address = :address, latitude = :latitude, longitude = :longitude, provider_id = :provider.id
-                        WHERE venues.external_id = :externalId AND venues.provider_id = :provider.id"""
+                        INSERT INTO venues(name, address, latitude, longitude) VALUES(:name, :address, :latitude, :longitude)
+                        ON CONFLICT (name) DO
+                        UPDATE SET name = :name, address = :address, latitude = :latitude, longitude = :longitude WHERE venues.name = :name"""
         );
     }
 }
