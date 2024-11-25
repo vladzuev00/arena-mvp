@@ -14,7 +14,6 @@ CREATE TABLE providers(
     name VARCHAR(256) NOT NULL UNIQUE
 );
 
--- TODO
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL UNIQUE,
@@ -22,19 +21,11 @@ CREATE TABLE categories(
     secondary_color VARCHAR(256) NOT NULL
 );
 
-ALTER TABLE categories ADD UNIQUE (external_id, provider_id);
-ALTER TABLE categories ADD CONSTRAINT fk_categories_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
-
--- TODO
 CREATE TABLE tags(
     id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL UNIQUE
 );
 
-ALTER TABLE tags ADD UNIQUE (name, provider_id);
-ALTER TABLE tags ADD CONSTRAINT fk_tags_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
-
--- TODO
 CREATE TABLE promoters(
     id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL UNIQUE,
@@ -42,10 +33,6 @@ CREATE TABLE promoters(
     web_page_url VARCHAR(256) NOT NULL
 );
 
-ALTER TABLE promoters ADD UNIQUE (external_id, provider_id);
-ALTER TABLE promoters ADD CONSTRAINT fk_promoters_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
-
--- TODO
 CREATE TABLE venues(
     id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL UNIQUE,
@@ -53,9 +40,6 @@ CREATE TABLE venues(
     latitude DECIMAL NOT NULL,
     longitude DECIMAL NOT NULL
 );
-
-ALTER TABLE venues ADD UNIQUE (external_id, provider_id);
-ALTER TABLE venues ADD CONSTRAINT fk_venues_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
 CREATE TABLE shows(
     id SERIAL PRIMARY KEY,
