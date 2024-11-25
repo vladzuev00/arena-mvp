@@ -21,7 +21,7 @@ public final class PromoterRepository {
                 """
                         INSERT INTO promoters(name, icon_url, web_page_url) VALUES(:name, :iconUrl, :webPageUrl)
                         ON CONFLICT (name) DO
-                        UPDATE SET name = :name, icon_url = :iconUrl, web_page_url = :webPageUrl WHERE promoters.name = :name"""
+                        UPDATE SET icon_url = :iconUrl, web_page_url = :webPageUrl WHERE promoters.name = :name"""
         );
     }
 }
