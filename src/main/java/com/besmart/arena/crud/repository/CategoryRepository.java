@@ -21,7 +21,7 @@ public final class CategoryRepository {
                 """
                         INSERT INTO categories(name, primary_color, secondary_color) VALUES(:name, :primaryColor, :secondaryColor)
                         ON CONFLICT (name) DO
-                        UPDATE SET name = :name, primary_color = :primaryColor, secondary_color = :secondaryColor WHERE categories.name = :name"""
+                        UPDATE SET primary_color = :primaryColor, secondary_color = :secondaryColor WHERE categories.name = :name"""
         );
     }
 }

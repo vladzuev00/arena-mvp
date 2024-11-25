@@ -31,7 +31,7 @@
 //    public void showsShouldBeRefreshedByExternalId() {
 //        List<Show> givenShows = List.of(
 //                Show.builder()
-//                        .externalShortId(2000)
+//                        .externalShortId("2000")
 //                        .title("third-title")
 //                        .subtitle("third-subtitle")
 //                        .description("third-description")
