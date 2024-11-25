@@ -32,6 +32,7 @@ public final class VenueRowMapper implements RowMapper<Venue> {
         double latitude = resultSet.getDouble(ALIAS_LATITUDE);
         double longitude = resultSet.getDouble(ALIAS_LONGITUDE);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
-        return new Venue(id, externalId, name, address, latitude, longitude, provider);
+        return null;
+//        return new Venue(id, externalId, name, address, latitude, longitude, provider);
     }
 }

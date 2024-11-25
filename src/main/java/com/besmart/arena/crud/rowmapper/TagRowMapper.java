@@ -22,6 +22,7 @@ public final class TagRowMapper implements RowMapper<Tag> {
         Long id = resultSet.getLong(ALIAS_ID);
         String name = resultSet.getString(ALIAS_NAME);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
-        return new Tag(id, name, provider);
+        return null;
+//        return new Tag(id, name, provider);
     }
 }
