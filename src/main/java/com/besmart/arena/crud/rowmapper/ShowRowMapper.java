@@ -20,9 +20,9 @@ public final class ShowRowMapper implements RowMapper<Show> {
     static final String ALIAS_VENUE_ID = "showVenueId";
     static final String ALIAS_IMAGE_URL = "showImageUrl";
     static final String ALIAS_PROMOTER_ID = "showPromoterId";
+    static final String ALIAS_PROVIDER_ID = "showProviderId";
     static final String ALIAS_CATEGORY_ID = "showCategoryId";
     static final String ALIAS_TAG_ID = "showTagId";
-    static final String ALIAS_PROVIDER_ID = "showProviderId";
 
     @Override
     public Show mapRow(ResultSet resultSet, int rowNumber)

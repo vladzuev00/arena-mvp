@@ -24,10 +24,11 @@ public final class ShowRepository {
                             :title,
                             :subtitle,
                             :description,
-                            :venue.externalId,
+                            :venue.name,
                             :imageUrl,
-                            :promoter.externalId,
-                            :categoryExternalIds,
+                            :promoter.name,
+                            :provider.name,
+                            :categoryNames,
                             :tagNames)"""
         );
     }

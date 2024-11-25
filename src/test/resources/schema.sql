@@ -127,9 +127,8 @@ BEGIN
       description = in_description,
       venue_id = (SELECT id FROM venues WHERE name = in_venue_name),
       image_url = in_image_url,
-      promoter_id = (SELECT id FROM promoters WHERE name = in_promoter_name),
-      provider_id = (SELECT id FROM providers WHERE name = in_provider_name)
-  WHERE shows.external_short_id = in_external_short_id AND shows.provider_id = in_provider_id
+      promoter_id = (SELECT id FROM promoters WHERE name = in_promoter_name)
+  WHERE shows.external_short_id = in_external_short_id AND shows.provider_id = (SELECT id FROM providers WHERE name = in_provider_name)
   RETURNING id
   INTO refreshed_show_id;
 
