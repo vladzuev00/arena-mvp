@@ -9,9 +9,7 @@ import lombok.Value;
 @AllArgsConstructor
 public class Category {
     Long id;
-    int externalId;
     String name;
     String primaryColor;
     String secondaryColor;
-    Provider provider;
 }

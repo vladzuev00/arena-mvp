@@ -43,7 +43,7 @@ CREATE TABLE venues(
 
 CREATE TABLE shows(
     id SERIAL PRIMARY KEY,
-    external_short_id INTEGER NOT NULL,
+    external_short_id VARCHAR(256) NOT NULL,
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
     description TEXT NOT NULL,
@@ -78,7 +78,7 @@ ALTER TABLE shows_tags ADD CONSTRAINT fk_shows_tags_to_tags FOREIGN KEY (tag_id)
 
 CREATE TABLE events(
     id SERIAL PRIMARY KEY,
-    external_short_id INTEGER NOT NULL,
+    external_short_id VARCHAR(256) NOT NULL,
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
     description TEXT NOT NULL,

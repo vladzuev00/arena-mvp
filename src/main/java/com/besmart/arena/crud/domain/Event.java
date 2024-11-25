@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Event {
     Long id;
-    int externalShortId;
+    String externalShortId;
     String title;
     String subtitle;
     String description;
