@@ -15,6 +15,10 @@ public final class TagRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public void refreshByName(List<Tag> tags) {
-        batchUpdate(jdbcTemplate, tags, "INSERT INTO tags(name) VALUES(:name) ON CONFLICT (name) DO NOTHING");
+        batchUpdate(
+                jdbcTemplate,
+                tags,
+                "INSERT INTO tags(name, provider_id) VALUES(:name, :provider.id) ON CONFLICT (name, provider_id) DO NOTHING"
+        );
     }
 }
