@@ -19,9 +19,10 @@ public final class CategoryRepository {
                 jdbcTemplate,
                 categories,
                 """
-                        INSERT INTO categories(external_id, name, primary_color, secondary_color) VALUES(:externalId, :name, :primaryColor, :secondaryColor)
-                        ON CONFLICT (external_id) DO
-                        UPDATE SET name = :name, primary_color = :primaryColor, secondary_color = :secondaryColor WHERE categories.external_id = :externalId"""
+                        INSERT INTO categories(external_id, name, primary_color, secondary_color, provider_id) VALUES(:externalId, :name, :primaryColor, :secondaryColor, :provider.id)
+                        ON CONFLICT (external_id, provider_id) DO
+                        UPDATE SET name = :name, primary_color = :primaryColor, secondary_color = :secondaryColor, provider_id = :provider.id
+                        WHERE categories.external_id = :externalId AND categories.provider_id = :provider.id"""
         );
     }
 }
