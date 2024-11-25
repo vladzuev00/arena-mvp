@@ -9,49 +9,73 @@ DROP TABLE IF EXISTS venues;
 DROP TABLE IF EXISTS providers;
 DROP PROCEDURE IF EXISTS refresh_show(INTEGER, VARCHAR, VARCHAR, VARCHAR, UUID, VARCHAR, UUID, INTEGER[], VARCHAR[]);
 
-CREATE TABLE categories(
-    id SERIAL PRIMARY KEY,
-    external_id INTEGER NOT NULL UNIQUE,
-    name VARCHAR(256) NOT NULL,
-    primary_color VARCHAR(256) NOT NULL,
-    secondary_color VARCHAR(256) NOT NULL
-);
-
-CREATE TABLE tags(
+CREATE TABLE providers(
     id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL UNIQUE
 );
 
+CREATE TABLE categories(
+    id SERIAL PRIMARY KEY,
+    external_id INTEGER NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    primary_color VARCHAR(256) NOT NULL,
+    secondary_color VARCHAR(256) NOT NULL,
+    provider_id INTEGER NOT NULL
+);
+
+ALTER TABLE categories ADD UNIQUE (external_id, provider_id);
+ALTER TABLE categories ADD CONSTRAINT fk_categories_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
+
+CREATE TABLE tags(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(256) NOT NULL,
+    provider_id INTEGER NOT NULL
+);
+
+ALTER TABLE tags ADD UNIQUE (name, provider_id);
+ALTER TABLE tags ADD CONSTRAINT fk_tags_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
+
 CREATE TABLE promoters(
     id SERIAL PRIMARY KEY,
-    external_id UUID NOT NULL UNIQUE,
+    external_id UUID NOT NULL,
     name VARCHAR(256) NOT NULL,
     icon_url VARCHAR(256) NOT NULL,
-    web_page_url VARCHAR(256) NOT NULL
+    web_page_url VARCHAR(256) NOT NULL,
+    provider_id INTEGER NOT NULL
 );
+
+ALTER TABLE promoters ADD UNIQUE (external_id, provider_id);
+ALTER TABLE promoters ADD CONSTRAINT fk_promoters_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
 CREATE TABLE venues(
     id SERIAL PRIMARY KEY,
-    external_id UUID NOT NULL UNIQUE,
+    external_id UUID NOT NULL,
     name VARCHAR(256) NOT NULL,
     address VARCHAR(256) NOT NULL,
     latitude DECIMAL NOT NULL,
-    longitude DECIMAL NOT NULL
+    longitude DECIMAL NOT NULL,
+    provider_id INTEGER NOT NULL
 );
+
+ALTER TABLE venues ADD UNIQUE (external_id, provider_id);
+ALTER TABLE venues ADD CONSTRAINT fk_venues_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
 CREATE TABLE shows(
     id SERIAL PRIMARY KEY,
-    external_short_id INTEGER NOT NULL UNIQUE,
+    external_short_id INTEGER NOT NULL,
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
     description TEXT NOT NULL,
     venue_id INTEGER NOT NULL,
     image_url VARCHAR(256) NOT NULL,
-    promoter_id INTEGER NOT NULL
+    promoter_id INTEGER NOT NULL,
+    provider_id INTEGER NOT NULL
 );
 
+ALTER TABLE shows ADD UNIQUE (external_short_id, provider_id);
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_venues FOREIGN KEY (venue_id) REFERENCES venues(id);
 ALTER TABLE shows ADD CONSTRAINT fk_shows_to_promoters FOREIGN KEY (promoter_id) REFERENCES promoters(id);
+ALTER TABLE shows ADD CONSTRAINT fk_shows_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
 CREATE TABLE shows_categories(
     show_id INTEGER,
@@ -73,21 +97,20 @@ ALTER TABLE shows_tags ADD CONSTRAINT fk_shows_tags_to_tags FOREIGN KEY (tag_id)
 
 CREATE TABLE events(
     id SERIAL PRIMARY KEY,
-    external_short_id INTEGER NOT NULL UNIQUE,
+    external_short_id INTEGER NOT NULL,
     title VARCHAR(256) NOT NULL,
     subtitle VARCHAR(256) NOT NULL,
     description TEXT NOT NULL,
     date_time TIMESTAMP(0) NOT NULL,
-    show_id INTEGER NOT NULL
+    show_id INTEGER NOT NULL,
+    provider_id INTEGER NOT NULL
 );
 
+ALTER TABLE events ADD UNIQUE (external_short_id, provider_id);
 ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
+ALTER TABLE events ADD CONSTRAINT fk_events_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
-CREATE TABLE providers(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(256) NOT NULL UNIQUE
-);
-
+-- TODO: correct
 CREATE OR REPLACE PROCEDURE refresh_show(
     in_external_short_id INTEGER,
     in_title VARCHAR,
