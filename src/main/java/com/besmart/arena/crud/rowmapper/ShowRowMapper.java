@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import static com.besmart.arena.util.ResultSetUtil.*;
 import static java.util.Collections.singletonList;
 
-//TODO: correct test
 @Component
 public final class ShowRowMapper implements RowMapper<Show> {
     static final String ALIAS_ID = "showId";
