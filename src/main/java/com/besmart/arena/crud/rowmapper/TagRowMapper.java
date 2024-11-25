@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 import static com.besmart.arena.util.ResultSetUtil.getProviderLazily;
 
-//TODO: correct test
 @Component
 public final class TagRowMapper implements RowMapper<Tag> {
     static final String ALIAS_ID = "tagId";
