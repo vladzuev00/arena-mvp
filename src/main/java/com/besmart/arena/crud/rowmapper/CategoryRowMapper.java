@@ -2,7 +2,6 @@ package com.besmart.arena.crud.rowmapper;
 
 import com.besmart.arena.crud.domain.Category;
 import com.besmart.arena.crud.domain.Provider;
-import com.besmart.arena.util.ResultSetUtil;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,6 @@ import java.sql.SQLException;
 
 import static com.besmart.arena.util.ResultSetUtil.getProviderLazily;
 
-//TODO: correct test
 @Component
 public final class CategoryRowMapper implements RowMapper<Category> {
     static final String ALIAS_ID = "categoryId";
