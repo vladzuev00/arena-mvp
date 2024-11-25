@@ -6,10 +6,10 @@ VALUES(1000, 'first-category', '#FFF', '#FFFA'),
 
 INSERT INTO tags(id, name) VALUES(1000, 'first-tag'), (1001, 'PROMOTION');
 
--- INSERT INTO promoters(id, external_id, name, icon_url, web_page_url, provider_id)
--- VALUES(1000, '11aa329a-44a6-11ed-a81c-000d3a29937e', 'first-promoter', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3', 1),
---       (1001, '11aa329a-44a6-11ed-a81c-000d3a29938e', 'Organizatorius Z, VŠĮ', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5', 1);
---
+INSERT INTO promoters(id, name, icon_url, web_page_url)
+VALUES(1000, 'first-promoter', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a2', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a3'),
+      (1001, 'Organizatorius Z, VŠĮ', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a4', 'https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/95825339-5ec8-11ee-a81c-000d3aa868a5');
+
 -- INSERT INTO venues(id, external_id, name, address, latitude, longitude, provider_id)
 -- VALUES(1000, 'a60de864-5c52-11ee-a81c-000d3aa868a2', 'first-venue', 'first-address', 5.5, 6.6, 1),
 --       (1001, 'a60de864-5c52-11ee-a81c-000d3aa868a3', 'Šiaulių arena', 'ner, Vilnius, Lithuania', 7.7, 8.8, 1);

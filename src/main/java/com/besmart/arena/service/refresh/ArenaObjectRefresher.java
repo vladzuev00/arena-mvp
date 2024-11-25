@@ -72,7 +72,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
     }
 
     private void refreshPromoters(RESPONSE response) {
-        refreshObjects(response, this::getPromoterSources, this::createPromoter, promoterRepository::refreshByExternalId);
+        refreshObjects(response, this::getPromoterSources, this::createPromoter, promoterRepository::refreshByName);
     }
 
     private void refreshVenues(RESPONSE response) {

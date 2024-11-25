@@ -14,15 +14,14 @@ import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 public final class PromoterRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void refreshByExternalId(List<Promoter> promoters) {
+    public void refreshByName(List<Promoter> promoters) {
         batchUpdate(
                 jdbcTemplate,
                 promoters,
                 """
-                        INSERT INTO promoters(external_id, name, icon_url, web_page_url, provider_id) VALUES(:externalId, :name, :iconUrl, :webPageUrl, :provider.id)
-                        ON CONFLICT (external_id, provider_id) DO
-                        UPDATE SET name = :name, icon_url = :iconUrl, web_page_url = :webPageUrl, provider_id = :provider.id
-                        WHERE promoters.external_id = :externalId AND promoters.provider_id = :provider.id"""
+                        INSERT INTO promoters(name, icon_url, web_page_url) VALUES(:name, :iconUrl, :webPageUrl)
+                        ON CONFLICT (name) DO
+                        UPDATE SET name = :name, icon_url = :iconUrl, web_page_url = :webPageUrl WHERE promoters.name = :name"""
         );
     }
 }
