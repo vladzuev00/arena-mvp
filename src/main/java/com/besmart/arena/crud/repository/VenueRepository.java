@@ -19,9 +19,10 @@ public final class VenueRepository {
                 jdbcTemplate,
                 venues,
                 """
-                        INSERT INTO venues(external_id, name, address, latitude, longitude) VALUES(:externalId, :name, :address, :latitude, :longitude)
-                        ON CONFLICT (external_id) DO
-                        UPDATE SET name = :name, address = :address, latitude = :latitude, longitude = :longitude WHERE venues.external_id = :externalId"""
+                        INSERT INTO venues(external_id, name, address, latitude, longitude, provider_id) VALUES(:externalId, :name, :address, :latitude, :longitude, :provider.id)
+                        ON CONFLICT (external_id, provider_id) DO
+                        UPDATE SET name = :name, address = :address, latitude = :latitude, longitude = :longitude, provider_id = :provider.id
+                        WHERE venues.external_id = :externalId AND venues.provider_id = :provider.id"""
         );
     }
 }
