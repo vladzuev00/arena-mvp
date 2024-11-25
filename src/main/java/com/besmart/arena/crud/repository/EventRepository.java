@@ -19,8 +19,16 @@ public final class EventRepository {
                 jdbcTemplate,
                 events,
                 """
-                        INSERT INTO events(external_short_id, title, subtitle, description, date_time, show_id)
-                        VALUES(:externalShortId, :title, :subtitle, :description, :dateTime, (SELECT id FROM shows WHERE external_short_id = :show.externalShortId))
+                        INSERT INTO events(external_short_id, title, subtitle, description, date_time, show_id, provider_id)
+                        VALUES(
+                            :externalShortId,
+                            :title,
+                            :subtitle,
+                            :description,
+                            :dateTime,
+                            (SELECT id FROM shows WHERE external_short_id = :show.externalShortId AND ),
+                            (SELECT id FROM providers WHERE )
+                        )
                         ON CONFLICT (external_short_id) DO
                         UPDATE SET
                             title = :title,
