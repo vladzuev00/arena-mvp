@@ -28,6 +28,7 @@ public final class CategoryRowMapper implements RowMapper<Category> {
         String primaryColor = resultSet.getString(ALIAS_PRIMARY_COLOR);
         String secondaryColor = resultSet.getString(ALIAS_SECONDARY_COLOR);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
-        return new Category(id, externalId, name, primaryColor, secondaryColor, provider);
+        return null;
+//        return new Category(id, externalId, name, primaryColor, secondaryColor, provider);
     }
 }

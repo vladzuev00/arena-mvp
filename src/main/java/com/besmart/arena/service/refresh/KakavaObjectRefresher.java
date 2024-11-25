@@ -92,7 +92,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     @Override
     protected Category createCategory(CategoryTO source) {
         return Category.builder()
-                .externalId(source.getId())
+//                .externalId(source.getId())
                 .name(NOT_DEFINED_STRING)
                 .primaryColor(NOT_DEFINED_STRING)
                 .secondaryColor(NOT_DEFINED_STRING)
@@ -107,7 +107,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     @Override
     protected Promoter createPromoter(PromoterTO source) {
         return Promoter.builder()
-                .externalId(source.getId())
+//                .externalId(source.getId())
                 .name(source.getName())
                 .iconUrl(NOT_DEFINED_STRING)
                 .webPageUrl(NOT_DEFINED_STRING)
@@ -143,7 +143,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     @Override
     protected Event createEvent(ShowTO source) {
         return Event.builder()
-                .externalShortId(source.getEventShortId())
+//                .externalShortId(source.getEventShortId())
                 .title(source.getEventTitle())
                 .subtitle(NOT_DEFINED_STRING)
                 .description(render(source.getEventDescriptionHtml()))
@@ -157,7 +157,8 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     private Promoter getPromoterOnlyWithExternalId(ShowTO source) {
-        return Promoter.builder().externalId(source.getPromoter().getId()).build();
+        return null;
+//        return Promoter.builder().externalId(source.getPromoter().getId()).build();
     }
 
     private Show getShowOnlyWithExternalId(ShowTO source) {
@@ -165,10 +166,11 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     private List<Category> getCategoriesOnlyWithExternalId(ShowTO source) {
-        return source.getEventCategories()
-                .stream()
-                .map(categorySource -> Category.builder().externalId(categorySource.getId()).build())
-                .toList();
+        return null;
+//        return source.getEventCategories()
+//                .stream()
+////                .map(categorySource -> Category.builder().externalId(categorySource.getId()).build())
+//                .toList();
     }
 
     private List<Tag> getTagsOnlyWithName(ShowTO source) {

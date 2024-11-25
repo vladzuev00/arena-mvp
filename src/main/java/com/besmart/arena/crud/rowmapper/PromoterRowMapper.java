@@ -30,6 +30,7 @@ public final class PromoterRowMapper implements RowMapper<Promoter> {
         String iconUrl = resultSet.getString(ALIAS_ICON_URL);
         String webPageUrl = resultSet.getString(ALIAS_WEB_PAGE_URL);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
-        return new Promoter(id, externalId, name, iconUrl, webPageUrl, provider);
+        return null;
+//        return new Promoter(id, externalId, name, iconUrl, webPageUrl, provider);
     }
 }

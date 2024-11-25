@@ -22,10 +22,10 @@ public class Show {
     List<Category> categories;
     List<Tag> tags;
 
-    public int[] getCategoryExternalIds() {
+    public String[] getCategoryNames() {
         return categories.stream()
-                .mapToInt(Category::getExternalId)
-                .toArray();
+                .map(Category::getName)
+                .toArray(String[]::new);
     }
 
     public String[] getTagNames() {

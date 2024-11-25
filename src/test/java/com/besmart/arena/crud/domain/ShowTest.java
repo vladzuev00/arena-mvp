@@ -9,22 +9,22 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public final class ShowTest {
 
     @Test
-    public void categoryExternalIdsShouldBeGot() {
-        int firstGivenExternalId = 2331;
-        int secondGivenExternalId = 2332;
-        int thirdGivenExternalId = 2333;
+    public void categoryNamesShouldBeGot() {
+        String firstGivenName = "first-name";
+        String secondGivenName = "second-name";
+        String thirdGivenName = "third-name";
         Show givenShow = Show.builder()
                 .categories(
                         List.of(
-                                Category.builder().externalId(firstGivenExternalId).build(),
-                                Category.builder().externalId(secondGivenExternalId).build(),
-                                Category.builder().externalId(thirdGivenExternalId).build()
+                                Category.builder().name(firstGivenName).build(),
+                                Category.builder().name(secondGivenName).build(),
+                                Category.builder().name(thirdGivenName).build()
                         )
                 )
                 .build();
 
-        int[] actual = givenShow.getCategoryExternalIds();
-        int[] expected = {firstGivenExternalId, secondGivenExternalId, thirdGivenExternalId};
+        String[] actual = givenShow.getCategoryNames();
+        String[] expected = {firstGivenName, secondGivenName, thirdGivenName};
         assertArrayEquals(expected, actual);
     }
 

@@ -35,6 +35,7 @@ public final class EventRowMapper implements RowMapper<Event> {
         LocalDateTime dateTime = resultSet.getTimestamp(ALIAS_DATE_TIME).toLocalDateTime();
         Show show = getShowLazily(resultSet, ALIAS_SHOW_ID);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
-        return new Event(id, externalShortId, title, subtitle, description, dateTime, show, provider);
+        return null;
+//        return new Event(id, externalShortId, title, subtitle, description, dateTime, show, provider);
     }
 }
