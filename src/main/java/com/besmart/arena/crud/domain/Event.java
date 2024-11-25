@@ -17,4 +17,5 @@ public class Event {
     String description;
     LocalDateTime dateTime;
     Show show;
+    Provider provider;
 }

@@ -15,4 +15,5 @@ public class Promoter {
     String name;
     String iconUrl;
     String webPageUrl;
+    Provider provider;
 }

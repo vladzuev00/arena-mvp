@@ -13,4 +13,5 @@ public class Category {
     String name;
     String primaryColor;
     String secondaryColor;
+    Provider provider;
 }

@@ -10,4 +10,5 @@ import lombok.Value;
 public class Tag {
     Long id;
     String name;
+    Provider provider;
 }

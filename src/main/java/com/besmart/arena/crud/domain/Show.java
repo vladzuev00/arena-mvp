@@ -18,6 +18,7 @@ public class Show {
     Venue venue;
     String imageUrl;
     Promoter promoter;
+    Provider provider;
     List<Category> categories;
     List<Tag> tags;
 

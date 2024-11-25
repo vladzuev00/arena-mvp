@@ -14,4 +14,5 @@ public class Venue {
     String address;
     double latitude;
     double longitude;
+    Provider provider;
 }
