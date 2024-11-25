@@ -12,7 +12,6 @@ import java.util.UUID;
 import static com.besmart.arena.util.ResultSetUtil.getProviderLazily;
 import static com.besmart.arena.util.ResultSetUtil.getUUID;
 
-//TODO: correct test
 @Component
 public final class PromoterRowMapper implements RowMapper<Promoter> {
     static final String ALIAS_ID = "promoterId";
