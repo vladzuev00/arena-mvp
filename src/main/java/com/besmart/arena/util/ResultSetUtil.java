@@ -46,4 +46,11 @@ public final class ResultSetUtil {
         Long id = resultSet.getLong(aliasId);
         return Show.builder().id(id).build();
     }
+
+    //TODO: test
+    public static Provider getProviderLazily(ResultSet resultSet, String aliasId)
+            throws SQLException {
+        Long id = resultSet.getLong(aliasId);
+        return Provider.builder().id(id).build();
+    }
 }

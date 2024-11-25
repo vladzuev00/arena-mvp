@@ -1,6 +1,7 @@
 package com.besmart.arena.crud.rowmapper;
 
 import com.besmart.arena.crud.domain.Event;
+import com.besmart.arena.crud.domain.Provider;
 import com.besmart.arena.crud.domain.Show;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -9,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+import static com.besmart.arena.util.ResultSetUtil.getProviderLazily;
 import static com.besmart.arena.util.ResultSetUtil.getShowLazily;
 
+//TODO: correct test
 @Component
 public final class EventRowMapper implements RowMapper<Event> {
     static final String ALIAS_ID = "eventId";
@@ -20,6 +23,7 @@ public final class EventRowMapper implements RowMapper<Event> {
     static final String ALIAS_DESCRIPTION = "eventDescription";
     static final String ALIAS_DATE_TIME = "eventDateTime";
     static final String ALIAS_SHOW_ID = "eventShowId";
+    static final String ALIAS_PROVIDER_ID = "eventProviderId";
 
     @Override
     public Event mapRow(ResultSet resultSet, int rowNumber)
@@ -31,6 +35,7 @@ public final class EventRowMapper implements RowMapper<Event> {
         String description = resultSet.getString(ALIAS_DESCRIPTION);
         LocalDateTime dateTime = resultSet.getTimestamp(ALIAS_DATE_TIME).toLocalDateTime();
         Show show = getShowLazily(resultSet, ALIAS_SHOW_ID);
-        return new Event(id, externalShortId, title, subtitle, description, dateTime, show);
+        Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
+        return new Event(id, externalShortId, title, subtitle, description, dateTime, show, provider);
     }
 }
