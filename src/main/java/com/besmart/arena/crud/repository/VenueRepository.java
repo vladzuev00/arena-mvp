@@ -21,7 +21,7 @@ public final class VenueRepository {
                 """
                         INSERT INTO venues(name, address, latitude, longitude) VALUES(:name, :address, :latitude, :longitude)
                         ON CONFLICT (name) DO
-                        UPDATE SET name = :name, address = :address, latitude = :latitude, longitude = :longitude WHERE venues.name = :name"""
+                        UPDATE SET address = :address, latitude = :latitude, longitude = :longitude WHERE venues.name = :name"""
         );
     }
 }
