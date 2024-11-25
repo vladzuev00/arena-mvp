@@ -1,15 +1,14 @@
 package com.besmart.arena.crud.domain;
 
-import lombok.*;
-
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
 @Value
 @Builder
 @AllArgsConstructor
 public class Venue {
     Long id;
-    UUID externalId;
     String name;
     String address;
     double latitude;
