@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Show {
     Long id;
-    int externalShortId;
+    String externalShortId;
     String title;
     String subtitle;
     String description;

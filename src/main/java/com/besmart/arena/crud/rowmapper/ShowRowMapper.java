@@ -28,7 +28,7 @@ public final class ShowRowMapper implements RowMapper<Show> {
     public Show mapRow(ResultSet resultSet, int rowNumber)
             throws SQLException {
         Long id = resultSet.getLong(ALIAS_ID);
-        int externalShortId = resultSet.getInt(ALIAS_EXTERNAL_SHORT_ID);
+        String externalShortId = resultSet.getString(ALIAS_EXTERNAL_SHORT_ID);
         String title = resultSet.getString(ALIAS_TITLE);
         String subtitle = resultSet.getString(ALIAS_SUBTITLE);
         String description = resultSet.getString(ALIAS_DESCRIPTION);

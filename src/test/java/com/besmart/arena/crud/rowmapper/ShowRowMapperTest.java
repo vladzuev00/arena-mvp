@@ -27,8 +27,8 @@ public final class ShowRowMapperTest {
             long givenId = 255;
             when(givenResultSet.getLong(same(ALIAS_ID))).thenReturn(givenId);
 
-            int givenExternalShortId = 256;
-            when(givenResultSet.getInt(same(ALIAS_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
+            String givenExternalShortId = "256";
+            when(givenResultSet.getString(same(ALIAS_EXTERNAL_SHORT_ID))).thenReturn(givenExternalShortId);
 
             String givenTitle = "test-title";
             when(givenResultSet.getString(same(ALIAS_TITLE))).thenReturn(givenTitle);
