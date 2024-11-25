@@ -13,7 +13,6 @@ import java.util.Set;
 import static com.besmart.arena.testutil.JdbcTemplateUtil.queryForSet;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static java.util.UUID.fromString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class ShowRepositoryTest extends AbstractSpringBootTest {
@@ -40,7 +39,7 @@ public final class ShowRepositoryTest extends AbstractSpringBootTest {
                         .promoter(Promoter.builder().name("Organizatorius Z, VŠĮ").build())
                         .categories(List.of(Category.builder().name("second-category").build()))
                         .tags(emptyList())
-                        .provider(Provider.builder().name("KAKAVA").build())
+                        .provider(Provider.builder().id(1L).build())
                         .build(),
                 Show.builder()
                         .externalShortId("2002")
@@ -52,7 +51,7 @@ public final class ShowRepositoryTest extends AbstractSpringBootTest {
                         .promoter(Promoter.builder().name("Organizatorius Z, VŠĮ").build())
                         .categories(List.of(Category.builder().name("second-category").build()))
                         .tags(List.of(Tag.builder().name("first-tag").build(), Tag.builder().name("PROMOTION").build()))
-                        .provider(Provider.builder().name("BELETIA").build())
+                        .provider(Provider.builder().id(2L).build())
                         .build()
         );
 

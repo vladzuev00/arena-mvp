@@ -91,6 +91,7 @@ ALTER TABLE events ADD UNIQUE (external_short_id, provider_id);
 ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
 ALTER TABLE events ADD CONSTRAINT fk_events_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
+--TODO: remove
 CREATE OR REPLACE PROCEDURE refresh_show(
     in_external_short_id VARCHAR,
     in_title VARCHAR,
