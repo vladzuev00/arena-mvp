@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS promoters;
 DROP TABLE IF EXISTS venues;
 DROP TABLE IF EXISTS providers;
-DROP PROCEDURE IF EXISTS refresh_show(INTEGER, VARCHAR, VARCHAR, VARCHAR, UUID, VARCHAR, UUID, INTEGER[], VARCHAR[]);
+DROP PROCEDURE IF EXISTS refresh_show(VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR[], VARCHAR[]);
 
 CREATE TABLE providers(
     id SERIAL PRIMARY KEY,
@@ -91,51 +91,53 @@ ALTER TABLE events ADD UNIQUE (external_short_id, provider_id);
 ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
 ALTER TABLE events ADD CONSTRAINT fk_events_to_providers FOREIGN KEY (provider_id) REFERENCES providers(id);
 
--- TODO: correct
 CREATE OR REPLACE PROCEDURE refresh_show(
-    in_external_short_id INTEGER,
+    in_external_short_id VARCHAR,
     in_title VARCHAR,
     in_subtitle VARCHAR,
     in_description VARCHAR,
-    in_venue_external_id UUID,
+    in_venue_name VARCHAR,
     in_image_url VARCHAR,
-    in_promoter_external_id UUID,
-    in_category_external_ids INTEGER[],
+    in_promoter_name VARCHAR,
+    in_provider_name VARCHAR,
+    in_category_names VARCHAR[],
     in_tag_names VARCHAR[]
 )
 AS '
 DECLARE
     refreshed_show_id INTEGER;
-	category_external_id INTEGER;
+	category_name VARCHAR;
 	tag_name VARCHAR;
 BEGIN
-  INSERT INTO shows(external_short_id, title, subtitle, description, venue_id, image_url, promoter_id)
+  INSERT INTO shows(external_short_id, title, subtitle, description, venue_id, image_url, promoter_id, provider_id)
   VALUES(
       in_external_short_id,
       in_title,
       in_subtitle,
       in_description,
-      (SELECT id FROM venues WHERE external_id = in_venue_external_id),
+      (SELECT id FROM venues WHERE name = in_venue_name),
       in_image_url,
-      (SELECT id FROM promoters WHERE external_id = in_promoter_external_id)
+      (SELECT id FROM promoters WHERE name = in_promoter_name),
+      (SELECT id FROM providers WHERE name = in_provider_name)
   )
-  ON CONFLICT (external_short_id) DO
+  ON CONFLICT (external_short_id, provider_id) DO
   UPDATE SET
       title = in_title,
       subtitle = in_subtitle,
       description = in_description,
-      venue_id = (SELECT id FROM venues WHERE external_id = in_venue_external_id),
+      venue_id = (SELECT id FROM venues WHERE name = in_venue_name),
       image_url = in_image_url,
-      promoter_id = (SELECT id FROM promoters WHERE external_id = in_promoter_external_id)
-  WHERE shows.external_short_id = in_external_short_id
+      promoter_id = (SELECT id FROM promoters WHERE name = in_promoter_name),
+      provider_id = (SELECT id FROM providers WHERE name = in_provider_name)
+  WHERE shows.external_short_id = in_external_short_id AND shows.provider_id = in_provider_id
   RETURNING id
   INTO refreshed_show_id;
 
   DELETE FROM shows_categories WHERE show_id = refreshed_show_id;
-  FOREACH category_external_id IN ARRAY in_category_external_ids
+  FOREACH category_name IN ARRAY in_category_names
   LOOP
      INSERT INTO shows_categories(show_id, category_id)
-     VALUES (refreshed_show_id, (SELECT id FROM categories WHERE external_id = category_external_id));
+     VALUES (refreshed_show_id, (SELECT id FROM categories WHERE name = category_name));
   END LOOP;
 
   DELETE FROM shows_tags WHERE show_id = refreshed_show_id;
