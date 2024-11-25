@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS promoters;
 DROP TABLE IF EXISTS venues;
+DROP TABLE IF EXISTS providers;
 DROP PROCEDURE IF EXISTS refresh_show(INTEGER, VARCHAR, VARCHAR, VARCHAR, UUID, VARCHAR, UUID, INTEGER[], VARCHAR[]);
 
 CREATE TABLE categories(
@@ -81,6 +82,11 @@ CREATE TABLE events(
 );
 
 ALTER TABLE events ADD CONSTRAINT fk_events_to_shows FOREIGN KEY (show_id) REFERENCES shows(id);
+
+CREATE TABLE providers(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(256) NOT NULL UNIQUE
+);
 
 CREATE OR REPLACE PROCEDURE refresh_show(
     in_external_short_id INTEGER,
