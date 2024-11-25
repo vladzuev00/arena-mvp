@@ -19,9 +19,10 @@ public final class PromoterRepository {
                 jdbcTemplate,
                 promoters,
                 """
-                        INSERT INTO promoters(external_id, name, icon_url, web_page_url) VALUES(:externalId, :name, :iconUrl, :webPageUrl)
-                        ON CONFLICT (external_id) DO
-                        UPDATE SET name = :name, icon_url = :iconUrl, web_page_url = :webPageUrl WHERE promoters.external_id = :externalId"""
+                        INSERT INTO promoters(external_id, name, icon_url, web_page_url, provider_id) VALUES(:externalId, :name, :iconUrl, :webPageUrl, :provider.id)
+                        ON CONFLICT (external_id, provider_id) DO
+                        UPDATE SET name = :name, icon_url = :iconUrl, web_page_url = :webPageUrl, provider_id = :provider.id
+                        WHERE promoters.external_id = :externalId AND promoters.provider_id = :provider.id"""
         );
     }
 }
