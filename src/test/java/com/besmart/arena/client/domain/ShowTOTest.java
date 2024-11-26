@@ -25,9 +25,7 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 1763,
                 "Dinamika",
                 "    <b>Mechanika</b>&nbsp;–&nbsp;<a href=\"https://lt.wikipedia.org/wiki/Fizika\" title=\"Fizika\">fizikos</a>&nbsp;skyrius, nagrinėjantis paprasčiausią materijos judėjimo formą&nbsp;–&nbsp;<b>mechaninį judėjimą</b>&nbsp;(kūno padėties kitimą kitų kūnų atžvilgiu). Nagrinėjant judėjimą, pasirenkamas&nbsp;<b>atskaitos kūnas</b>, kurio atžvilgiu nagrinėjamas kito kūno (reliatyvus) judėjimas. Su atskaitos kūnu susieta koordinačių sistema&nbsp;–&nbsp;<b>atskaitos sistema</b>, paprasčiausia&nbsp;– stačiakampė&nbsp;<a href=\"https://lt.wikipedia.org/wiki/Dekarto_koordina%C4%8Di%C5%B3_sistema\" title=\"Dekarto koordinačių sistema\">Dekarto koordinačių sistema</a>. Dažnai kūno padėtis nagrinėjama kaip materialiojo taško M padėtis, apibūdinama koordinatėmis&nbsp;<b>xM</b>,&nbsp;<b>yM</b>&nbsp;ir&nbsp;<b>zM</b>&nbsp;arba spinduliu vektoriumi:    <br>",
-                new EventPictureTO(
-                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"
-                ),
+                new EventPictureTO("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"),
                 List.of(new CategoryTO(3)),
                 LocalDateTime.of(2026, 11, 18, 13, 19, 0),
                 List.of("PROMOTION"),
@@ -56,13 +54,10 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                      "PROMOTION"
                    ],
                    "location": {
-                     "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
                      "name": "Šiaulių arena"
                    },
                    "venueAddress": "ner, Vilnius, Lithuania",
-                   "priceFrom": 2100,
                    "promoter": {
-                     "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
                      "name": "Organizatorius Z, VŠĮ"
                    }
                 }""";
@@ -159,9 +154,7 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 1763,
                 "Dinamika",
                 "    <b>Mechanika</b>&nbsp;–&nbsp;<a href=\"https://lt.wikipedia.org/wiki/Fizika\" title=\"Fizika\">fizikos</a>&nbsp;skyrius, nagrinėjantis paprasčiausią materijos judėjimo formą&nbsp;–&nbsp;<b>mechaninį judėjimą</b>&nbsp;(kūno padėties kitimą kitų kūnų atžvilgiu). Nagrinėjant judėjimą, pasirenkamas&nbsp;<b>atskaitos kūnas</b>, kurio atžvilgiu nagrinėjamas kito kūno (reliatyvus) judėjimas. Su atskaitos kūnu susieta koordinačių sistema&nbsp;–&nbsp;<b>atskaitos sistema</b>, paprasčiausia&nbsp;– stačiakampė&nbsp;<a href=\"https://lt.wikipedia.org/wiki/Dekarto_koordina%C4%8Di%C5%B3_sistema\" title=\"Dekarto koordinačių sistema\">Dekarto koordinačių sistema</a>. Dažnai kūno padėtis nagrinėjama kaip materialiojo taško M padėtis, apibūdinama koordinatėmis&nbsp;<b>xM</b>,&nbsp;<b>yM</b>&nbsp;ir&nbsp;<b>zM</b>&nbsp;arba spinduliu vektoriumi:    <br>",
-                new EventPictureTO(
-                        "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"
-                ),
+                new EventPictureTO("https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"),
                 List.of(new CategoryTO(3)),
                 LocalDateTime.of(2026, 11, 18, 13, 19, 0),
                 List.of("PROMOTION"),
