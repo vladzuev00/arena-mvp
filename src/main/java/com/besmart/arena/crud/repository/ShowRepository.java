@@ -9,7 +9,6 @@ import java.util.List;
 
 import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 
-//TODO:
 @Service
 @RequiredArgsConstructor
 public final class ShowRepository {
@@ -40,7 +39,7 @@ public final class ShowRepository {
                             image_url = :imageUrl,
                             promoter_id = (SELECT id FROM promoters WHERE name = :promoter.name)
                         WHERE shows.external_short_id = :externalShortId AND shows.provider_id = :provider.id;
-
+                        
                         DELETE FROM shows_categories WHERE show_id = (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id);
                         INSERT INTO shows_categories(show_id, category_id)
                         SELECT refreshed_show_id, id FROM categories
