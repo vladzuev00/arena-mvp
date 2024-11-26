@@ -25,7 +25,6 @@ public final class ProviderRepository {
         );
     }
 
-    //TODO: test
     public Stream<Provider> findAll() {
         return jdbcTemplate.getJdbcTemplate()
                 .queryForStream(

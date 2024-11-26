@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -28,5 +33,14 @@ public final class ProviderRepositoryTest extends AbstractSpringBootTest {
         String givenName = "test-provider";
 
         assertThrows(EmptyResultDataAccessException.class, () -> repository.findByName(givenName));
+    }
+
+    @Test
+    public void allProvidersShouldBeFound() {
+        try (Stream<Provider> actual = repository.findAll()) {
+            Set<Provider> actualAsSet = actual.collect(toUnmodifiableSet());
+            Set<Provider> expectedAsSet = Set.of(new Provider(1L, "KAKAVA"), new Provider(2L, "BELETIA"));
+            assertEquals(expectedAsSet, actualAsSet);
+        }
     }
 }
