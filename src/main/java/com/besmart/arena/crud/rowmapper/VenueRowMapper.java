@@ -23,6 +23,7 @@ public final class VenueRowMapper implements RowMapper<Venue> {
         String address = resultSet.getString(ALIAS_ADDRESS);
         double latitude = resultSet.getDouble(ALIAS_LATITUDE);
         double longitude = resultSet.getDouble(ALIAS_LONGITUDE);
-        return new Venue(id, name, address, latitude, longitude);
+        return null;
+//        return new Venue(id, name, address, latitude, longitude);
     }
 }

@@ -21,6 +21,7 @@ public final class PromoterRowMapper implements RowMapper<Promoter> {
         String name = resultSet.getString(ALIAS_NAME);
         String iconUrl = resultSet.getString(ALIAS_ICON_URL);
         String webPageUrl = resultSet.getString(ALIAS_WEB_PAGE_URL);
-        return new Promoter(id, name, iconUrl, webPageUrl);
+        return null;
+//        return new Promoter(id, name, iconUrl, webPageUrl);
     }
 }

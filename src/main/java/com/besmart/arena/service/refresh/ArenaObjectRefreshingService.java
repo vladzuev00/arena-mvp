@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public final class ArenaObjectRefreshingService {
-    private final List<ArenaObjectRefresher<?, ?, ?, ?, ?, ?, ?>> refreshers;
+    private final List<ArenaObjectRefresher<?, ?, ?, ?, ?>> refreshers;
 
     public void refresh() {
         refreshers.forEach(ArenaObjectRefresher::refresh);

@@ -17,10 +17,11 @@ public final class CategoryRowMapper implements RowMapper<Category> {
     @Override
     public Category mapRow(ResultSet resultSet, int rowNumber)
             throws SQLException {
-        Long id = resultSet.getLong(ALIAS_ID);
-        String name = resultSet.getString(ALIAS_NAME);
-        String primaryColor = resultSet.getString(ALIAS_PRIMARY_COLOR);
-        String secondaryColor = resultSet.getString(ALIAS_SECONDARY_COLOR);
-        return new Category(id, name, primaryColor, secondaryColor);
+        return null;
+//        Long id = resultSet.getLong(ALIAS_ID);
+//        String name = resultSet.getString(ALIAS_NAME);
+//        String primaryColor = resultSet.getString(ALIAS_PRIMARY_COLOR);
+//        String secondaryColor = resultSet.getString(ALIAS_SECONDARY_COLOR);
+//        return new Category(id, name, primaryColor, secondaryColor);
     }
 }

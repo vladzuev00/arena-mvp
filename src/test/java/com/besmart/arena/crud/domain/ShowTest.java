@@ -27,24 +27,4 @@ public final class ShowTest {
         String[] expected = {firstGivenName, secondGivenName, thirdGivenName};
         assertArrayEquals(expected, actual);
     }
-
-    @Test
-    public void tagNamesShouldBeGot() {
-        String firstGivenName = "first-name";
-        String secondGivenName = "second-name";
-        String thirdGivenName = "third-name";
-        Show givenShow = Show.builder()
-                .tags(
-                        List.of(
-                                Tag.builder().name(firstGivenName).build(),
-                                Tag.builder().name(secondGivenName).build(),
-                                Tag.builder().name(thirdGivenName).build()
-                        )
-                )
-                .build();
-
-        String[] actual = givenShow.getTagNames();
-        String[] expected = {firstGivenName, secondGivenName, thirdGivenName};
-        assertArrayEquals(expected, actual);
-    }
 }

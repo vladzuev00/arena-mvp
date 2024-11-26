@@ -36,12 +36,6 @@ public final class ResultSetUtil {
         return Category.builder().id(id).build();
     }
 
-    public static Tag getTagLazily(ResultSet resultSet, String aliasId)
-            throws SQLException {
-        Long id = resultSet.getLong(aliasId);
-        return Tag.builder().id(id).build();
-    }
-
     public static Show getShowLazily(ResultSet resultSet, String aliasId)
             throws SQLException {
         Long id = resultSet.getLong(aliasId);

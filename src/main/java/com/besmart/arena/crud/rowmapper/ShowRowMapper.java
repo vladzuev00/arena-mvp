@@ -37,19 +37,19 @@ public final class ShowRowMapper implements RowMapper<Show> {
         Promoter promoter = getPromoterLazily(resultSet, ALIAS_PROMOTER_ID);
         Provider provider = getProviderLazily(resultSet, ALIAS_PROVIDER_ID);
         Category category = getCategoryLazily(resultSet, ALIAS_CATEGORY_ID);
-        Tag tag = getTagLazily(resultSet, ALIAS_TAG_ID);
-        return new Show(
-                id,
-                externalShortId,
-                title,
-                subtitle,
-                description,
-                venue,
-                imageUrl,
-                promoter,
-                provider,
-                singletonList(category),
-                singletonList(tag)
-        );
+        return null;
+//        return new Show(
+//                id,
+//                externalShortId,
+//                title,
+//                subtitle,
+//                description,
+//                venue,
+//                imageUrl,
+//                promoter,
+//                provider,
+//                singletonList(category),
+//                singletonList(tag)
+//        );
     }
 }
