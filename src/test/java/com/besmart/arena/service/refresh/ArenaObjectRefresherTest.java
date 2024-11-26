@@ -218,13 +218,13 @@ public final class ArenaObjectRefresherTest {
         List<Promoter> expectedPromoters = List.of(
                 Promoter.builder()
                         .name("first-promoter-name")
-                        .iconUrl("first-promoter-icon-url")
-                        .webPageUrl("first-promoter-web-page-url")
+                        .imageUrl("first-promoter-icon-url")
+                        .externalUrl("first-promoter-web-page-url")
                         .build(),
                 Promoter.builder()
                         .name("second-promoter-name")
-                        .iconUrl("second-promoter-icon-url")
-                        .webPageUrl("second-promoter-web-page-url")
+                        .imageUrl("second-promoter-icon-url")
+                        .externalUrl("second-promoter-web-page-url")
                         .build()
         );
         assertEquals(expectedPromoters, actualPromoters);
@@ -469,8 +469,8 @@ public final class ArenaObjectRefresherTest {
         protected Promoter createPromoter(TestPromoterSource source) {
             return Promoter.builder()
                     .name(source.getName())
-                    .iconUrl(source.getIconUrl())
-                    .webPageUrl(source.getWebPageUrl())
+                    .imageUrl(source.getIconUrl())
+                    .externalUrl(source.getWebPageUrl())
                     .build();
         }
 

@@ -9,7 +9,12 @@ import lombok.Value;
 @AllArgsConstructor
 public class Promoter {
     Long id;
+    String externalId;
     String name;
-    String iconUrl;
-    String webPageUrl;
+    String address;
+    String email;
+    String phone;
+    String imageUrl;
+    String externalUrl;
+    Provider provider;
 }

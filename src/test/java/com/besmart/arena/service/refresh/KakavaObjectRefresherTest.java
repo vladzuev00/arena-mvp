@@ -155,8 +155,8 @@ public final class KakavaObjectRefresherTest {
         Promoter actual = refresher.createPromoter(givenSource);
         Promoter expected = Promoter.builder()
                 .name(givenName)
-                .iconUrl(NOT_DEFINED_STRING)
-                .webPageUrl(NOT_DEFINED_STRING)
+                .imageUrl(NOT_DEFINED_STRING)
+                .externalUrl(NOT_DEFINED_STRING)
                 .build();
         assertEquals(expected, actual);
     }
