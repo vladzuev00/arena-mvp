@@ -38,17 +38,33 @@ public final class ShowRepository {
                             venue_id = (SELECT id FROM venues WHERE name = :venue.name),
                             image_url = :imageUrl,
                             promoter_id = (SELECT id FROM promoters WHERE name = :promoter.name)
-                        WHERE shows.external_short_id = :externalShortId AND shows.provider_id = :provider.id;
-                        
-                        DELETE FROM shows_categories WHERE show_id = (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id);
+                        WHERE shows.external_short_id = :externalShortId AND shows.provider_id = :provider.id"""
+        );
+        batchUpdate(
+                jdbcTemplate,
+                shows,
+                "DELETE FROM shows_categories WHERE show_id = (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id)"
+        );
+        batchUpdate(
+                jdbcTemplate,
+                shows,
+                """
                         INSERT INTO shows_categories(show_id, category_id)
-                        SELECT refreshed_show_id, id FROM categories
-                        WHERE name = ANY(:categoryNames);
-                        
-                        DELETE FROM shows_tags WHERE show_id = (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id);
+                        SELECT DISTINCT refreshed_show_id.id, categories.id FROM categories, (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id) AS refreshed_show_id
+                        WHERE name = ANY(:categoryNames)"""
+        );
+        batchUpdate(
+                jdbcTemplate,
+                shows,
+                "DELETE FROM shows_tags WHERE show_id = (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id)"
+        );
+        batchUpdate(
+                jdbcTemplate,
+                shows,
+                """
                         INSERT INTO shows_tags(show_id, tag_id)
-                        SELECT refreshed_show_id, id FROM tags
-                        WHERE name = ANY(:tagNames);"""
+                        SELECT DISTINCT refreshed_show_id.id, tags.id FROM tags, (SELECT id FROM shows WHERE external_short_id = :externalShortId AND provider_id = :provider.id) AS refreshed_show_id
+                        WHERE name = ANY(:tagNames)"""
         );
     }
 }
