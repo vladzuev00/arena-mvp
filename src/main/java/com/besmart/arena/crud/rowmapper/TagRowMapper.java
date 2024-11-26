@@ -1,6 +1,5 @@
 package com.besmart.arena.crud.rowmapper;
 
-import com.besmart.arena.crud.domain.Tag;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

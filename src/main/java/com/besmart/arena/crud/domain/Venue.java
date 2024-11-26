@@ -13,4 +13,5 @@ public class Venue {
     String address;
     double latitude;
     double longitude;
+    String imageUrl;
 }

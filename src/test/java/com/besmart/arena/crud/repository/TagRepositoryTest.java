@@ -1,7 +1,6 @@
 package com.besmart.arena.crud.repository;
 
 import com.besmart.arena.base.AbstractSpringBootTest;
-import com.besmart.arena.crud.domain.Tag;
 import com.besmart.arena.crud.rowmapper.TagRowMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
