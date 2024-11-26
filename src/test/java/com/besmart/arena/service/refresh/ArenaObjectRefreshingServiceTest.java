@@ -1,5 +1,6 @@
 package com.besmart.arena.service.refresh;
 
+import com.besmart.arena.service.refresh.base.ArenaObjectRefresher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

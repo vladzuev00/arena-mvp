@@ -69,9 +69,9 @@ public final class ShowTOTest extends AbstractSpringBootTest {
             throws Exception {
         String givenJson = """
                 {
-                   "id": "d1ad0c6b-9d97-11ee-a81c-6045bd87e447",
-                   "shortId": 2341,
-                   "eventId": "4edd91c2-9d97-11ee-a81c-6045bd87e447",
+                   "id": "d1ad0c6b-9d97-11ee-a81c-6045bd87e447",  не надо
+                   "shortId": 2341,      
+                   "eventId": "4edd91c2-9d97-11ee-a81c-6045bd87e447",  не надо
                    "eventShortId": 1763,
                    "eventTitle": "Dinamika",
                    "eventTitleForAnalytics": "Dinamika",  не надо

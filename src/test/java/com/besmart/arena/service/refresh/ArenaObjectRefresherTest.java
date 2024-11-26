@@ -3,6 +3,7 @@ package com.besmart.arena.service.refresh;
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
 import com.besmart.arena.service.cache.ProviderCache;
+import com.besmart.arena.service.refresh.base.ArenaObjectRefresher;
 import lombok.Value;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

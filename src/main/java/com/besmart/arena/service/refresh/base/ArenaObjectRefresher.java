@@ -1,4 +1,4 @@
-package com.besmart.arena.service.refresh;
+package com.besmart.arena.service.refresh.base;
 
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
@@ -11,10 +11,16 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 @RequiredArgsConstructor
-public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
+public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_TO, PROMOTER_TO, VENUE_TO, SHOW_TO, EVENT_SOURCE> {
     private final ProviderCache providerCache;
     private final String providerName;
     private final TransactionTemplate transactionTemplate;
+    private final CategoryMapper<CATEGORY_TO> categoryMapper;
+    private final PromoterMapper<PROMOTER_TO> promoterMapper;
+    private final VenueMapper<VENUE_TO> venueMapper;
+    private final ShowMapper<SHOW_TO> showMapper;
+
+
     private final CategoryRepository categoryRepository;
     private final TagRepository tagRepository;
     private final PromoterRepository promoterRepository;
@@ -29,27 +35,27 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     protected abstract RESPONSE requestObjects();
 
-    protected abstract List<CATEGORY_SOURCE> getCategorySources(RESPONSE response);
+    protected abstract List<CATEGORY_TO> getCategorySources(RESPONSE response);
 
     protected abstract List<TAG_SOURCE> getTagSources(RESPONSE response);
 
-    protected abstract List<PROMOTER_SOURCE> getPromoterSources(RESPONSE response);
+    protected abstract List<PROMOTER_TO> getPromoterSources(RESPONSE response);
 
-    protected abstract List<VENUE_SOURCE> getVenueSources(RESPONSE response);
+    protected abstract List<VENUE_TO> getVenueSources(RESPONSE response);
 
-    protected abstract List<SHOW_SOURCE> getShowSources(RESPONSE response);
+    protected abstract List<SHOW_TO> getShowSources(RESPONSE response);
 
     protected abstract List<EVENT_SOURCE> getEventSources(RESPONSE response);
 
-    protected abstract Category createCategory(CATEGORY_SOURCE source);
+    protected abstract Category createCategory(CATEGORY_TO source);
 
     protected abstract Tag createTag(TAG_SOURCE source);
 
-    protected abstract Promoter createPromoter(PROMOTER_SOURCE source);
+    protected abstract Promoter createPromoter(PROMOTER_TO source);
 
-    protected abstract Venue createVenue(VENUE_SOURCE source);
+    protected abstract Venue createVenue(VENUE_TO source);
 
-    protected abstract Show createShow(SHOW_SOURCE source, Provider provider);
+    protected abstract Show createShow(SHOW_TO source, Provider provider);
 
     protected abstract Event createEvent(EVENT_SOURCE source, Provider provider);
 

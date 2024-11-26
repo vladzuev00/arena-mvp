@@ -11,16 +11,12 @@ CREATE TABLE providers(
     name VARCHAR(256) NOT NULL UNIQUE
 );
 
+-- TODO
 CREATE TABLE categories(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(256) NOT NULL UNIQUE,
-    primary_color VARCHAR(256) NOT NULL,
-    secondary_color VARCHAR(256) NOT NULL
-);
-
-CREATE TABLE tags(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(256) NOT NULL UNIQUE
+    id SERIAL PRIMARY KEY
+--     external_id VARCHAR(256) NOT NULL,
+--     name VARCHAR(256) NOT NULL UNIQUE,
+--     hidden BOOLEAN NOT NULL
 );
 
 CREATE TABLE promoters(
@@ -36,6 +32,7 @@ CREATE TABLE venues(
     address VARCHAR(256) NOT NULL,
     latitude DECIMAL NOT NULL,
     longitude DECIMAL NOT NULL
+--                    TODO add url
 );
 
 CREATE TABLE shows(

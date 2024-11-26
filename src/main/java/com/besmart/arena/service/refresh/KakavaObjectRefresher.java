@@ -8,6 +8,7 @@ import com.besmart.arena.client.domain.ShowsResponseTO;
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
 import com.besmart.arena.service.cache.ProviderCache;
+import com.besmart.arena.service.refresh.base.ArenaObjectRefresher;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
 
