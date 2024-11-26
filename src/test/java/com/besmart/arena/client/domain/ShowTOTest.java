@@ -74,9 +74,9 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                    "eventId": "4edd91c2-9d97-11ee-a81c-6045bd87e447",
                    "eventShortId": 1763,
                    "eventTitle": "Dinamika",
-                   "eventTitleForAnalytics": "Dinamika",
-                   "eventTitleSlug": "dinamika",
-                   "eventTitleSlugs": [
+                   "eventTitleForAnalytics": "Dinamika",  не надо
+                   "eventTitleSlug": "dinamika",  не надо
+                   "eventTitleSlugs": [   не надо
                      {
                        "language": "en",
                        "value": "dinamika"
@@ -86,66 +86,66 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                        "value": "dinamika"
                      }
                    ],
-                   "hasEnglishDescription": false,
+                   "hasEnglishDescription": false,  не надо
                    "eventDescription": "    <b>Mechanika</b>&nbsp;–&nbsp;<a href=\\"https://lt.wikipedia.org/wiki/Fizika\\" title=\\"Fizika\\">fizikos</a>&nbsp;skyrius, nagrinėjantis paprasčiausią materijos judėjimo formą&nbsp;–&nbsp;<b>mechaninį judėjimą</b>&nbsp;(kūno padėties kitimą kitų kūnų atžvilgiu). Nagrinėjant judėjimą, pasirenkamas&nbsp;<b>atskaitos kūnas</b>, kurio atžvilgiu nagrinėjamas kito kūno (reliatyvus) judėjimas. Su atskaitos kūnu susieta koordinačių sistema&nbsp;–&nbsp;<b>atskaitos sistema</b>, paprasčiausia&nbsp;– stačiakampė&nbsp;<a href=\\"https://lt.wikipedia.org/wiki/Dekarto_koordina%C4%8Di%C5%B3_sistema\\" title=\\"Dekarto koordinačių sistema\\">Dekarto koordinačių sistema</a>. Dažnai kūno padėtis nagrinėjama kaip materialiojo taško M padėtis, apibūdinama koordinatėmis&nbsp;<b>xM</b>,&nbsp;<b>yM</b>&nbsp;ir&nbsp;<b>zM</b>&nbsp;arba spinduliu vektoriumi:    <br>",
                    "eventPicture": {
                      "desktopPictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447",
-                     "mobilePictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447",
-                     "coverPictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"
+                     "mobilePictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447", не надо 
+                     "coverPictureUrl": "https://res.cloudinary.com/kakavalt/image/fetch/w_1024,f_auto,q_auto:best/https://app-kkv-be-test.azurewebsites.net//api/v1/event/picture/4edd91c4-9d97-11ee-a81c-6045bd87e447"  не надо 
                    },
                    "eventCategories": [
                      {
-                       "id": 3
+                       "id": 3   
                      }
                    ],
-                   "state": "Selling",
+                   "state": "Selling",     
                    "startDateTime": "2026-11-18T13:19:00.0000000",
                    "endDateTime": "2026-12-18T13:19:00.0000000",
-                   "showDate": true,
-                   "distributionStartDateTime": "2023-12-18T13:40:00.0000000",
-                   "showPeriod": false,
-                   "duration": "1 men",
-                   "marks": [
+                   "showDate": true,    не надо
+                   "distributionStartDateTime": "2023-12-18T13:40:00.0000000",    не надо
+                   "showPeriod": false, не надо
+                   "duration": "1 men",   
+                   "marks": [   
                      "PROMOTION"
                    ],
                    "customMarks": [
                      {
-                       "name": "Akcija",
-                       "color": "FF006F",
-                       "pictureUrl": ""
+                       "name": "Akcija",  в теги
+                       "color": "FF006F",  не надо
+                       "pictureUrl": ""  не надо
                      }
                    ],
-                   "frontEndStatus": [
+                   "frontEndStatus": [  в теги
                      "SELLING"
                    ],
-                   "break": false,
-                   "location": {
+                   "break": false,    
+                   "location": {          не надо
                      "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
                      "name": "Šiaulių arena",
                      "address": "ner"
                    },
-                   "city": {
+                   "city": {     не надо
                      "id": 1,
                      "name": "Vilnius",
                      "isImportant": true
                    },
-                   "venueAddress": "ner, Vilnius, Lithuania",
-                   "priceFrom": 2100,
-                   "priceFromWithTaxes": 2100,
+                   "venueAddress": "ner, Vilnius, Lithuania",     нет
+                   "priceFrom": 2100,   
+                   "priceFromWithTaxes": 2100,      
                    "clubTicketsAvailable": false,
-                   "metaTitle": "Dinamika",
+                   "metaTitle": "Dinamika",     нет
                    "promoter": {
-                     "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
-                     "name": "Organizatorius Z, VŠĮ",
-                     "address": "Didlaukio g. 45, 08321, Vilnius, Lietuva",
-                     "companyCode": "123123789",
-                     "vatCode": "123456",
-                     "email": "testkakava@gmail.com",
-                     "phone": "+37060000001",
+                     "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",      
+                     "name": "Organizatorius Z, VŠĮ", 
+                     "address": "Didlaukio g. 45, 08321, Vilnius, Lietuva",     
+                     "companyCode": "123123789",    нет
+                     "vatCode": "123456",      нет
+                     "email": "testkakava@gmail.com",     
+                     "phone": "+37060000001",    
                      "pictureUrl": "",
-                     "brandName": "ORGZ"
+                     "brandName": "ORGZ" 
                    },
-                   "isHourlySales": false
+                   "isHourlySales": false нет
                 }""";
 
         ShowTO actual = objectMapper.readValue(givenJson, ShowTO.class);
