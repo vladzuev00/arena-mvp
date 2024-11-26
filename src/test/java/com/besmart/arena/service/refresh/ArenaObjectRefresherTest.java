@@ -177,7 +177,7 @@ public final class ArenaObjectRefresherTest {
         verify(mockedTransactionTemplate, times(1)).executeWithoutResult(transactionAction.capture());
         transactionAction.getValue().accept(null);
 
-        verify(mockedCategoryRepository, times(1)).refreshByName(categoriesArgumentCaptor.capture());
+        verify(mockedCategoryRepository, times(1)).refreshByExternalId(categoriesArgumentCaptor.capture());
         List<Category> actualCategories = categoriesArgumentCaptor.getValue();
         List<Category> expectedCategories = List.of(
                 Category.builder()
@@ -213,7 +213,7 @@ public final class ArenaObjectRefresherTest {
         );
         assertEquals(expectedTags, actualTags);
 
-        verify(mockedPromoterRepository, times(1)).refreshByName(promotersArgumentCaptor.capture());
+        verify(mockedPromoterRepository, times(1)).refreshByExternalId(promotersArgumentCaptor.capture());
         List<Promoter> actualPromoters = promotersArgumentCaptor.getValue();
         List<Promoter> expectedPromoters = List.of(
                 Promoter.builder()
@@ -407,7 +407,7 @@ public final class ArenaObjectRefresherTest {
         }
 
         @Override
-        protected List<TestCategorySource> getCategorySources(TestResponse response) {
+        protected List<TestCategorySource> getCategoryTos(TestResponse response) {
             return response.getEvents()
                     .stream()
                     .flatMap(event -> event.getShow().getCategories().stream())
@@ -423,7 +423,7 @@ public final class ArenaObjectRefresherTest {
         }
 
         @Override
-        protected List<TestPromoterSource> getPromoterSources(TestResponse response) {
+        protected List<TestPromoterSource> getPromoterTos(TestResponse response) {
             return response.getEvents()
                     .stream()
                     .map(event -> event.getShow().getPromoter())
@@ -431,7 +431,7 @@ public final class ArenaObjectRefresherTest {
         }
 
         @Override
-        protected List<TestVenueSource> getVenueSources(TestResponse response) {
+        protected List<TestVenueSource> getVenueTos(TestResponse response) {
             return response.getEvents()
                     .stream()
                     .map(event -> event.getShow().getVenue())
@@ -439,7 +439,7 @@ public final class ArenaObjectRefresherTest {
         }
 
         @Override
-        protected List<TestShowSource> getShowSources(TestResponse response) {
+        protected List<TestShowSource> getShowTos(TestResponse response) {
             return response.getEvents()
                     .stream()
                     .map(TestEventSource::getShow)
@@ -447,7 +447,7 @@ public final class ArenaObjectRefresherTest {
         }
 
         @Override
-        protected List<TestEventSource> getEventSources(TestResponse response) {
+        protected List<TestEventSource> getEventTos(TestResponse response) {
             return response.getEvents();
         }
 

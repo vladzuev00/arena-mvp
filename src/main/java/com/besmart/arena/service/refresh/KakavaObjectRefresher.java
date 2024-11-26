@@ -58,7 +58,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<CategoryTO> getCategorySources(ShowsResponseTO response) {
+    protected List<CategoryTO> getCategoryTos(ShowsResponseTO response) {
         return response.getShows()
                 .stream()
                 .flatMap(show -> show.getEventCategories().stream())
@@ -74,7 +74,7 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<PromoterTO> getPromoterSources(ShowsResponseTO response) {
+    protected List<PromoterTO> getPromoterTos(ShowsResponseTO response) {
         return response.getShows()
                 .stream()
                 .map(ShowTO::getPromoter)
@@ -82,17 +82,17 @@ public final class KakavaObjectRefresher extends ArenaObjectRefresher<ShowsRespo
     }
 
     @Override
-    protected List<ShowTO> getVenueSources(ShowsResponseTO response) {
+    protected List<ShowTO> getVenueTos(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getShowSources(ShowsResponseTO response) {
+    protected List<ShowTO> getShowTos(ShowsResponseTO response) {
         return response.getShows();
     }
 
     @Override
-    protected List<ShowTO> getEventSources(ShowsResponseTO response) {
+    protected List<ShowTO> getEventTos(ShowsResponseTO response) {
         return response.getShows();
     }
 

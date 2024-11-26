@@ -31,7 +31,7 @@ public final class CategoryRepositoryTest extends AbstractSpringBootTest {
                 Category.builder().name("third-category").primaryColor("#3d4761").secondaryColor("#1f2431").build()
         );
 
-        repository.refreshByName(givenCategories);
+        repository.refreshByExternalId(givenCategories);
 
         Set<Category> actual = findAllCategories();
         Set<Category> expected = Set.of(

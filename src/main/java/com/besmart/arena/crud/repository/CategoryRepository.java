@@ -14,7 +14,7 @@ import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 public final class CategoryRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void refreshByName(List<Category> categories) {
+    public void refreshByExternalId(List<Category> categories) {
         batchUpdate(
                 jdbcTemplate,
                 categories,

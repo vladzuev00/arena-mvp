@@ -14,7 +14,7 @@ import static com.besmart.arena.util.JdbcTemplateUtil.batchUpdate;
 public final class PromoterRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void refreshByName(List<Promoter> promoters) {
+    public void refreshByExternalId(List<Promoter> promoters) {
         batchUpdate(
                 jdbcTemplate,
                 promoters,

@@ -2,6 +2,7 @@ package com.besmart.arena.service.cache;
 
 import com.besmart.arena.crud.domain.Provider;
 import com.besmart.arena.crud.repository.ProviderRepository;
+import com.besmart.arena.service.cache.factory.ProviderCacheFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

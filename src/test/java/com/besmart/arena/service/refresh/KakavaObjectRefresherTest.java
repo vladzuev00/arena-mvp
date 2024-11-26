@@ -64,7 +64,7 @@ public final class KakavaObjectRefresherTest {
                 )
         );
 
-        List<CategoryTO> actual = refresher.getCategorySources(givenResponse);
+        List<CategoryTO> actual = refresher.getCategoryTos(givenResponse);
         var expected = List.of(givenFirstSource, givenSecondSource, givenThirdSource, givenFourthSource);
         assertEquals(expected, actual);
     }
@@ -101,7 +101,7 @@ public final class KakavaObjectRefresherTest {
                 )
         );
 
-        List<PromoterTO> actual = refresher.getPromoterSources(givenResponse);
+        List<PromoterTO> actual = refresher.getPromoterTos(givenResponse);
         List<PromoterTO> expected = List.of(firstGivenSource, secondGivenSource, thirdGivenSource);
         assertEquals(expected, actual);
     }
@@ -111,7 +111,7 @@ public final class KakavaObjectRefresherTest {
         List<ShowTO> givenShows = List.of(ShowTO.builder().build(), ShowTO.builder().build());
         ShowsResponseTO givenResponse = new ShowsResponseTO(givenShows);
 
-        List<ShowTO> actual = refresher.getVenueSources(givenResponse);
+        List<ShowTO> actual = refresher.getVenueTos(givenResponse);
         assertSame(givenShows, actual);
     }
 
@@ -120,7 +120,7 @@ public final class KakavaObjectRefresherTest {
         List<ShowTO> givenShows = List.of(ShowTO.builder().build(), ShowTO.builder().build());
         ShowsResponseTO givenResponse = new ShowsResponseTO(givenShows);
 
-        List<ShowTO> actual = refresher.getShowSources(givenResponse);
+        List<ShowTO> actual = refresher.getShowTos(givenResponse);
         assertSame(givenShows, actual);
     }
 

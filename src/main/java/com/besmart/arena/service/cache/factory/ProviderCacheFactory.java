@@ -1,7 +1,8 @@
-package com.besmart.arena.service.cache;
+package com.besmart.arena.service.cache.factory;
 
 import com.besmart.arena.crud.domain.Provider;
 import com.besmart.arena.crud.repository.ProviderRepository;
+import com.besmart.arena.service.cache.ProviderCache;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

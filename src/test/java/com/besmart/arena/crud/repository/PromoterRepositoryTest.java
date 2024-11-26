@@ -39,7 +39,7 @@ public final class PromoterRepositoryTest extends AbstractSpringBootTest {
                         .build()
         );
 
-        repository.refreshByName(givenPromoters);
+        repository.refreshByExternalId(givenPromoters);
 
         Set<Promoter> actual = findAllPromoters();
         Set<Promoter> expected = Set.of(
