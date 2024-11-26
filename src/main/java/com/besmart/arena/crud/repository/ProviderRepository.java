@@ -7,12 +7,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
 public final class ProviderRepository {
     private static final String PARAMETER_NAME_NAME = "name";
-    
+
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final ProviderRowMapper rowMapper;
 
@@ -22,5 +23,14 @@ public final class ProviderRepository {
                 Map.of(PARAMETER_NAME_NAME, name),
                 rowMapper
         );
+    }
+
+    //TODO: test
+    public Stream<Provider> findAll() {
+        return jdbcTemplate.getJdbcTemplate()
+                .queryForStream(
+                        "SELECT providers.id AS providerId, providers.name AS providerName FROM providers",
+                        rowMapper
+                );
     }
 }
