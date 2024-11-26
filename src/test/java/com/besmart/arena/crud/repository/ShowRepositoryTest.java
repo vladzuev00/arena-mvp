@@ -30,7 +30,7 @@ public final class ShowRepositoryTest extends AbstractSpringBootTest {
     public void showsShouldBeRefreshedByExternalId() {
         List<Show> givenShows = List.of(
                 Show.builder()
-                        .externalShortId("2000")
+                        .externalId("2000")
                         .title("third-title")
                         .subtitle("third-subtitle")
                         .description("third-description")
@@ -42,7 +42,7 @@ public final class ShowRepositoryTest extends AbstractSpringBootTest {
                         .provider(Provider.builder().id(1L).build())
                         .build(),
                 Show.builder()
-                        .externalShortId("2002")
+                        .externalId("2002")
                         .title("fourth-title")
                         .subtitle("fourth-subtitle")
                         .description("fourth-description")

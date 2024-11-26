@@ -251,7 +251,7 @@ public final class ArenaObjectRefresherTest {
         List<Show> actualShows = showsArgumentCaptor.getValue();
         List<Show> expectedShows = List.of(
                 Show.builder()
-                        .externalShortId("2335")
+                        .externalId("2335")
                         .title("first-show-title")
                         .subtitle("first-show-subtitle")
                         .description("first-show-description")
@@ -259,7 +259,7 @@ public final class ArenaObjectRefresherTest {
                         .provider(givenProvider)
                         .build(),
                 Show.builder()
-                        .externalShortId("2339")
+                        .externalId("2339")
                         .title("second-show-title")
                         .subtitle("second-show-subtitle")
                         .description("second-show-description")
@@ -273,7 +273,7 @@ public final class ArenaObjectRefresherTest {
         List<Event> actualEvents = eventsArgumentCaptor.getValue();
         List<Event> expectedEvents = List.of(
                 Event.builder()
-                        .externalShortId("2334")
+                        .externalId("2334")
                         .title("first-event-title")
                         .subtitle("first-event-subtitle")
                         .description("first-event-description")
@@ -281,7 +281,7 @@ public final class ArenaObjectRefresherTest {
                         .provider(givenProvider)
                         .build(),
                 Event.builder()
-                        .externalShortId("2338")
+                        .externalId("2338")
                         .title("second-event-title")
                         .subtitle("second-event-subtitle")
                         .description("second-event-description")
@@ -487,7 +487,7 @@ public final class ArenaObjectRefresherTest {
         @Override
         protected Show createShow(TestShowSource source, Provider provider) {
             return Show.builder()
-                    .externalShortId(source.getExternalShortId())
+                    .externalId(source.getExternalShortId())
                     .title(source.getTitle())
                     .subtitle(source.getSubtitle())
                     .description(source.getDescription())
@@ -499,7 +499,7 @@ public final class ArenaObjectRefresherTest {
         @Override
         protected Event createEvent(TestEventSource source, Provider provider) {
             return Event.builder()
-                    .externalShortId(source.getExternalShortId())
+                    .externalId(source.getExternalShortId())
                     .title(source.getTitle())
                     .subtitle(source.getSubtitle())
                     .description(source.getDescription())

@@ -215,7 +215,7 @@ public final class KakavaObjectRefresherTest {
 
             Show actual = refresher.createShow(givenSource, givenProvider);
             Show expected = Show.builder()
-                    .externalShortId(Integer.toString(givenExternalShortId))
+                    .externalId(Integer.toString(givenExternalShortId))
                     .title(givenTitle)
                     .subtitle(NOT_DEFINED_STRING)
                     .description(givenDescriptionRenderedHtml)
@@ -262,12 +262,12 @@ public final class KakavaObjectRefresherTest {
 
             Event actual = refresher.createEvent(givenSource, givenProvider);
             Event expected = Event.builder()
-                    .externalShortId(Integer.toString(givenExternalShortId))
+                    .externalId(Integer.toString(givenExternalShortId))
                     .title(givenTitle)
                     .subtitle(NOT_DEFINED_STRING)
                     .description(givenDescriptionRenderedHtml)
                     .dateTime(givenStartDateTime)
-                    .show(Show.builder().externalShortId(Integer.toString(givenShowExternalShortId)).build())
+                    .show(Show.builder().externalId(Integer.toString(givenShowExternalShortId)).build())
                     .provider(givenProvider)
                     .build();
             assertEquals(expected, actual);

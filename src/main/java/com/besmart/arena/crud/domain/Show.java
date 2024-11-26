@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Value
@@ -11,26 +12,28 @@ import java.util.List;
 @AllArgsConstructor
 public class Show {
     Long id;
-    String externalShortId;
-    String title;
-    String subtitle;
+    String externalId;
+    String name;
     String description;
-    Venue venue;
+    LocalDateTime startDateTime;
+    LocalDateTime endDateTime;
+    String youtubeUrl;
+    String discount;
     String imageUrl;
+    SaleStatus saleStatus;
+    String duration;
+    String tags;
+    int priceFrom;
+    int priceFromWithTaxes;
+    boolean clubTicketsAvailable;
+    Venue venue;
     Promoter promoter;
     Provider provider;
     List<Category> categories;
-    List<Tag> tags;
 
     public String[] getCategoryNames() {
         return categories.stream()
                 .map(Category::getName)
-                .toArray(String[]::new);
-    }
-
-    public String[] getTagNames() {
-        return tags.stream()
-                .map(Tag::getName)
                 .toArray(String[]::new);
     }
 }

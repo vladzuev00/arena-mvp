@@ -4,19 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
-import java.time.LocalDateTime;
-
-//TODO
 @Value
 @Builder
 @AllArgsConstructor
 public class Event {
     Long id;
-    String externalShortId;
-    String title;
-    String subtitle;
-    String description;
-    LocalDateTime dateTime;
+    String externalId;
     Show show;
     Provider provider;
 }
