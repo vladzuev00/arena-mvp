@@ -2,6 +2,7 @@ package com.besmart.arena.service.refresh;
 
 import com.besmart.arena.crud.domain.*;
 import com.besmart.arena.crud.repository.*;
+import com.besmart.arena.service.cache.ProviderCache;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -12,6 +13,8 @@ import java.util.function.Function;
 //TODO: cache providers
 @RequiredArgsConstructor
 public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE, PROMOTER_SOURCE, VENUE_SOURCE, SHOW_SOURCE, EVENT_SOURCE> {
+    private final ProviderCache providerCache;
+    private final String providerName;
     private final TransactionTemplate transactionTemplate;
     private final CategoryRepository categoryRepository;
     private final TagRepository tagRepository;
@@ -47,21 +50,27 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     protected abstract Venue createVenue(VENUE_SOURCE source);
 
-    protected abstract Show createShow(SHOW_SOURCE source);
+    protected abstract Show createShow(SHOW_SOURCE source, Provider provider);
 
-    protected abstract Event createEvent(EVENT_SOURCE source);
+    protected abstract Event createEvent(EVENT_SOURCE source, Provider provider);
 
     private void refreshWithinNewTransaction(RESPONSE response) {
         transactionTemplate.executeWithoutResult(
                 status -> {
+                    Provider provider = getProvider();
                     refreshCategories(response);
                     refreshTags(response);
                     refreshPromoters(response);
                     refreshVenues(response);
-                    refreshShows(response);
-                    refreshEvents(response);
+                    refreshShows(response, provider);
+                    refreshEvents(response, provider);
                 }
         );
+    }
+
+    private Provider getProvider() {
+        return providerCache.get(providerName)
+                .orElseThrow(() -> new IllegalArgumentException("There is no provider '%s'".formatted(providerCache)));
     }
 
     private void refreshCategories(RESPONSE response) {
@@ -80,12 +89,22 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
         refreshObjects(response, this::getVenueSources, this::createVenue, venueRepository::refreshByName);
     }
 
-    private void refreshShows(RESPONSE response) {
-        refreshObjects(response, this::getShowSources, this::createShow, showRepository::refreshByExternalId);
+    private void refreshShows(RESPONSE response, Provider provider) {
+        refreshObjects(
+                response,
+                this::getShowSources,
+                source -> createShow(source, provider),
+                showRepository::refreshByExternalId
+        );
     }
 
-    private void refreshEvents(RESPONSE response) {
-        refreshObjects(response, this::getEventSources, this::createEvent, eventRepository::refreshByExternalId);
+    private void refreshEvents(RESPONSE response, Provider provider) {
+        refreshObjects(
+                response,
+                this::getEventSources,
+                source -> createEvent(source, provider),
+                eventRepository::refreshByExternalId
+        );
     }
 
     private <SOURCE, OBJECT> void refreshObjects(RESPONSE response,

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import static java.util.UUID.fromString;
 
+//TODO: remove unused
 @UtilityClass
 public final class ResultSetUtil {
 
