@@ -60,13 +60,10 @@ public final class ShowsResponseTOTest extends AbstractSpringBootTest {
                          "PROMOTION"
                        ],
                        "location": {
-                         "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
                          "name": "Šiaulių arena"
                        },
                        "venueAddress": "ner, Vilnius, Lithuania",
-                       "priceFrom": 100,
                        "promoter": {
-                         "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
                          "name": "Organizatorius Z, VŠĮ"
                        }
                      }
