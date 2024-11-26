@@ -69,7 +69,7 @@ public abstract class ArenaObjectRefresher<RESPONSE, CATEGORY_SOURCE, TAG_SOURCE
 
     private Provider getProvider() {
         return providerCache.get(providerName)
-                .orElseThrow(() -> new IllegalArgumentException("There is no provider '%s'".formatted(providerCache)));
+                .orElseThrow(() -> new IllegalStateException("There is no provider '%s'".formatted(providerCache)));
     }
 
     private void refreshCategories(RESPONSE response) {
