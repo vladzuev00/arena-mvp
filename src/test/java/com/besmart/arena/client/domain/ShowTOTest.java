@@ -31,10 +31,9 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 List.of(new CategoryTO(3)),
                 LocalDateTime.of(2026, 11, 18, 13, 19, 0),
                 List.of("PROMOTION"),
-                new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena"),
+                new ShowLocationTO("Šiaulių arena"),
                 "ner, Vilnius, Lithuania",
-                2100,
-                new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")
+                new PromoterTO("Organizatorius Z, VŠĮ")
         );
 
         String actual = objectMapper.writeValueAsString(givenShow);
@@ -166,10 +165,9 @@ public final class ShowTOTest extends AbstractSpringBootTest {
                 List.of(new CategoryTO(3)),
                 LocalDateTime.of(2026, 11, 18, 13, 19, 0),
                 List.of("PROMOTION"),
-                new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena"),
+                new ShowLocationTO("Šiaulių arena"),
                 "ner, Vilnius, Lithuania",
-                2100,
-                new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ")
+                new PromoterTO("Organizatorius Z, VŠĮ")
         );
         Assertions.assertEquals(expected, actual);
     }

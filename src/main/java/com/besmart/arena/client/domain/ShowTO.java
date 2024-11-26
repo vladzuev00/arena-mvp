@@ -20,7 +20,6 @@ public class ShowTO {
     List<String> marks;
     ShowLocationTO location;
     String venueAddress;
-    int priceFrom;
     PromoterTO promoter;
 
     @Builder
@@ -35,7 +34,6 @@ public class ShowTO {
                   @JsonProperty("marks") List<String> marks,
                   @JsonProperty("location") ShowLocationTO location,
                   @JsonProperty("venueAddress") String venueAddress,
-                  @JsonProperty("priceFrom") int priceFrom,
                   @JsonProperty("promoter") PromoterTO promoter) {
         this.shortId = shortId;
         this.eventShortId = eventShortId;
@@ -47,7 +45,6 @@ public class ShowTO {
         this.marks = marks;
         this.location = location;
         this.venueAddress = venueAddress;
-        this.priceFrom = priceFrom;
         this.promoter = promoter;
     }
 }

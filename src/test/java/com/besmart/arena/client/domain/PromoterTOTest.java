@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static java.util.UUID.fromString;
-
 public final class PromoterTOTest extends AbstractSpringBootTest {
 
     @Autowired
@@ -17,12 +15,11 @@ public final class PromoterTOTest extends AbstractSpringBootTest {
     @Test
     public void promoterShouldBeSerializedToJson()
             throws Exception {
-        PromoterTO givenPromoter = new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ");
+        PromoterTO givenPromoter = new PromoterTO("Organizatorius Z, VŠĮ");
 
         String actual = objectMapper.writeValueAsString(givenPromoter);
         String expected = """
                 {
-                   "id": "11aa329a-44a6-11ed-a81c-000d3a29937e",
                    "name": "Organizatorius Z, VŠĮ"
                 }""";
         JSONAssert.assertEquals(expected, actual, true);
@@ -45,7 +42,7 @@ public final class PromoterTOTest extends AbstractSpringBootTest {
                 }""";
 
         PromoterTO actual = objectMapper.readValue(givenJson, PromoterTO.class);
-        PromoterTO expected = new PromoterTO(fromString("11aa329a-44a6-11ed-a81c-000d3a29937e"), "Organizatorius Z, VŠĮ");
+        PromoterTO expected = new PromoterTO("Organizatorius Z, VŠĮ");
         Assertions.assertEquals(expected, actual);
     }
 }

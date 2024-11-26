@@ -17,12 +17,11 @@ public final class ShowLocationTOTest extends AbstractSpringBootTest {
     @Test
     public void locationShouldBeSerializedToJson()
             throws Exception {
-        var givenLocation = new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena");
+        ShowLocationTO givenLocation = new ShowLocationTO("Šiaulių arena");
 
         String actual = objectMapper.writeValueAsString(givenLocation);
         String expected = """
                 {
-                  "id": "a60de864-5c52-11ee-a81c-000d3aa868a2",
                   "name": "Šiaulių arena"
                 }""";
         JSONAssert.assertEquals(expected, actual, true);
@@ -39,7 +38,7 @@ public final class ShowLocationTOTest extends AbstractSpringBootTest {
                 }""";
 
         ShowLocationTO actual = objectMapper.readValue(givenJson, ShowLocationTO.class);
-        var expected = new ShowLocationTO(fromString("a60de864-5c52-11ee-a81c-000d3aa868a2"), "Šiaulių arena");
+        ShowLocationTO expected = new ShowLocationTO("Šiaulių arena");
         Assertions.assertEquals(expected, actual);
     }
 }
