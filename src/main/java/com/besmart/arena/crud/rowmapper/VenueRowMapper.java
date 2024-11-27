@@ -14,6 +14,7 @@ public final class VenueRowMapper implements RowMapper<Venue> {
     static final String ALIAS_ADDRESS = "venueAddress";
     static final String ALIAS_LATITUDE = "venueLatitude";
     static final String ALIAS_LONGITUDE = "venueLongitude";
+    static final String ALIAS_IMAGE_URL = "venueImageUrl";
 
     @Override
     public Venue mapRow(ResultSet resultSet, int rowNumber)
@@ -23,7 +24,7 @@ public final class VenueRowMapper implements RowMapper<Venue> {
         String address = resultSet.getString(ALIAS_ADDRESS);
         double latitude = resultSet.getDouble(ALIAS_LATITUDE);
         double longitude = resultSet.getDouble(ALIAS_LONGITUDE);
-        return null;
-//        return new Venue(id, name, address, latitude, longitude);
+        String imageUrl = resultSet.getString(ALIAS_IMAGE_URL);
+        return new Venue(id, name, address, latitude, longitude, imageUrl);
     }
 }
