@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static java.util.UUID.fromString;
@@ -47,5 +48,16 @@ public final class ResultSetUtil {
             throws SQLException {
         Long id = resultSet.getLong(aliasId);
         return Provider.builder().id(id).build();
+    }
+
+    public static LocalDateTime getDateTime(ResultSet resultSet, String alias)
+            throws SQLException {
+        return resultSet.getTimestamp(alias).toLocalDateTime();
+    }
+
+    public static <E extends Enum<E>> E getEnum(ResultSet resultSet, String alias, Class<E> type)
+            throws SQLException {
+        String name = resultSet.getString(alias);
+        return Enum.valueOf(type, name);
     }
 }
