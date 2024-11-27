@@ -62,6 +62,7 @@ CREATE TABLE shows(
     sale_status sale_status NOT NULL,
     duration VARCHAR(256) NOT NULL,
     tags TEXT NOT NULL,
+    broken BOOLEAN NOT NULL,
     price_from INTEGER NOT NULL,
     price_from_with_taxes INTEGER NOT NULL,
     club_tickets_available BOOLEAN NOT NULL,

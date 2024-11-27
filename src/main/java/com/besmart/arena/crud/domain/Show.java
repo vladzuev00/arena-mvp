@@ -23,6 +23,7 @@ public class Show {
     SaleStatus saleStatus;
     String duration;
     String tags;
+    boolean broken;
     int priceFrom;
     int priceFromWithTaxes;
     boolean clubTicketsAvailable;
