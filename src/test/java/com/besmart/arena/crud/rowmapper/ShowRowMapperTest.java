@@ -78,4 +78,9 @@
 //            assertEquals(expected, actual);
 //        }
 //    }
+//private Timestamp createTimestamp(LocalDateTime dateTime) {
+//    Timestamp givenTimestamp = mock(Timestamp.class);
+//    when(givenTimestamp.toLocalDateTime()).thenReturn(dateTime);
+//    return givenTimestamp;
+//}
 //}
